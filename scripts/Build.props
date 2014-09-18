@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <SolutionDir>..\</SolutionDir>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <PrivateKeyBase64String><!--Input private key string as base 64 string--></PrivateKeyBase64String>
+    <CommitAuthorEmail><!--Input author email which should be matched with nuget account email--></CommitAuthorEmail>
+    <NugetPassword><!--Input nuget accout password--></NugetPassword>
+    <SetApiKey><!--Input nuget api key--></SetApiKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Projects Include="$(SolutionDir)src\**\*.csproj" />
+    <TestProjects Include="$(SolutionDir)test\**\*.csproj" />
+    <ProjectRulSet Include="All.ruleset" />
+    <TestProjectRulSet Include="Test.ruleset" />
+    <CommonAssemblyInfo Include="$(SolutionDir)CommonAssemblyInfo.cs" />
+    <NuspecFiles Include="$(SolutionDir)**\*.nuspec" />
+  </ItemGroup>
+</Project>
