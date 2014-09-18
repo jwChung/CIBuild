@@ -59,6 +59,7 @@
     <Compile Include="PublishNugetDetermination.cs" />
     <Compile Include="ReleaseNoteExtractor.cs" />
     <Compile Include="SemanticVersioning.cs" />
+    <Compile Include="WebClientWithCookies.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\CodeAnalysisDictionary.xml">

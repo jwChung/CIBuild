@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Net;
     using System.Text.RegularExpressions;
     using HtmlAgilityPack;
     using Microsoft.Build.Framework;
@@ -191,24 +190,6 @@
                 "https://www.nuget.org/packages/{0}/Delete",
                 Regex.Replace(this.identifier, @"\s+", "/"));
             return packageUrl;
-        }
-
-        private class WebClientWithCookies : WebClient
-        {
-            private CookieContainer cookieContainer = new CookieContainer();
-
-            protected override WebRequest GetWebRequest(Uri address)
-            {
-                var webRequest = base.GetWebRequest(address);
-                var httpWebRequest = webRequest as HttpWebRequest;
-                if (httpWebRequest != null)
-                    httpWebRequest.CookieContainer = this.cookieContainer;
-
-                if (this.Headers[HttpRequestHeader.ContentType] == null)
-                    this.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-
-                return webRequest;
-            }
         }
     }
 }
