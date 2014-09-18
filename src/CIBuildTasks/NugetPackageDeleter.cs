@@ -87,14 +87,55 @@
         /// </returns>
         public override bool Execute()
         {
+            this.DeletePackage(this.idOrEmail, this.password, this.identifier);
+
+            this.LogMessageFromText(
+                string.Format(
+                    CultureInfo.CurrentCulture,
+                    "The '{0}' package was deleted...",
+                    this.identifier),
+                MessageImportance.High);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Deletes a package.
+        /// </summary>
+        /// <param name="id">
+        /// User id.
+        /// </param>
+        /// <param name="pwd">
+        /// User password.
+        /// </param>
+        /// <param name="package">
+        /// A package identifier.
+        /// </param>
+        protected virtual void DeletePackage(string id, string pwd, string package)
+        {
+            this.idOrEmail = id;
+            this.password = pwd;
+            this.identifier = package;
+
             using (var client = new WebClientWithCookies())
             {
                 this.PostSignIn(client);
                 this.PostDelete(client);
             }
+        }
 
-            Log.LogMessageFromText("Delete: " + this.identifier, MessageImportance.High);
-            return true;
+        /// <summary>
+        /// Logs message.
+        /// </summary>
+        /// <param name="lineOfText">
+        /// The line of text.
+        /// </param>
+        /// <param name="messageImportance">
+        /// The message importance.
+        /// </param>
+        protected virtual void LogMessageFromText(string lineOfText, MessageImportance messageImportance)
+        {
+            Log.LogMessageFromText(lineOfText, messageImportance);
         }
 
         private static HtmlDocument GetLogOnDocument(WebClientWithCookies client)
