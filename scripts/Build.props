@@ -26,7 +26,7 @@
     <RepositoryName>CIBuild</RepositoryName>
     
     <!--Input ref name to creat tag for, which can be ommited and the default is 'heads/master'.-->
-    <GitRefNameToTag>$(APPVEYOR_REPO_COMMIT)</GitRefNameToTag>
+    <GitRefNameToTag>heads/master</GitRefNameToTag>
     
     <AuthorName>Jin-Wook Chung</AuthorName>
     
