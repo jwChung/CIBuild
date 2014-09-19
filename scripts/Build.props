@@ -7,6 +7,12 @@
     <NugetId><!--Input nuget account id--></NugetId>
     <NugetPassword><!--Input nuget accout password--></NugetPassword>
     <SetApiKey><!--Input nuget api key--></SetApiKey>
+    <GitHubAccessToken><!--Input access token of github--></GitHubAccessToken>
+    <GitHubId>jwChung</GitHubId>
+    <RepositoryName>CIBuild</RepositoryName>
+    <GitRefNameToTag></GitRefNameToTag>
+    <AuthorName>Jin-Wook Chung</AuthorName>
+    <AuthorEmail><!--Input author email --></AuthorEmail>
   </PropertyGroup>
   <ItemGroup>
     <Projects Include="$(SolutionDir)src\**\*.csproj" />

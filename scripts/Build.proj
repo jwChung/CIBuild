@@ -24,6 +24,7 @@
   <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.PublishNugetDetermination" />
   <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.ReleaseNoteExtractor" />
   <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.NugetPackageDeleter" />
+  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.GitHubTagger" />
   
   
   <!-- Targets -->
@@ -37,14 +38,15 @@
           RunTests;
           GetSemanticVersion;
           DetermineCanPush;
-          Publish"/>
+          Publish" />
 
   <Target Name ="Publish" Condition=" '$(CanPush)' == 'true' " DependsOnTargets="
           VersioningNuspecs;
           GetReleaseNotes;
           SetReleaseNotes;
           PackNugetPackages;
-          PushNugetPackages" />
+          PushNugetPackages;
+          MakeTagOnGitHub" />
   
   <Target Name="MakePrivateKey">
     <Base64StringToFile Input="$(PrivateKeyBase64String)" OutputFile="PrivateKey.snk" />
@@ -143,6 +145,22 @@
     <Delete Files="@(NugetSymbolPackages)" />
     <Exec Command="$(NugetPath) push %(NugetPackages.Identity)" />
     <NugetPackageDeleter IdOrEmail="$(NugetId)" Password="$(NugetPassword)" Identifier="%(NuspecFiles.Filename) $(SemanticVersion)" Condition="$(SemanticVersion.Contains('-'))"/>
+  </Target>
+
+  <Target Name="MakeTagOnGitHub" Condition="!$(SemanticVersion.Contains('-'))">
+    <Message Text="v$(SemanticVersion)" />
+    <ItemGroup>
+      <TagInfo Include="v$(SemanticVersion)">
+        <AccessToken>$(GitHubAccessToken)</AccessToken>
+        <Owner>$(GitHubId)</Owner>
+        <Repository>$(RepositoryName)</Repository>
+        <Reference>$(GitRefNameToTag)</Reference>
+        <ReleaseNotes>$(ReleaseNotes)</ReleaseNotes>
+        <AuthorName>$(AuthorName)</AuthorName>
+        <AuthorEmail>$(AuthorEmail)</AuthorEmail>
+      </TagInfo>
+    </ItemGroup>
+    <GitHubTagger TagInfo="@(TagInfo)" />
   </Target>
 
   <!-- Cleanup -->
