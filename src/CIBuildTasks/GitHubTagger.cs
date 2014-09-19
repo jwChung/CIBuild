@@ -63,7 +63,10 @@
         /// </param>
         protected virtual void CreateTag(ITaskItem tagInformation)
         {
-            new Tagger(this.ConverToTag(tagInformation)).CreateTag();
+            using (var tagger  = new Tagger(ConverToTag(tagInformation)))
+            {
+                tagger.CreateTag();
+            }
         }
 
         /// <summary>
@@ -80,7 +83,7 @@
             Log.LogMessageFromText(lineOfText, messageImportance);
         }
 
-        private Tag ConverToTag(ITaskItem tagInformation)
+        private static Tag ConverToTag(ITaskItem tagInformation)
         {
             return new Tag
             {
@@ -95,10 +98,11 @@
             };
         }
 
-        private class Tagger
+        private sealed class Tagger : IDisposable
         {
             private readonly WebClient client = new WebClientWithCookies();
             private readonly Tag tag;
+            private bool disposed;
 
             public Tagger(Tag tag)
             {
@@ -123,6 +127,16 @@
                     JsonConvert.SerializeObject(createReferenceInput));
             }
 
+            public void Dispose()
+            {
+                if (this.disposed)
+                    return;
+
+                this.client.Dispose();
+
+                this.disposed = true;
+            }
+
             private string CreateObject()
             {
                 var createObjectInput = new
@@ -135,7 +149,7 @@
                     {
                         name = this.tag.AuthorName,
                         email = this.tag.AuthorEmail,
-                        date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:sszz")
+                        date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:sszz", CultureInfo.CurrentCulture)
                     }
                 };
 
@@ -167,7 +181,8 @@
             private void Refresh()
             {
                 this.client.BaseAddress = "https://api.github.com";
-                this.client.Headers["Authorization"] = string.Format("token {0}", this.tag.AccessToken);
+                this.client.Headers["Authorization"] = string.Format(
+                    CultureInfo.CurrentCulture, "token {0}", this.tag.AccessToken);
                 this.client.Headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
                 this.client.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.116 Safari/537.36";
                 this.client.Headers["Accept-Language"] = "en-US,en;q=0.8,el;q=0.6";
@@ -194,7 +209,7 @@
 
                 set
                 {
-                    this.EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty(value);
                     this.accessToken = value;
                 }
             }
@@ -208,7 +223,7 @@
 
                 set
                 {
-                    this.EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty(value);
                     this.owner = value;
                 }
             }
@@ -222,7 +237,7 @@
 
                 set
                 {
-                    this.EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty(value);
                     this.repository = value;
                 }
             }
@@ -249,7 +264,7 @@
 
                 set
                 {
-                    this.EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty(value);
                     this.name = value;
                 }
             }
@@ -263,7 +278,7 @@
 
                 set
                 {
-                    this.EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty(value);
                     this.releaseNotes = value;
                 }
             }
@@ -277,7 +292,7 @@
 
                 set
                 {
-                    this.EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty(value);
                     this.authorName = value;
                 }
             }
@@ -291,15 +306,15 @@
 
                 set
                 {
-                    this.EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty(value);
                     this.authorEmail = value;
                 }
             }
 
-            public void EnsureNotNullOrEmpty(string value)
+            public static void EnsureNotNullOrEmpty(string value)
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException();
+                    throw new ArgumentException("The value cannot be null or empty.");
             }
         }
     }
