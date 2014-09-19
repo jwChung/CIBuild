@@ -1,5 +1,6 @@
 ﻿namespace Jwc.CIBuildTasks
 {
+    using System;
     using System.Collections.Generic;
     using System.Reflection;
     using Experiment.Xunit;
@@ -66,9 +67,9 @@
         }
 
         [Test]
-        public void ExecuteLogsCorrectMessage(ITaskItem taskInfo, string tagName)
+        public void ExecuteLogsCorrectMessage(ITaskItem tagInfo, string tagName)
         {
-            this.Sut.TagInfo = taskInfo.Of(x => x.GetMetadata("TagName") == tagName);
+            this.Sut.TagInfo = tagInfo.Of(x => x.GetMetadata("Name") == tagName);
 
             this.Sut.Execute();
 
@@ -80,19 +81,46 @@
         }
 
         [Test]
-        public IEnumerable<ITestCase> ExecuteThrowsIfMetadataNamesOfTagInfoIsIncorrect()
+        public IEnumerable<ITestCase> ExecuteThrowsIfMetadataNamesOfTagInfoIsInvalid()
         {
-            ////var testData = new[]
-            ////{
-            ////    new []{ "Repository", "Referene", "TagName", "ReleaseNotes", "AccessToken", "AuthorName", "AuthorEmail" }
-            ////};
+            var testData = new[]
+            {
+                new { Name = "AccessToken", Value = (string)null },
+                new { Name = "AccessToken", Value = string.Empty },
+                new { Name = "Owner", Value = (string)null },
+                new { Name = "Owner", Value = string.Empty },
+                new { Name = "Repository", Value = (string)null },
+                new { Name = "Repository", Value = string.Empty },
+                new { Name = "Reference", Value = (string)null },
+                new { Name = "Reference", Value = string.Empty },
+                new { Name = "Name", Value = (string)null },
+                new { Name = "Name", Value = string.Empty },
+                new { Name = "ReleaseNotes", Value = (string)null },
+                new { Name = "ReleaseNotes", Value = string.Empty },
+                new { Name = "AuthorName", Value = (string)null },
+                new { Name = "AuthorName", Value = string.Empty },
+                new { Name = "AuthorEmail", Value = (string)null },
+                new { Name = "AuthorEmail", Value = string.Empty }
+            };
 
-            ////return TestCases.WithArgs(testData).WithAuto<ITaskItem>().Create(
-            ////    (data, tagInfo) =>
-            ////    {
-            ////        tagInfo.Of(x => x.MetadataNames = data);
-            ////    });
-            yield break;
+            return TestCases.WithArgs(testData).WithAuto<ITaskItem>().Create(
+                (data, tagInfo) =>
+                {
+                    var sut = new GitHubTagger();
+                    tagInfo.Of(x => x.GetMetadata("AccessToken") == "AccessToken"
+                        && x.GetMetadata("Owner") == "Owner"
+                        && x.GetMetadata("Repository") == "Repository"
+                        && x.GetMetadata("Reference") == "Reference"
+                        && x.GetMetadata("Name") == "Name"
+                        && x.GetMetadata("ReleaseNotes") == "ReleaseNotes"
+                        && x.GetMetadata("AuthorName") == "AuthorName"
+                        && x.GetMetadata("AuthorEmail") == "AuthorEmail"
+                        && x.GetMetadata(data.Name) == data.Value);
+                    sut.TagInfo = tagInfo;
+                    Assert.Equal(data.Value, tagInfo.GetMetadata(data.Name));
+
+                    Assert.Throws<ArgumentException>(() => sut.Execute());
+                });
         }
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
