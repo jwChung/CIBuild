@@ -11,10 +11,12 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyVersion("0.0.1")]
-[assembly: AssemblyInformationalVersion("0.0.1")]
+[assembly: AssemblyInformationalVersion("0.0.2")]
 
 /*
- * Version 0.0.1
+ * Version 0.0.2
  * 
- * - This is the first release.
+ * - [Patch] The GitRefNameToTag property should not be defined with built-in
+ *   appveyor property, because appveyor can set it with non-exist referene
+ *   (sha).
  */
