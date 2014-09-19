@@ -209,7 +209,7 @@
 
                 set
                 {
-                    EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty("AccessToken", value);
                     this.accessToken = value;
                 }
             }
@@ -223,7 +223,7 @@
 
                 set
                 {
-                    EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty("Owner", value);
                     this.owner = value;
                 }
             }
@@ -237,7 +237,7 @@
 
                 set
                 {
-                    EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty("Repository", value);
                     this.repository = value;
                 }
             }
@@ -264,7 +264,7 @@
 
                 set
                 {
-                    EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty("Name", value);
                     this.name = value;
                 }
             }
@@ -278,7 +278,7 @@
 
                 set
                 {
-                    EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty("ReleaseNotes", value);
                     this.releaseNotes = value;
                 }
             }
@@ -292,7 +292,7 @@
 
                 set
                 {
-                    EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty("AuthorName", value);
                     this.authorName = value;
                 }
             }
@@ -306,15 +306,18 @@
 
                 set
                 {
-                    EnsureNotNullOrEmpty(value);
+                    EnsureNotNullOrEmpty("AuthorEmail", value);
                     this.authorEmail = value;
                 }
             }
 
-            public static void EnsureNotNullOrEmpty(string value)
+            public static void EnsureNotNullOrEmpty(string name, string value)
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("The value cannot be null or empty.");
+                    throw new ArgumentException(string.Format(
+                        CultureInfo.CurrentCulture,
+                        "The '{0}'value cannot be null or empty.",
+                        name));
             }
         }
     }
