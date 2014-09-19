@@ -26,7 +26,7 @@
     <Rule Id="CA1900" Action="Warning" />
     <Rule Id="CA1901" Action="Warning" />
     <Rule Id="CA2002" Action="Warning" />
-    <Rule Id="CA2100" Action="Warning" />
+    <!--<Rule Id="CA2100" Action="Warning" />-->
     <Rule Id="CA2101" Action="Warning" />
     <Rule Id="CA2108" Action="Warning" />
     <Rule Id="CA2111" Action="Warning" />
@@ -50,7 +50,7 @@
     <Rule Id="CA2147" Action="Warning" />
     <Rule Id="CA2149" Action="Warning" />
     <Rule Id="CA2200" Action="Warning" />
-    <Rule Id="CA2202" Action="Warning" />
+    <!--<Rule Id="CA2202" Action="Warning" />-->
     <Rule Id="CA2207" Action="Warning" />
     <Rule Id="CA2212" Action="Warning" />
     <Rule Id="CA2213" Action="Warning" />
@@ -65,7 +65,7 @@
     <Rule Id="CA2237" Action="Warning" />
     <Rule Id="CA2238" Action="Warning" />
     <Rule Id="CA2240" Action="Warning" />
-    <Rule Id="CA2241" Action="Warning" />
+    <!--<Rule Id="CA2241" Action="Warning" />-->
     <Rule Id="CA2242" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
@@ -92,6 +92,6 @@
     <Rule Id="CA1724" Action="Warning" />
     <Rule Id="CA1725" Action="Warning" />
     <Rule Id="CA1726" Action="Warning" />
-    <Rule Id="CA2204" Action="Warning" />
+    <!--<Rule Id="CA2204" Action="Warning" />-->
   </Rules>
 </RuleSet>
