@@ -186,7 +186,9 @@ sdfsd
                         var actual = this.Sut.Execute();
 
                         Assert.True(actual);
-                        Assert.Equal(data.ReleaseNotes, this.Sut.ReleaseNotes);
+                        Assert.Equal(
+                            data.ReleaseNotes.Replace("\r", string.Empty),
+                            this.Sut.ReleaseNotes.Replace("\r", string.Empty));
                     }
                     finally
                     {
