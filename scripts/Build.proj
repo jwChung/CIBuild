@@ -28,11 +28,11 @@
   
   
   <!-- Targets -->
-  <Target Name="RunAndCleanup">
-    <CallTarget Targets="Run;Cleanup" RunEachTargetSeparately="True" />
+  <Target Name="CI">
+    <CallTarget Targets="BuildAndPublish;Cleanup" RunEachTargetSeparately="True" />
   </Target>
   
-  <Target Name="Run" DependsOnTargets="
+  <Target Name="BuildAndPublish" DependsOnTargets="
           MakePrivateKey;
           Build;
           RunTests;
