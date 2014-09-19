@@ -11,11 +11,10 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyVersion("0.0.1")]
-[assembly: AssemblyInformationalVersion("0.0.1-pre07")]
+[assembly: AssemblyInformationalVersion("0.0.1")]
 
 /*
- * Version 0.0.1-pre04
+ * Version 0.0.1
  * 
- * [Patch] Fixed that CIBuild.Verify and VerifyTest are pushed as solution
- * level packages.
+ * - This is the first release.
  */
