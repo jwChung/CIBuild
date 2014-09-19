@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
+    
     <SolutionDir>..\</SolutionDir>
+    
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <PrivateKeyBase64String><!--Input private key string as base 64 string--></PrivateKeyBase64String>
-    <CommitAuthorEmail><!--Input author email which should be matched with nuget account email--></CommitAuthorEmail>
-    <NugetPassword><!--Input nuget accout password--></NugetPassword>
-    <SetApiKey><!--Input nuget api key--></SetApiKey>
+    
+    <!--Input private key string as base 64 string-->
+    <PrivateKeyBase64String>$(PrivateKeyBase64String)</PrivateKeyBase64String>
+    
+    <!--Input nuget account id-->
+    <NugetId>$(NugetId)</NugetId>
+    
+    <!--Input nuget accout password-->
+    <NugetPassword>$(NugetPassword)</NugetPassword>
+    
+    <!--Input nuget api key-->
+    <SetApiKey>$(SetApiKey)</SetApiKey>
+    
+    <!--Input access token of github-->
+    <GitHubAccessToken>$(GitHubAccessToken)</GitHubAccessToken>
+    
+    <GitHubId>jwChung</GitHubId>
+    
+    <RepositoryName>CIBuild</RepositoryName>
+    
+    <!--Input ref name to creat tag for, which can be ommited and the default is 'heads/master'.-->
+    <GitRefNameToTag>$(APPVEYOR_REPO_COMMIT)</GitRefNameToTag>
+    
+    <AuthorName>Jin-Wook Chung</AuthorName>
+    
+    <!--Input author email -->
+    <AuthorEmail>$(AuthorEmail)</AuthorEmail>
+    
   </PropertyGroup>
   <ItemGroup>
     <Projects Include="$(SolutionDir)src\**\*.csproj" />

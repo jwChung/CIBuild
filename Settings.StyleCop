@@ -1,7 +1,8 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
-      <Value>Nuget</Value>
+      <Value>git</Value>
+      <Value>nuget</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Analyzers>

@@ -91,6 +91,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Base64StringToFileTest.cs" />
+    <Compile Include="GitHubTaggerTest.cs" />
     <Compile Include="ISutSpecimen.cs" />
     <Compile Include="Mocked.cs" />
     <Compile Include="NugetPackageDeleterTest.cs" />
