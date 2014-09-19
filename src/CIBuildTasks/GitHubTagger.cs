@@ -49,7 +49,7 @@
                 string.Format(
                     CultureInfo.CurrentCulture,
                     "The '{0}' tag was created...",
-                    this.tagInfo.GetMetadata("Name")),
+                    this.tagInfo.ItemSpec),
                 MessageImportance.High);
 
             return true;

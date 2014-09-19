@@ -69,7 +69,7 @@
         [Test]
         public void ExecuteLogsCorrectMessage(ITaskItem tagInfo, string tagName)
         {
-            this.Sut.TagInfo = tagInfo.Of(x => x.GetMetadata("Name") == tagName);
+            this.Sut.TagInfo = tagInfo.Of(x => x.ItemSpec == tagName);
 
             this.Sut.Execute();
 
