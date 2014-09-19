@@ -147,7 +147,7 @@
     <NugetPackageDeleter IdOrEmail="$(NugetId)" Password="$(NugetPassword)" Identifier="%(NuspecFiles.Filename) $(SemanticVersion)" Condition="$(SemanticVersion.Contains('-'))"/>
   </Target>
 
-  <Target Name="MakeTagOnGitHub" Condition="!$(SemanticVersion.Contains('-'))">
+  <Target Name="MakeTagOnGitHub">
     <Message Text="v$(SemanticVersion)" />
     <ItemGroup>
       <TagInfo Include="v$(SemanticVersion)">
