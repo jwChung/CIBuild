@@ -4,7 +4,7 @@
     <SolutionDir>..\</SolutionDir>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <PrivateKeyBase64String><!--Input private key string as base 64 string--></PrivateKeyBase64String>
-    <CommitAuthorEmail><!--Input author email which should be matched with nuget account email--></CommitAuthorEmail>
+    <NugetId><!--Input nuget account id--></NugetId>
     <NugetPassword><!--Input nuget accout password--></NugetPassword>
     <SetApiKey><!--Input nuget api key--></SetApiKey>
   </PropertyGroup>
