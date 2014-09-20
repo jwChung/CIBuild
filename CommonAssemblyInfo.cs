@@ -10,12 +10,13 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyVersion("0.0.4")]
-[assembly: AssemblyInformationalVersion("0.0.5-pre01")]
+[assembly: AssemblyVersion("0.1.0")]
+[assembly: AssemblyInformationalVersion("0.1.0")]
 
 /*
- * Version 0.0.5-pre01
+ * Version 0.1.0
  * 
- * - [Pre] This is to test that CIBuild.ILMerge is correctly pushed to the Nuget
- *   server.
+ * - [Minor] Created the CIBuild.ILMerge nuget-package.
+ * 
+ * - [Patch] Improved the decsription of the build properteis in Build.props.
  */
