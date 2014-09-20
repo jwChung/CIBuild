@@ -92,7 +92,6 @@
     </Compile>
     <Compile Include="Base64StringToFileTest.cs" />
     <Compile Include="GitHubTaggerTest.cs" />
-    <Compile Include="ISutSpecimen.cs" />
     <Compile Include="Mocked.cs" />
     <Compile Include="NugetPackageDeleterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,7 +100,7 @@
     <Compile Include="ReleaseNoteExtractorTest.cs" />
     <Compile Include="SemanticVersioningTest.cs" />
     <Compile Include="TestAttribute.cs" />
-    <Compile Include="TestClassBase.cs" />
+    <Compile Include="TestBaseClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\CodeAnalysisDictionary.xml">

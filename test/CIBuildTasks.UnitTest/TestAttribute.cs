@@ -149,15 +149,15 @@
 
             public void Customize(IFixture fixture)
             {
-                var testObject = this.context.ActualObject as TestClassBase;
+                var testObject = this.context.ActualObject as TestBaseClass;
                 if (testObject != null)
                     TrySetSutSpecimen(fixture, testObject);
             }
 
-            private static void TrySetSutSpecimen(IFixture fixture, TestClassBase testObject)
+            private static void TrySetSutSpecimen(IFixture fixture, TestBaseClass testObject)
             {
                 var sutType = testObject.SutType;
-                var sutSpecimenType = typeof(ISutSpecimen<>).MakeGenericType(sutType);
+                var sutSpecimenType = typeof(TestBaseClass<>).MakeGenericType(sutType);
                 if (sutSpecimenType.IsInstanceOfType(testObject))
                 {
                     sutSpecimenType.GetProperty("Sut").SetValue(

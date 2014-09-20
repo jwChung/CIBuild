@@ -10,11 +10,11 @@ namespace Jwc.CIBuildTasks
     using Ploeh.Albedo;
     using Ploeh.AutoFixture;
 
-    public abstract class TestClassBase
+    public abstract class TestBaseClass
     {
         private readonly Type sutType;
 
-        public TestClassBase()
+        public TestBaseClass()
         {
             var testTypeName = this.GetType().FullName;
             var sutName = testTypeName.Substring(0, testTypeName.Length - 4);
@@ -26,7 +26,7 @@ namespace Jwc.CIBuildTasks
                     testTypeName));
         }
 
-        public TestClassBase(Type sutType)
+        public TestBaseClass(Type sutType)
         {
             this.sutType = sutType;
         }
@@ -64,11 +64,11 @@ namespace Jwc.CIBuildTasks
     }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Same type name with generic argument")]
-    public abstract class TestClassBase<TSut> : TestClassBase, ISutSpecimen<TSut>
+    public abstract class TestBaseClass<TSut> : TestBaseClass
     {
         private readonly Properties<TSut> properties = new Properties<TSut>();
 
-        public TestClassBase() : base(typeof(TSut))
+        public TestBaseClass() : base(typeof(TSut))
         {
         }
 

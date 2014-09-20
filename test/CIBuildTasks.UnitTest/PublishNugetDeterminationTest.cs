@@ -8,7 +8,7 @@
     using Ploeh.Albedo;
     using Xunit;
 
-    public class PublishNugetDeterminationTest : TestClassBase
+    public class PublishNugetDeterminationTest : TestBaseClass
     {
         [Test]
         public void SutIsTask(PublishNugetDetermination sut)
