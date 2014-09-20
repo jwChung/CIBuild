@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersion("0.0.3")]
 
 /*
- * Version 0.0.3
+ * Version 0.0.4
  * 
- * - [Patch] Fixed not being able to create a tag with SHA.
+ * - [Patch] Fixed missing reference assemblies.
  */
