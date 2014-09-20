@@ -12,11 +12,11 @@
     <licenseUrl>https://raw.github.com/jwChung/CIBuild/master/LICENSE.txt</licenseUrl>
     <iconUrl>https://raw.githubusercontent.com/jwChung/CIBuild/master/icon.png</iconUrl>
     <releaseNotes>releaseNotes</releaseNotes>
+    <dependencies>
+      <dependency id="ilmerge" version="2.13.307" />
+    </dependencies>
   </metadata>
   <files>
     <file src="..\build\CIBuild.ILMerge.targets" target="build\net20" />
-    <file src="..\packages\ILMerge\ILMerge.exe" target="tools\net20" />
-    <file src="..\packages\ILMerge\ILMerge.doc" target="tools\net20" />
-    <file src="..\packages\ILMerge\ILMerge License.rtf" target="tools\net20" />
   </files>
 </package>
