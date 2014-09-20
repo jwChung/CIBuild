@@ -1,34 +1,39 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
+    <!--Solution directory path-->
     <SolutionDir>..\</SolutionDir>
     
+    <!--True to run code-analysis, otherwise false-->
     <RunCodeAnalysis>true</RunCodeAnalysis>
     
-    <!--Input private key string encoded using Base64String.-->
+    <!--Private key string encoded using Base64String.-->
     <PrivateKeyBase64String>$(PrivateKeyBase64String)</PrivateKeyBase64String>
     
-    <!--Input nuget account id.-->
+    <!--Nuget account id-->
     <NugetId>$(NugetId)</NugetId>
     
-    <!--Input nuget accout password.-->
+    <!--Nuget accout password-->
     <NugetPassword>$(NugetPassword)</NugetPassword>
     
-    <!--Input nuget api key.-->
+    <!--Nuget api key-->
     <SetApiKey>$(SetApiKey)</SetApiKey>
     
-    <!--Input access token of github.-->
+    <!--Sccess token of github.-->
     <GitHubAccessToken>$(GitHubAccessToken)</GitHubAccessToken>
-    
+
+    <!--Github account id -->
     <GitHubId>jwChung</GitHubId>
 
+    <!--Github repository name -->
     <GitHubRepository>CIBuild</GitHubRepository>
     
-    <!--Input ref or sha to create a tag for, which can be ommited as the default is 'refs/heads/master'.-->
+    <!--Ref or sha to create a tag for, which can be ommited as the default is 'refs/heads/master'.-->
     <RefOrShaForTag>$(APPVEYOR_REPO_COMMIT)</RefOrShaForTag>
-    
+
+    <!--Author name for git commit-->
     <AuthorName>Jin-Wook Chung</AuthorName>
     
-    <!--Input author email -->
+    <!--Author email for git commit-->
     <AuthorEmail>$(AuthorEmail)</AuthorEmail>
     
   </PropertyGroup>
