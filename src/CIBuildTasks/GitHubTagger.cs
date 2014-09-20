@@ -167,7 +167,7 @@
 
             private string GetShaForTag()
             {
-                return this.tag.RefOrSha.StartsWith("refs")
+                return this.tag.RefOrSha.StartsWith("refs", StringComparison.CurrentCulture)
                     ? this.GetShaForTagFromReference()
                     : this.tag.RefOrSha;
             }
