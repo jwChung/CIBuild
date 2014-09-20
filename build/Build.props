@@ -21,8 +21,8 @@
     <GitHubAccessToken>$(GitHubAccessToken)</GitHubAccessToken>
     
     <GitHubId>jwChung</GitHubId>
-    
-    <RepositoryName>CIBuild</RepositoryName>
+
+    <GitHubRepository>CIBuild</GitHubRepository>
     
     <!--Input ref or sha to create a tag for, which can be ommited as the default is 'refs/heads/master'.-->
     <RefOrShaForTag>$(APPVEYOR_REPO_COMMIT)</RefOrShaForTag>

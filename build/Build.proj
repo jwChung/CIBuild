@@ -153,7 +153,7 @@
       <TagInfo Include="v$(SemanticVersion)">
         <AccessToken>$(GitHubAccessToken)</AccessToken>
         <Owner>$(GitHubId)</Owner>
-        <Repository>$(RepositoryName)</Repository>
+        <Repository>$(GitHubRepository)</Repository>
         <RefOrSha>$(RefOrShaForTag)</RefOrSha>
         <ReleaseNotes>$(ReleaseNotes)</ReleaseNotes>
         <AuthorName>$(AuthorName)</AuthorName>
