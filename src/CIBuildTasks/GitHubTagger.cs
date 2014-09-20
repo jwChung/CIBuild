@@ -90,7 +90,7 @@
                 AccessToken = tagInformation.GetMetadata("AccessToken"),
                 Owner = tagInformation.GetMetadata("Owner"),
                 Repository = tagInformation.GetMetadata("Repository"),
-                Reference = tagInformation.GetMetadata("Reference"),
+                RefOrSha = tagInformation.GetMetadata("RefOrSha"),
                 Name = tagInformation.ItemSpec,
                 ReleaseNotes = tagInformation.GetMetadata("ReleaseNotes"),
                 AuthorName = tagInformation.GetMetadata("AuthorName"),
@@ -167,9 +167,9 @@
 
             private string GetShaForTag()
             {
-                return this.tag.Reference.StartsWith("refs")
+                return this.tag.RefOrSha.StartsWith("refs")
                     ? this.GetShaForTagFromReference()
-                    : this.tag.Reference;
+                    : this.tag.RefOrSha;
             }
 
             private string GetShaForTagFromReference()
@@ -180,7 +180,7 @@
                     "repos/{0}/{1}/git/{2}",
                     this.tag.Owner,
                     this.tag.Repository,
-                    this.tag.Reference));
+                    this.tag.RefOrSha));
 
                 return JsonConvert.DeserializeObject<JObject>(getRefernceResult)["object"]["sha"].ToString();
             }
@@ -201,7 +201,7 @@
             private string accessToken;
             private string owner;
             private string repository;
-            private string reference;
+            private string refOrSha;
             private string name;
             private string releaseNotes;
             private string authorName;
@@ -249,16 +249,16 @@
                 }
             }
 
-            public string Reference
+            public string RefOrSha
             {
                 get
                 {
-                    return this.reference;
+                    return this.refOrSha;
                 }
 
                 set
                 {
-                    this.reference = !string.IsNullOrEmpty(value) ? value : "refs/heads/master";
+                    this.refOrSha = !string.IsNullOrEmpty(value) ? value : "refs/heads/master";
                 }
             }
 
