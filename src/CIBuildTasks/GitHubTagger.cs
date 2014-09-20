@@ -143,7 +143,7 @@
                 {
                     tag = this.tag.Name,
                     message = this.tag.ReleaseNotes,
-                    @object = this.GetReferenceSha(),
+                    @object = this.GetShaForTag(),
                     type = "commit",
                     tagger = new
                     {
@@ -165,12 +165,19 @@
                 return JsonConvert.DeserializeObject<JObject>(createObjectResult)["sha"].ToString();
             }
 
-            private string GetReferenceSha()
+            private string GetShaForTag()
+            {
+                return this.tag.Reference.StartsWith("refs")
+                    ? this.GetShaForTagFromReference()
+                    : this.tag.Reference;
+            }
+
+            private string GetShaForTagFromReference()
             {
                 this.Refresh();
                 var getRefernceResult = this.client.DownloadString(string.Format(
                     CultureInfo.CurrentCulture,
-                    "repos/{0}/{1}/git/refs/{2}",
+                    "repos/{0}/{1}/git/{2}",
                     this.tag.Owner,
                     this.tag.Repository,
                     this.tag.Reference));
@@ -251,7 +258,7 @@
 
                 set
                 {
-                    this.reference = !string.IsNullOrEmpty(value) ? value : "heads/master";
+                    this.reference = !string.IsNullOrEmpty(value) ? value : "refs/heads/master";
                 }
             }
 
