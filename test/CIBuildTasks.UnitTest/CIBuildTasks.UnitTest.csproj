@@ -101,7 +101,7 @@
     <Compile Include="ReleaseNoteExtractorTest.cs" />
     <Compile Include="SemanticVersioningTest.cs" />
     <Compile Include="TestAttribute.cs" />
-    <Compile Include="TestClassBase.cs" />
+    <Compile Include="TestBaseClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\CodeAnalysisDictionary.xml">

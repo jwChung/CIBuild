@@ -12,7 +12,7 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class SemanticVersioningTest : TestClassBase, ICustomization
+    public class SemanticVersioningTest : TestBaseClass, ICustomization
     {
         public void Customize(IFixture fixture)
         {

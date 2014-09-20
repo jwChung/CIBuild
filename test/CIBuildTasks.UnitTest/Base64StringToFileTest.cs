@@ -11,7 +11,7 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class Base64StringToFileTest : TestClassBase, ICustomization
+    public class Base64StringToFileTest : TestBaseClass, ICustomization
     {
         public void Customize(IFixture fixture)
         {
