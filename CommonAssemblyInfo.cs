@@ -14,9 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersion("0.0.3-pre03")]
 
 /*
- * Version 0.0.2
+ * Version 0.0.3
  * 
- * - [Patch] The GitRefNameToTag property should not be defined with built-in
- *   appveyor property, because appveyor can set it with non-exist referene
- *   (sha).
+ * - [Patch] Fixed not being able to create a tag with SHA.
  */
