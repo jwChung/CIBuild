@@ -10,13 +10,12 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyVersion("0.1.0")]
-[assembly: AssemblyInformationalVersion("0.1.0")]
+[assembly: AssemblyVersion("0.1.1")]
+[assembly: AssemblyInformationalVersion("0.1.1")]
 
 /*
- * Version 0.1.0
+ * Version 0.1.1
  * 
- * - [Minor] Created the CIBuild.ILMerge nuget-package.
- * 
- * - [Patch] Improved the decsription of the build properteis in Build.props.
+ * - [Patch] Used ILMerge.exe from the ilmerge nuget-package rather than local
+ *   copied one to prevent unkown exception.
  */
