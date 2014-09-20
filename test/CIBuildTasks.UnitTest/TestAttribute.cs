@@ -157,7 +157,7 @@
             private static void TrySetSutSpecimen(IFixture fixture, TestBaseClass testObject)
             {
                 var sutType = testObject.SutType;
-                var sutSpecimenType = typeof(ISutSpecimen<>).MakeGenericType(sutType);
+                var sutSpecimenType = typeof(TestBaseClass<>).MakeGenericType(sutType);
                 if (sutSpecimenType.IsInstanceOfType(testObject))
                 {
                     sutSpecimenType.GetProperty("Sut").SetValue(

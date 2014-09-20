@@ -64,7 +64,7 @@ namespace Jwc.CIBuildTasks
     }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Same type name with generic argument")]
-    public abstract class TestBaseClass<TSut> : TestBaseClass, ISutSpecimen<TSut>
+    public abstract class TestBaseClass<TSut> : TestBaseClass
     {
         private readonly Properties<TSut> properties = new Properties<TSut>();
 
