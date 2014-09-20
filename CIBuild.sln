@@ -12,12 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C69D9
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{E8A6B9CF-3808-4476-AEAF-5BFCA73FB145}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E8A6B9CF-3808-4476-AEAF-5BFCA73FB145}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\All.ruleset = scripts\All.ruleset
-		scripts\Build.proj = scripts\Build.proj
-		scripts\Build.props = scripts\Build.props
-		scripts\Test.ruleset = scripts\Test.ruleset
+		build\All.ruleset = build\All.ruleset
+		build\Build.proj = build\Build.proj
+		build\Build.props = build\Build.props
+		build\Test.ruleset = build\Test.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspecs", "Nuspecs", "{0B460C2F-24CD-4AFB-8B1A-4DB9283790B9}"
