@@ -90,6 +90,7 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AssemblyTest.cs" />
     <Compile Include="Base64StringToFileTest.cs" />
     <Compile Include="GitHubTaggerTest.cs" />
     <Compile Include="Mocked.cs" />
