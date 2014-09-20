@@ -17,12 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E8A6B9CF
 		build\All.ruleset = build\All.ruleset
 		build\Build.proj = build\Build.proj
 		build\Build.props = build\Build.props
-		build\ILMerge.targets = build\ILMerge.targets
+		build\CIBuild.ILMerge.targets = build\CIBuild.ILMerge.targets
 		build\Test.ruleset = build\Test.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspecs", "Nuspecs", "{0B460C2F-24CD-4AFB-8B1A-4DB9283790B9}"
 	ProjectSection(SolutionItems) = preProject
+		nuspecs\CIBuild.ILMerge.nuspec = nuspecs\CIBuild.ILMerge.nuspec
 		nuspecs\CIBuild.Scripts.nuspec = nuspecs\CIBuild.Scripts.nuspec
 	EndProjectSection
 EndProject

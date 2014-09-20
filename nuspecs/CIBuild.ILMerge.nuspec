@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <title>CIBuild.ILMerge</title>
+    <id>CIBuild.ILMerge</id>
+    <version>0.0.0</version>
+    <authors>Jin-Wook Chung</authors>
+    <description>CIBuild.ILMerge is build script to merge reference assemblies used internally.</description>
+    <copyright>(c) 2014 Jin-Wook Chung</copyright>
+    <tags>MSBuild Build CI ILMerge</tags>
+    <projectUrl>https://github.com/jwChung/CIBuild</projectUrl>
+    <licenseUrl>https://raw.github.com/jwChung/CIBuild/master/LICENSE.txt</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/jwChung/CIBuild/master/icon.png</iconUrl>
+    <releaseNotes>releaseNotes</releaseNotes>
+  </metadata>
+  <files>
+    <file src="..\build\CIBuild.ILMerge.targets" target="build\net20" />
+    <file src="..\packages\ILMerge\ILMerge.exe" target="tools\net20" />
+    <file src="..\packages\ILMerge\ILMerge.doc" target="tools\net20" />
+    <file src="..\packages\ILMerge\ILMerge License.rtf" target="tools\net20" />
+  </files>
+</package>

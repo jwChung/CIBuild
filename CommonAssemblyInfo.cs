@@ -11,11 +11,11 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyVersion("0.0.4")]
-[assembly: AssemblyInformationalVersion("0.0.4")]
+[assembly: AssemblyInformationalVersion("0.0.5-pre01")]
 
 /*
- * Version 0.0.4
+ * Version 0.0.5-pre01
  * 
- * - [Patch] Used ILMerge to merge the target assembly with reference
- *   assemblies.
+ * - [Pre] This is to test that CIBuild.ILMerge is correctly pushed to the Nuget
+ *   server.
  */
