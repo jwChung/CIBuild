@@ -63,7 +63,7 @@
         /// </param>
         protected virtual void CreateTag(ITaskItem tagInformation)
         {
-            using (var tagger  = new Tagger(ConverToTag(tagInformation)))
+            using (var tagger  = new Tagger(ConverToTagInformation(tagInformation)))
             {
                 tagger.CreateTag();
             }
@@ -83,14 +83,14 @@
             Log.LogMessageFromText(lineOfText, messageImportance);
         }
 
-        private static Tag ConverToTag(ITaskItem tagInformation)
+        private static TagInformation ConverToTagInformation(ITaskItem tagInformation)
         {
-            return new Tag
+            return new TagInformation
             {
                 AccessToken = tagInformation.GetMetadata("AccessToken"),
                 Owner = tagInformation.GetMetadata("Owner"),
                 Repository = tagInformation.GetMetadata("Repository"),
-                Reference = tagInformation.GetMetadata("Reference"),
+                RefOrSha = tagInformation.GetMetadata("RefOrSha"),
                 Name = tagInformation.ItemSpec,
                 ReleaseNotes = tagInformation.GetMetadata("ReleaseNotes"),
                 AuthorName = tagInformation.GetMetadata("AuthorName"),
@@ -101,19 +101,19 @@
         private sealed class Tagger : IDisposable
         {
             private readonly WebClient client = new WebClientWithCookies();
-            private readonly Tag tag;
+            private readonly TagInformation tagInformation;
             private bool disposed;
 
-            public Tagger(Tag tag)
+            public Tagger(TagInformation tagInformation)
             {
-                this.tag = tag;
+                this.tagInformation = tagInformation;
             }
 
             public void CreateTag()
             {
                 var createReferenceInput = new
                 {
-                    @ref = "refs/tags/" + this.tag.Name,
+                    @ref = "refs/tags/" + this.tagInformation.Name,
                     sha = this.CreateObject()
                 };
 
@@ -122,8 +122,8 @@
                     string.Format(
                         CultureInfo.CurrentCulture,
                         "repos/{0}/{1}/git/refs",
-                        this.tag.Owner,
-                        this.tag.Repository),
+                        this.tagInformation.Owner,
+                        this.tagInformation.Repository),
                     JsonConvert.SerializeObject(createReferenceInput));
             }
 
@@ -141,14 +141,14 @@
             {
                 var createObjectInput = new
                 {
-                    tag = this.tag.Name,
-                    message = this.tag.ReleaseNotes,
-                    @object = this.GetReferenceSha(),
+                    tag = this.tagInformation.Name,
+                    message = this.tagInformation.ReleaseNotes,
+                    @object = this.GetShaForTag(),
                     type = "commit",
                     tagger = new
                     {
-                        name = this.tag.AuthorName,
-                        email = this.tag.AuthorEmail,
+                        name = this.tagInformation.AuthorName,
+                        email = this.tagInformation.AuthorEmail,
                         date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:sszz", CultureInfo.CurrentCulture)
                     }
                 };
@@ -158,22 +158,29 @@
                     string.Format(
                         CultureInfo.CurrentCulture,
                         "repos/{0}/{1}/git/tags",
-                        this.tag.Owner,
-                        this.tag.Repository),
+                        this.tagInformation.Owner,
+                        this.tagInformation.Repository),
                     JsonConvert.SerializeObject(createObjectInput));
 
                 return JsonConvert.DeserializeObject<JObject>(createObjectResult)["sha"].ToString();
             }
 
-            private string GetReferenceSha()
+            private string GetShaForTag()
+            {
+                return this.tagInformation.RefOrSha.StartsWith("refs", StringComparison.CurrentCulture)
+                    ? this.GetShaForTagFromReference()
+                    : this.tagInformation.RefOrSha;
+            }
+
+            private string GetShaForTagFromReference()
             {
                 this.Refresh();
                 var getRefernceResult = this.client.DownloadString(string.Format(
                     CultureInfo.CurrentCulture,
-                    "repos/{0}/{1}/git/refs/{2}",
-                    this.tag.Owner,
-                    this.tag.Repository,
-                    this.tag.Reference));
+                    "repos/{0}/{1}/git/{2}",
+                    this.tagInformation.Owner,
+                    this.tagInformation.Repository,
+                    this.tagInformation.RefOrSha));
 
                 return JsonConvert.DeserializeObject<JObject>(getRefernceResult)["object"]["sha"].ToString();
             }
@@ -182,19 +189,19 @@
             {
                 this.client.BaseAddress = "https://api.github.com";
                 this.client.Headers["Authorization"] = string.Format(
-                    CultureInfo.CurrentCulture, "token {0}", this.tag.AccessToken);
+                    CultureInfo.CurrentCulture, "token {0}", this.tagInformation.AccessToken);
                 this.client.Headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
                 this.client.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.116 Safari/537.36";
                 this.client.Headers["Accept-Language"] = "en-US,en;q=0.8,el;q=0.6";
             }
         }
 
-        private class Tag
+        private class TagInformation
         {
             private string accessToken;
             private string owner;
             private string repository;
-            private string reference;
+            private string refOrSha;
             private string name;
             private string releaseNotes;
             private string authorName;
@@ -242,16 +249,16 @@
                 }
             }
 
-            public string Reference
+            public string RefOrSha
             {
                 get
                 {
-                    return this.reference;
+                    return this.refOrSha;
                 }
 
                 set
                 {
-                    this.reference = !string.IsNullOrEmpty(value) ? value : "heads/master";
+                    this.refOrSha = !string.IsNullOrEmpty(value) ? value : "refs/heads/master";
                 }
             }
 

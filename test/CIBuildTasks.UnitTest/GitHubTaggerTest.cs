@@ -63,7 +63,7 @@
             this.Sut.ToMock().Protected().Verify(
                 "CreateTag",
                 Times.Once(),
-                ItExpr.IsAny<ITaskItem>());
+                tagInfo);
         }
 
         [Test]

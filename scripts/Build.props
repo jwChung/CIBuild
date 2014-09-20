@@ -6,27 +6,27 @@
     
     <RunCodeAnalysis>true</RunCodeAnalysis>
     
-    <!--Input private key string as base 64 string-->
+    <!--Input private key string encoded using Base64String.-->
     <PrivateKeyBase64String>$(PrivateKeyBase64String)</PrivateKeyBase64String>
     
-    <!--Input nuget account id-->
+    <!--Input nuget account id.-->
     <NugetId>$(NugetId)</NugetId>
     
-    <!--Input nuget accout password-->
+    <!--Input nuget accout password.-->
     <NugetPassword>$(NugetPassword)</NugetPassword>
     
-    <!--Input nuget api key-->
+    <!--Input nuget api key.-->
     <SetApiKey>$(SetApiKey)</SetApiKey>
     
-    <!--Input access token of github-->
+    <!--Input access token of github.-->
     <GitHubAccessToken>$(GitHubAccessToken)</GitHubAccessToken>
     
     <GitHubId>jwChung</GitHubId>
     
     <RepositoryName>CIBuild</RepositoryName>
     
-    <!--Input ref name to creat tag for, which can be ommited and the default is 'heads/master'.-->
-    <GitRefNameToTag>heads/master</GitRefNameToTag>
+    <!--Input ref or sha to create a tag for, which can be ommited as the default is 'refs/heads/master'.-->
+    <RefOrShaForTag>$(APPVEYOR_REPO_COMMIT)</RefOrShaForTag>
     
     <AuthorName>Jin-Wook Chung</AuthorName>
     

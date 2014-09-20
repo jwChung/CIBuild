@@ -154,7 +154,7 @@
         <AccessToken>$(GitHubAccessToken)</AccessToken>
         <Owner>$(GitHubId)</Owner>
         <Repository>$(RepositoryName)</Repository>
-        <Reference>$(GitRefNameToTag)</Reference>
+        <RefOrSha>$(RefOrShaForTag)</RefOrSha>
         <ReleaseNotes>$(ReleaseNotes)</ReleaseNotes>
         <AuthorName>$(AuthorName)</AuthorName>
         <AuthorEmail>$(AuthorEmail)</AuthorEmail>
