@@ -91,7 +91,7 @@
             this.LogMessageFromText(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    "The '{0}' package was deleted...",
+                    "The '{0}' package was deleted.",
                     this.identifier),
                 MessageImportance.High);
 
