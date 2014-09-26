@@ -27,9 +27,11 @@
 
         private class ForceFixtureCommandFactory : ITestCommandFactory
         {
-            public IEnumerable<ITestCommand> Create(IMethodInfo testMethod, ITestFixtureFactory fixtureFactory)
+            public IEnumerable<ITestCommand> Create(
+                IMethodInfo testMethod, ITestFixtureFactory fixtureFactory)
             {
-                yield return new ParameterizedCommand(new ForceFitxtureContext(testMethod, fixtureFactory));
+                yield return new ParameterizedCommand(
+                    new ForceFitxtureContext(testMethod, fixtureFactory));
             }
         }
 

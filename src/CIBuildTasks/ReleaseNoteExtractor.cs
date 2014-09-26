@@ -154,7 +154,9 @@
             foreach (var line in lines)
                 builder.AppendLine(new string(line.Skip(indentation).ToArray()).TrimEnd());
 
-            builder.Remove(builder.Length - Environment.NewLine.Length, Environment.NewLine.Length);
+            builder.Remove(
+                builder.Length - Environment.NewLine.Length,
+                Environment.NewLine.Length);
             this.ReleaseNotes = builder.ToString();
         }
 

@@ -132,14 +132,16 @@
         /// <param name="messageImportance">
         /// The message importance.
         /// </param>
-        protected virtual void LogMessageFromText(string lineOfText, MessageImportance messageImportance)
+        protected virtual void LogMessageFromText(
+            string lineOfText, MessageImportance messageImportance)
         {
             Log.LogMessageFromText(lineOfText, messageImportance);
         }
 
         private static HtmlDocument GetLogOnDocument(WebClientWithCookies client)
         {
-            var content = client.DownloadString("https://www.nuget.org/users/account/LogOn?returnUrl=%2F");
+            var content = client.DownloadString(
+                "https://www.nuget.org/users/account/LogOn?returnUrl=%2F");
             var document = new HtmlDocument();
             document.LoadHtml(content);
             return document;

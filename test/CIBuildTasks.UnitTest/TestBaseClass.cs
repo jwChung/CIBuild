@@ -39,7 +39,9 @@ namespace Jwc.CIBuildTasks
         [Test]
         public IEnumerable<ITestCase> SutHasAppropriateGuards()
         {
-            var members = this.SutType.GetIdiomaticMembers().Except(this.ExceptToVerifyGuardClause());
+            var members = this.SutType.GetIdiomaticMembers().Except(
+                this.ExceptToVerifyGuardClause());
+
             return TestCases.WithArgs(members).WithAuto<GuardClauseAssertion>()
                 .Create((m, a) => a.Verify(m));
         }
@@ -47,7 +49,9 @@ namespace Jwc.CIBuildTasks
         [Test]
         public IEnumerable<ITestCase> SutCorrectlyInitializesMembers()
         {
-            var members = this.SutType.GetIdiomaticMembers().Except(this.ExceptToVerifyInitialization());
+            var members = this.SutType.GetIdiomaticMembers().Except(
+                this.ExceptToVerifyInitialization());
+
             return TestCases.WithArgs(members).WithAuto<MemberInitializationAssertion>()
                 .Create((m, a) => a.Verify(m));
         }

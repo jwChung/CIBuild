@@ -78,7 +78,8 @@
         /// <param name="messageImportance">
         /// The message importance.
         /// </param>
-        protected virtual void LogMessageFromText(string lineOfText, MessageImportance messageImportance)
+        protected virtual void LogMessageFromText(
+            string lineOfText, MessageImportance messageImportance)
         {
             Log.LogMessageFromText(lineOfText, messageImportance);
         }
@@ -149,7 +150,8 @@
                     {
                         name = this.tagInformation.AuthorName,
                         email = this.tagInformation.AuthorEmail,
-                        date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:sszz", CultureInfo.CurrentCulture)
+                        date = DateTime.UtcNow.ToString(
+                            "yyyy-MM-ddTHH:mm:sszz", CultureInfo.CurrentCulture)
                     }
                 };
 
@@ -162,12 +164,14 @@
                         this.tagInformation.Repository),
                     JsonConvert.SerializeObject(createObjectInput));
 
-                return JsonConvert.DeserializeObject<JObject>(createObjectResult)["sha"].ToString();
+                return JsonConvert.DeserializeObject<JObject>(createObjectResult)["sha"]
+                    .ToString();
             }
 
             private string GetShaForTag()
             {
-                return this.tagInformation.RefOrSha.StartsWith("refs", StringComparison.CurrentCulture)
+                return this.tagInformation.RefOrSha.StartsWith(
+                    "refs", StringComparison.CurrentCulture)
                     ? this.GetShaForTagFromReference()
                     : this.tagInformation.RefOrSha;
             }
@@ -182,7 +186,8 @@
                     this.tagInformation.Repository,
                     this.tagInformation.RefOrSha));
 
-                return JsonConvert.DeserializeObject<JObject>(getRefernceResult)["object"]["sha"].ToString();
+                return JsonConvert.DeserializeObject<JObject>(getRefernceResult)["object"]["sha"]
+                    .ToString();
             }
 
             private void Refresh()

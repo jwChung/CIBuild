@@ -27,7 +27,8 @@
     <!--Github repository name used to identify the repository on GitHub.-->
     <GitHubRepository>CIBuild</GitHubRepository>
     
-    <!--Ref or sha to create a tag for, which can be ommited as the default is 'refs/heads/master'.-->
+    <!--Ref or sha to create a tag for, which can be ommited as the default is
+        'refs/heads/master'.-->
     <RefOrShaForTag>$(APPVEYOR_REPO_COMMIT)</RefOrShaForTag>
 
     <!--Author name for git commit as the author for making git tag.-->
