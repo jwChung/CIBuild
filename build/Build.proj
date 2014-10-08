@@ -1,8 +1,8 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   
   <PropertyGroup>
-    <!--Solution directory path-->
-    <SolutionDir>$(MSBuildProjectDirectory)\..\</SolutionDir>
+    <!--Root directory absolute path-->
+    <RootDir>$(MSBuildProjectDirectory)\..\</RootDir>
 
     <!--True to run code-analysis, otherwise false-->
     <RunCodeAnalysis>true</RunCodeAnalysis>
@@ -40,10 +40,10 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Projects Include="$(SolutionDir)src\**\*.csproj" />
-    <TestProjects Include="$(SolutionDir)test\**\*.csproj" />
-    <CommonAssemblyInfo Include="$(SolutionDir)**\CommonAssemblyInfo.cs" />
-    <NuspecFiles Include="$(SolutionDir)**\*.nuspec" />
+    <Projects Include="$(RootDir)src\**\*.csproj" />
+    <TestProjects Include="$(RootDir)test\**\*.csproj" />
+    <CommonAssemblyInfo Include="$(RootDir)**\CommonAssemblyInfo.cs" />
+    <NuspecFiles Include="$(RootDir)**\*.nuspec" />
   </ItemGroup>
   
   <Import Project="Build.targets"/>

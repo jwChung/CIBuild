@@ -2,7 +2,7 @@
 
   <!-- Global Properties and Items -->
   <PropertyGroup>
-    <PackagesDirectory>$(SolutionDir)packages\</PackagesDirectory>
+    <PackagesDirectory>$(RootDir)packages\</PackagesDirectory>
   </PropertyGroup>
   <ItemGroup>
     <CopyNuspecFiles Include="@(NuspecFiles)"/>
