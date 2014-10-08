@@ -1,4 +1,5 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  
   <PropertyGroup>
     <!--Solution directory path-->
     <SolutionDir>..\</SolutionDir>
@@ -36,14 +37,13 @@
     
     <!--Author email for making git tag.-->
     <AuthorEmail>$(AuthorEmail)</AuthorEmail>
-    
   </PropertyGroup>
+  
   <ItemGroup>
     <Projects Include="$(SolutionDir)src\**\*.csproj" />
     <TestProjects Include="$(SolutionDir)test\**\*.csproj" />
-    <ProjectRulSet Include="All.ruleset" />
-    <TestProjectRulSet Include="Test.ruleset" />
     <CommonAssemblyInfo Include="$(SolutionDir)CommonAssemblyInfo.cs" />
     <NuspecFiles Include="$(SolutionDir)**\*.nuspec" />
   </ItemGroup>
+  
 </Project>

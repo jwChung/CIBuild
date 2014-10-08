@@ -58,8 +58,6 @@
     </ItemGroup>
     <PropertyGroup>
       <PrivateKey>%(PrivateKey.FullPath)</PrivateKey>
-      <ProjectRulSet>%(ProjectRulSet.FullPath)</ProjectRulSet>
-      <TestProjectRulSet>%(TestProjectRulSet.FullPath)</TestProjectRulSet>
     </PropertyGroup>
     <MSBuild Projects="@(Projects)"
              Targets="Build"
@@ -68,7 +66,6 @@
                          CodeAnalysisTreatWarningsAsErrors=true;
                          StyleCopTreatErrorsAsWarnings=false;
                          RunCodeAnalysis=$(RunCodeAnalysis);
-                         CodeAnalysisRuleSet=$(ProjectRulSet);
                          SignAssembly=true;
                          AssemblyOriginatorKeyFile=$(PrivateKey);"/>
     <MSBuild Projects="@(TestProjects)"
@@ -78,7 +75,6 @@
                          CodeAnalysisTreatWarningsAsErrors=true;
                          StyleCopTreatErrorsAsWarnings=false;
                          RunCodeAnalysis=$(RunCodeAnalysis);
-                         CodeAnalysisRuleSet=$(TestProjectRulSet);
                          DefineConstants=TRACE,CI;">
       <Output TaskParameter="TargetOutputs" ItemName="TestAssemblies" />
     </MSBuild>
