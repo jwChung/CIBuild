@@ -2,8 +2,8 @@
   
   <PropertyGroup>
     <!--Solution directory path-->
-    <SolutionDir>..\</SolutionDir>
-    
+    <SolutionDir>$(MSBuildProjectDirectory)\..\</SolutionDir>
+
     <!--True to run code-analysis, otherwise false-->
     <RunCodeAnalysis>true</RunCodeAnalysis>
     
