@@ -11,6 +11,7 @@
     public class TestAttribute : TestBaseAttribute
     {
         private readonly CIBuildFixtureFactory factory = new CIBuildFixtureFactory();
+        private readonly bool runOnCI = false;
 
         public TestAttribute() : base(new CompositeTestCommandFactory(
             new TestCaseCommandFactory(),
@@ -18,6 +19,22 @@
             new ParameterizedCommandFactory(),
             new ForceFixtureCommandFactory()))
         {
+        }
+
+        public bool RunOnCI
+        {
+            get
+            {
+                return this.runOnCI;
+            }
+
+            set
+            {
+#if !CI
+                if (value)
+                    this.Skip = "Run this test only on CI server.";
+#endif
+            }
         }
 
         protected override ITestFixture Create(ITestMethodContext context)
