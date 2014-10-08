@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIBuildTasks", "src\CIBuildTasks\CIBuildTasks.csproj", "{DCFEF322-2C7F-42F2-965C-D10C2E44B341}"
 EndProject
@@ -14,11 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C69D9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E8A6B9CF-3808-4476-AEAF-5BFCA73FB145}"
 	ProjectSection(SolutionItems) = preProject
-		build\All.ruleset = build\All.ruleset
 		build\Build.proj = build\Build.proj
-		build\Build.props = build\Build.props
+		build\Build.targets = build\Build.targets
 		build\CIBuild.ILMerge.targets = build\CIBuild.ILMerge.targets
-		build\Test.ruleset = build\Test.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspecs", "Nuspecs", "{0B460C2F-24CD-4AFB-8B1A-4DB9283790B9}"

@@ -14,14 +14,14 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersion("0.2.0")]
 
 /*
- * Version 0.2.0
+ * Version 0.3.0
  * 
- * - [Patch] Improved descriptions about build properties.
+ * - [Major] Removed code-analysis rule sets as rule sets are specified by
+ *   projects. This change is breaking-change but is treated as non-major
+ *   version release because this release is based on major version zero.
  * 
- * - [Major] Renamed 'Run' bulid-script to 'Build', which is treated as
- *   non-major version release because this release is based on major version
- *   zero.
- * 
- * - [Minor] Defined 'CI' bulid-constant to enable to skip some slow tests on
- *   local-machine and to run the tests only on CI server.
+ * - [Major] Made build properties as project and the old build project as
+ *   targets. to enable a target solution to have only the build project file.
+ *   This change is breaking-change but is treated as non-major version release
+ *   because this release is based on major version zero.
  */

@@ -14,12 +14,10 @@
     <releaseNotes>releaseNotes</releaseNotes>
   </metadata>
   <files>
-    <file src="..\build\Build.props" target="tools\net20" />
     <file src="..\build\Build.proj" target="tools\net20" />
+    <file src="..\build\Build.targets" target="tools\net20" />
     <file src="..\build\Build.cmd" target="tools\net20" />
     <file src="..\build\Build.sh" target="tools\net20" />
-    <file src="..\build\All.ruleset" target="tools\net20" />
-    <file src="..\build\Test.ruleset" target="tools\net20" />
     <file src="..\src\CIBuildTasks\bin\Release\ILMergeOutput\Jwc.CIBuildTasks.dll" target="tools\net20" />
     <file src="..\src\CIBuildTasks\bin\Release\Jwc.CIBuildTasks.xml" target="tools\net20" />
   </files>
