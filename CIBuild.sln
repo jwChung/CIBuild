@@ -15,7 +15,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E8A6B9CF-3808-4476-AEAF-5BFCA73FB145}"
 	ProjectSection(SolutionItems) = preProject
 		build\Build.proj = build\Build.proj
-		build\Build.props = build\Build.props
+		build\Build.targets = build\Build.targets
 		build\CIBuild.ILMerge.targets = build\CIBuild.ILMerge.targets
 	EndProjectSection
 EndProject
