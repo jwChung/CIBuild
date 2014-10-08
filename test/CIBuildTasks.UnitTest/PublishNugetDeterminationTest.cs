@@ -45,7 +45,7 @@
                 .AssertGet<OutputAttribute>();
         }
 
-        [Test(Skip = "Run explicitly as this test is too slow.")]
+        [Test(RunOnCI = true)]
         public IEnumerable<ITestCase> ExecuteDeterminesCorrectCanPush()
         {
             var testData = new[]

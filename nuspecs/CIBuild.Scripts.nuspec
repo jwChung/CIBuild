@@ -16,10 +16,10 @@
   <files>
     <file src="..\build\Build.props" target="tools\net20" />
     <file src="..\build\Build.proj" target="tools\net20" />
+    <file src="..\build\Build.cmd" target="tools\net20" />
+    <file src="..\build\Build.sh" target="tools\net20" />
     <file src="..\build\All.ruleset" target="tools\net20" />
     <file src="..\build\Test.ruleset" target="tools\net20" />
-    <file src="..\build\Run.cmd" target="tools\net20" />
-    <file src="..\build\Run.sh" target="tools\net20" />
     <file src="..\src\CIBuildTasks\bin\Release\ILMergeOutput\Jwc.CIBuildTasks.dll" target="tools\net20" />
     <file src="..\src\CIBuildTasks\bin\Release\Jwc.CIBuildTasks.xml" target="tools\net20" />
   </files>
