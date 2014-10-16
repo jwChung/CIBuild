@@ -112,18 +112,18 @@
 
                     var e = Assert.Throws<ArgumentException>(() => sut.Execute());
                     Assert.Contains(data.Name, e.Message);
-                }).Concat(
-                    TestCases.WithArgs(new[] { null, string.Empty }).WithAuto<string, ITaskItem>().Create(
-                    (data, value, tagInfo) =>
-                    {
-                        var sut = new GitHubTagger();
-                        tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
-                            && x.ItemSpec == data);
-                        sut.TagInfo = tagInfo;
+                }).Concat(TestCases.WithArgs(new[] { null, string.Empty })
+                    .WithAuto<string, ITaskItem>().Create(
+                        (data, value, tagInfo) =>
+                        {
+                            var sut = new GitHubTagger();
+                            tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
+                                && x.ItemSpec == data);
+                            sut.TagInfo = tagInfo;
 
-                        var e = Assert.Throws<ArgumentException>(() => sut.Execute());
-                        Assert.Contains("Name", e.Message);
-                    }));
+                            var e = Assert.Throws<ArgumentException>(() => sut.Execute());
+                            Assert.Contains("Name", e.Message);
+                        }));
         }
 
         [Test(Skip = "Specify the github AccessToken, explicitly run this test and verify whether the tag is actually created on the github website.")]
