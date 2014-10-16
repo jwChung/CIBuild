@@ -54,7 +54,7 @@
         }
 
         [Test]
-        public void ExecuteCorrectlyCreateTag(ITaskItem tagInfo)
+        public void ExecuteCorrectlyCreatesTag(ITaskItem tagInfo)
         {
             this.Sut.TagInfo = tagInfo;
 
@@ -124,6 +124,31 @@
                         var e = Assert.Throws<ArgumentException>(() => sut.Execute());
                         Assert.Contains("Name", e.Message);
                     }));
+        }
+
+        [Test(Skip = "Specify the github AccessToken, explicitly run this test and verify whether the tag is actually created on the github website.")]
+        public void ExecuteCorrectlyCreatesActualTag(ITaskItem tagInfo)
+        {
+            // Fixture setup
+            var sut = Mocked.Of<GitHubTagger>();
+            
+            sut.ToMock().Protected().Setup(
+                "LogMessageFromText",
+                ItExpr.IsAny<string>(),
+                ItExpr.IsAny<MessageImportance>());
+
+            tagInfo.Of(
+                i => i.GetMetadata("AccessToken") == "**************"
+                    && i.GetMetadata("Owner") == "jwChung"
+                    && i.GetMetadata("Repository") == "CIBuild"
+                    && i.GetMetadata("ReleaseNotes") == "test"
+                    && i.GetMetadata("AuthorName") == "Jin-Wook Chung"
+                    && i.GetMetadata("AuthorEmail") == "abc@abc.com"
+                    && i.ItemSpec == Guid.NewGuid().ToString("N"));
+            sut.TagInfo = tagInfo;
+
+            // Exercise system and verify outcome
+            Assert.DoesNotThrow(() => sut.Execute());
         }
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
