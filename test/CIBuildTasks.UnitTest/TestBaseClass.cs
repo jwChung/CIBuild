@@ -75,10 +75,5 @@ namespace Jwc.CIBuildTasks
         public TestBaseClass() : base(typeof(TSut))
         {
         }
-
-        public Properties<TSut> Properties
-        {
-            get { return this.properties; }
-        }
     }
 }

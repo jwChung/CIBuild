@@ -31,7 +31,8 @@
         [Test]
         public void AssemblyInfoIsRequired()
         {
-            this.Properties.Select(x => x.AssemblyInfo).AssertGet<RequiredAttribute>();
+            new Properties<ReleaseNoteExtractor>().Select(x => x.AssemblyInfo)
+                .AssertGet<RequiredAttribute>();
         }
 
         [Test]
@@ -45,7 +46,8 @@
         [Test]
         public void ReleaseNotesIsOutput()
         {
-            this.Properties.Select(x => x.ReleaseNotes).AssertGet<OutputAttribute>();
+            new Properties<ReleaseNoteExtractor>().Select(x => x.ReleaseNotes)
+                .AssertGet<OutputAttribute>();
         }
 
         [Test]
@@ -59,7 +61,8 @@
         [Test]
         public void XmlEscapedReleaseNotesIsOutput()
         {
-            this.Properties.Select(x => x.XmlEscapedReleaseNotes).AssertGet<OutputAttribute>();
+            new Properties<ReleaseNoteExtractor>().Select(x => x.XmlEscapedReleaseNotes)
+                .AssertGet<OutputAttribute>();
         }
 
         [Test]
@@ -224,9 +227,9 @@ sdfsd
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
         {
-            yield return this.Properties.Select(x => x.AssemblyInfo);
-            yield return this.Properties.Select(x => x.ReleaseNotes);
-            yield return this.Properties.Select(x => x.XmlEscapedReleaseNotes);
+            yield return new Properties<ReleaseNoteExtractor>().Select(x => x.AssemblyInfo);
+            yield return new Properties<ReleaseNoteExtractor>().Select(x => x.ReleaseNotes);
+            yield return new Properties<ReleaseNoteExtractor>().Select(x => x.XmlEscapedReleaseNotes);
         }
     }
 }

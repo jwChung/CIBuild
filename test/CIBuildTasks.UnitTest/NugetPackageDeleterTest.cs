@@ -6,6 +6,7 @@
     using Microsoft.Build.Utilities;
     using Moq;
     using Moq.Protected;
+    using Ploeh.Albedo;
     using Ploeh.AutoFixture;
     using Xunit;
 
@@ -49,7 +50,7 @@
         [Test]
         public void IdOrEmailIsRequired()
         {
-            this.Properties.Select(x => x.IdOrEmail).AssertGet<RequiredAttribute>();
+            new Properties<NugetPackageDeleter>().Select(x => x.IdOrEmail).AssertGet<RequiredAttribute>();
         }
 
         [Test]
@@ -66,7 +67,7 @@
         [Test]
         public void PasswordIsRequired()
         {
-            this.Properties.Select(x => x.Password).AssertGet<RequiredAttribute>();
+            new Properties<NugetPackageDeleter>().Select(x => x.Password).AssertGet<RequiredAttribute>();
         }
 
         [Test]
@@ -84,7 +85,7 @@
         [Test]
         public void IdentifierIsRequired()
         {
-            this.Properties.Select(x => x.Identifier).AssertGet<RequiredAttribute>();
+            new Properties<NugetPackageDeleter>().Select(x => x.Identifier).AssertGet<RequiredAttribute>();
         }
 
         [Test]
@@ -117,9 +118,9 @@
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
         {
-            yield return this.Properties.Select(x => x.IdOrEmail);
-            yield return this.Properties.Select(x => x.Password);
-            yield return this.Properties.Select(x => x.Identifier);
+            yield return new Properties<NugetPackageDeleter>().Select(x => x.IdOrEmail);
+            yield return new Properties<NugetPackageDeleter>().Select(x => x.Password);
+            yield return new Properties<NugetPackageDeleter>().Select(x => x.Identifier);
         }
     }
 }

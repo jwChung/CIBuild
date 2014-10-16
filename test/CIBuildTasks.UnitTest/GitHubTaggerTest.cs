@@ -9,6 +9,7 @@
     using Microsoft.Build.Utilities;
     using Moq;
     using Moq.Protected;
+    using Ploeh.Albedo;
     using Ploeh.AutoFixture;
     using Xunit;
 
@@ -50,7 +51,7 @@
         [Test]
         public void TagInfoIsRequired()
         {
-            this.Properties.Select(x => x.TagInfo).AssertGet<RequiredAttribute>();
+            new Properties<GitHubTagger>().Select(x => x.TagInfo).AssertGet<RequiredAttribute>();
         }
 
         [Test]
@@ -153,7 +154,7 @@
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
         {
-            yield return this.Properties.Select(x => x.TagInfo);
+            yield return new Properties<GitHubTagger>().Select(x => x.TagInfo);
         }
     }
 }
