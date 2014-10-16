@@ -13,7 +13,7 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class GitHubTaggerTest : TestBaseClass<GitHubTagger>, ICustomization
+    public class GitHubTaggerTest : TestBaseClass, ICustomization
     {
         public void Customize(IFixture fixture)
         {

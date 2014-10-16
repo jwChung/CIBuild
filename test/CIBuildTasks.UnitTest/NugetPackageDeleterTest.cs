@@ -10,7 +10,7 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class NugetPackageDeleterTest : TestBaseClass<NugetPackageDeleter>, ICustomization
+    public class NugetPackageDeleterTest : TestBaseClass, ICustomization
     {
         public void Customize(IFixture fixture)
         {

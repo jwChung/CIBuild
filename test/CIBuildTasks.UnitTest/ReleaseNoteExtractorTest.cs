@@ -12,7 +12,7 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class ReleaseNoteExtractorTest : TestBaseClass<ReleaseNoteExtractor>
+    public class ReleaseNoteExtractorTest : TestBaseClass
     {
         [Test]
         public void SutIsTask(ReleaseNoteExtractor sut)
