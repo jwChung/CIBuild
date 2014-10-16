@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspecs", "Nuspecs", "{0B46
 	ProjectSection(SolutionItems) = preProject
 		nuspecs\CIBuild.ILMerge.nuspec = nuspecs\CIBuild.ILMerge.nuspec
 		nuspecs\CIBuild.Scripts.nuspec = nuspecs\CIBuild.Scripts.nuspec
+		nuspecs\CIBuild.Tasks.nuspec = nuspecs\CIBuild.Tasks.nuspec
 	EndProjectSection
 EndProject
 Global

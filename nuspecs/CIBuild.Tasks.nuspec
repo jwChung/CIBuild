@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <title>CIBuild.Tasks</title>
+    <id>CIBuild.Tasks</id>
+    <version>0.0.0</version>
+    <authors>Jin-Wook Chung</authors>
+    <description>CIBuild.Tasks is set of msbuild tasks to support CI process.</description>
+    <copyright>(c) 2014 Jin-Wook Chung</copyright>
+    <tags>MSBuild Build CI</tags>
+    <projectUrl>https://github.com/jwChung/CIBuild</projectUrl>
+    <licenseUrl>https://raw.github.com/jwChung/CIBuild/master/LICENSE.txt</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/jwChung/CIBuild/master/icon.png</iconUrl>
+    <releaseNotes>releaseNotes</releaseNotes>
+  </metadata>
+  <files>
+    <file src="..\src\CIBuildTasks\bin\Release\ILMergeOutput\Jwc.CIBuildTasks.dll" target="lib\net20" />
+    <file src="..\src\CIBuildTasks\bin\Release\ILMergeOutput\Jwc.CIBuildTasks.pdb" target="lib\net20" />
+    <file src="..\src\CIBuildTasks\bin\Release\Jwc.CIBuildTasks.xml" target="lib\net20" />
+    <file src="..\src\**\*.cs" target="src\net20" />
+    <file src="Install.ps1" target="tools" />
+  </files>
+</package>
