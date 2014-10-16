@@ -76,8 +76,6 @@ namespace Jwc.CIBuildTasks
         {
         }
 
-        public TSut Sut { get; set; }
-
         public Properties<TSut> Properties
         {
             get { return this.properties; }

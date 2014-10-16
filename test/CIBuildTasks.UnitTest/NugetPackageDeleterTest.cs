@@ -33,17 +33,17 @@
         }
 
         [Test]
-        public void SutIsTask()
+        public void SutIsTask(NugetPackageDeleter sut)
         {
-            Assert.IsAssignableFrom<Task>(this.Sut);
+            Assert.IsAssignableFrom<Task>(sut);
         }
 
         [Test]
-        public void IdOrEmailIsReadWritable(string idOrEmail)
+        public void IdOrEmailIsReadWritable(NugetPackageDeleter sut, string idOrEmail)
         {
-            Assert.Null(this.Sut.IdOrEmail);
-            this.Sut.IdOrEmail = idOrEmail;
-            Assert.Equal(idOrEmail, this.Sut.IdOrEmail);
+            Assert.Null(sut.IdOrEmail);
+            sut.IdOrEmail = idOrEmail;
+            Assert.Equal(idOrEmail, sut.IdOrEmail);
         }
 
         [Test]
@@ -53,14 +53,14 @@
         }
 
         [Test]
-        public void PasswordIsReadWritable(string password)
+        public void PasswordIsReadWritable(NugetPackageDeleter sut, string password)
         {
-            Assert.Null(this.Sut.Password);
+            Assert.Null(sut.Password);
 
-            this.Sut.Password = password;
+            sut.Password = password;
 
-            Assert.Equal(password, this.Sut.Password);
-            Assert.NotEqual(this.Sut.IdOrEmail, this.Sut.Password);
+            Assert.Equal(password, sut.Password);
+            Assert.NotEqual(sut.IdOrEmail, sut.Password);
         }
 
         [Test]
@@ -70,15 +70,15 @@
         }
 
         [Test]
-        public void IdentifierIsReadWritable(string identifier)
+        public void IdentifierIsReadWritable(NugetPackageDeleter sut, string identifier)
         {
-            Assert.Null(this.Sut.Identifier);
+            Assert.Null(sut.Identifier);
 
-            this.Sut.Identifier = identifier;
+            sut.Identifier = identifier;
 
-            Assert.Equal(identifier, this.Sut.Identifier);
-            Assert.NotEqual(this.Sut.Password, this.Sut.Identifier);
-            Assert.NotEqual(this.Sut.IdOrEmail, this.Sut.Identifier);
+            Assert.Equal(identifier, sut.Identifier);
+            Assert.NotEqual(sut.Password, sut.Identifier);
+            Assert.NotEqual(sut.IdOrEmail, sut.Identifier);
         }
 
         [Test]
@@ -88,26 +88,27 @@
         }
 
         [Test]
-        public void ExecuteCorrectlyDeleteNugetPackage(string id, string pwd, string package)
+        public void ExecuteCorrectlyDeleteNugetPackage(
+            NugetPackageDeleter sut, string id, string pwd, string package)
         {
-            this.Sut.IdOrEmail = id;
-            this.Sut.Password = pwd;
-            this.Sut.Identifier = package;
+            sut.IdOrEmail = id;
+            sut.Password = pwd;
+            sut.Identifier = package;
 
-            var actual = this.Sut.Execute();
+            var actual = sut.Execute();
 
             Assert.True(actual);
-            this.Sut.ToMock().Protected().Verify("DeletePackage", Times.Once(), id, pwd, package);
+            sut.ToMock().Protected().Verify("DeletePackage", Times.Once(), id, pwd, package);
         }
 
         [Test]
-        public void ExecuteLogCorrectMessage(string package)
+        public void ExecuteLogCorrectMessage(NugetPackageDeleter sut, string package)
         {
-            this.Sut.Identifier = package;
+            sut.Identifier = package;
 
-            this.Sut.Execute();
+            sut.Execute();
 
-            this.Sut.ToMock().Protected().Verify(
+            sut.ToMock().Protected().Verify(
                 "LogMessageFromText",
                 Times.Once(),
                 ItExpr.Is<string>(x => x.Contains(package)),

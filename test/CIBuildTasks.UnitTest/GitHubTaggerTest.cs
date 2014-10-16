@@ -34,17 +34,17 @@
         }
 
         [Test]
-        public void SutIsTask()
+        public void SutIsTask(GitHubTagger sut)
         {
-            Assert.IsAssignableFrom<Task>(this.Sut);
+            Assert.IsAssignableFrom<Task>(sut);
         }
 
         [Test]
-        public void TagInfoIsReadWritable(ITaskItem tagInfo)
+        public void TagInfoIsReadWritable(GitHubTagger sut, ITaskItem tagInfo)
         {
-            Assert.Null(this.Sut.TagInfo);
-            this.Sut.TagInfo = tagInfo;
-            Assert.Equal(tagInfo, this.Sut.TagInfo);
+            Assert.Null(sut.TagInfo);
+            sut.TagInfo = tagInfo;
+            Assert.Equal(tagInfo, sut.TagInfo);
         }
 
         [Test]
@@ -54,27 +54,27 @@
         }
 
         [Test]
-        public void ExecuteCorrectlyCreatesTag(ITaskItem tagInfo)
+        public void ExecuteCorrectlyCreatesTag(GitHubTagger sut, ITaskItem tagInfo)
         {
-            this.Sut.TagInfo = tagInfo;
+            sut.TagInfo = tagInfo;
 
-            var actual = this.Sut.Execute();
+            var actual = sut.Execute();
 
             Assert.True(actual);
-            this.Sut.ToMock().Protected().Verify(
+            sut.ToMock().Protected().Verify(
                 "CreateTag",
                 Times.Once(),
                 tagInfo);
         }
 
         [Test]
-        public void ExecuteLogsCorrectMessage(ITaskItem tagInfo, string tagName)
+        public void ExecuteLogsCorrectMessage(GitHubTagger sut, ITaskItem tagInfo, string tagName)
         {
-            this.Sut.TagInfo = tagInfo.Of(x => x.ItemSpec == tagName);
+            sut.TagInfo = tagInfo.Of(x => x.ItemSpec == tagName);
 
-            this.Sut.Execute();
+            sut.Execute();
 
-            this.Sut.ToMock().Protected().Verify(
+            sut.ToMock().Protected().Verify(
                 "LogMessageFromText",
                 Times.Once(),
                 ItExpr.Is<string>(x => x.Contains(tagName)),

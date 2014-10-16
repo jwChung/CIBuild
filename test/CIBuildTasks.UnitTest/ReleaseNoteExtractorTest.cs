@@ -15,17 +15,17 @@
     public class ReleaseNoteExtractorTest : TestBaseClass<ReleaseNoteExtractor>
     {
         [Test]
-        public void SutIsTask()
+        public void SutIsTask(ReleaseNoteExtractor sut)
         {
-            Assert.IsAssignableFrom<Task>(this.Sut);
+            Assert.IsAssignableFrom<Task>(sut);
         }
 
         [Test]
-        public void AssemblyInfoIsReadWritable(string assemblyInfo)
+        public void AssemblyInfoIsReadWritable(ReleaseNoteExtractor sut, string assemblyInfo)
         {
-            Assert.Null(this.Sut.AssemblyInfo);
-            this.Sut.AssemblyInfo = assemblyInfo;
-            Assert.Equal(assemblyInfo, this.Sut.AssemblyInfo);
+            Assert.Null(sut.AssemblyInfo);
+            sut.AssemblyInfo = assemblyInfo;
+            Assert.Equal(assemblyInfo, sut.AssemblyInfo);
         }
 
         [Test]
@@ -35,11 +35,11 @@
         }
 
         [Test]
-        public void ReleaseNotesIsReadWritable(string releaseNotes)
+        public void ReleaseNotesIsReadWritable(ReleaseNoteExtractor sut, string releaseNotes)
         {
-            Assert.Null(this.Sut.ReleaseNotes);
-            this.Sut.ReleaseNotes = releaseNotes;
-            Assert.Equal(releaseNotes, this.Sut.ReleaseNotes);
+            Assert.Null(sut.ReleaseNotes);
+            sut.ReleaseNotes = releaseNotes;
+            Assert.Equal(releaseNotes, sut.ReleaseNotes);
         }
 
         [Test]
@@ -49,11 +49,11 @@
         }
 
         [Test]
-        public void XmlEscapedReleaseNotesIsReadWritable(string xmlEscapedReleaseNotes)
+        public void XmlEscapedReleaseNotesIsReadWritable(ReleaseNoteExtractor sut, string xmlEscapedReleaseNotes)
         {
-            Assert.Null(this.Sut.XmlEscapedReleaseNotes);
-            this.Sut.XmlEscapedReleaseNotes = xmlEscapedReleaseNotes;
-            Assert.Equal(xmlEscapedReleaseNotes, this.Sut.XmlEscapedReleaseNotes);
+            Assert.Null(sut.XmlEscapedReleaseNotes);
+            sut.XmlEscapedReleaseNotes = xmlEscapedReleaseNotes;
+            Assert.Equal(xmlEscapedReleaseNotes, sut.XmlEscapedReleaseNotes);
         }
 
         [Test]
@@ -175,20 +175,20 @@ sdfsd
                     ReleaseNotes = string.Empty
                 }
             };
-            return TestCases.WithArgs(testData).WithAuto<string>().Create(
-                (data, fileName) =>
+            return TestCases.WithArgs(testData).WithAuto<string, ReleaseNoteExtractor>().Create(
+                (data, fileName, sut) =>
                 {
                     try
                     {
                         File.WriteAllText(fileName, data.AssemblyInfoContent);
-                        this.Sut.AssemblyInfo = fileName;
+                        sut.AssemblyInfo = fileName;
 
-                        var actual = this.Sut.Execute();
+                        var actual = sut.Execute();
 
                         Assert.True(actual);
                         Assert.Equal(
                             data.ReleaseNotes.Replace("\r", string.Empty),
-                            this.Sut.ReleaseNotes.Replace("\r", string.Empty));
+                            sut.ReleaseNotes.Replace("\r", string.Empty));
                     }
                     finally
                     {
@@ -199,7 +199,7 @@ sdfsd
         }
 
         [Test]
-        public void ExecuteExtractsCorrectXmlEscapedReleaseNotes(string fileName)
+        public void ExecuteExtractsCorrectXmlEscapedReleaseNotes(ReleaseNoteExtractor sut, string fileName)
         {
             var assemblyInfoContent = @"/*expected Func<string> expected */";
             var escapedExpected = "expected Func&lt;string&gt; expected";
@@ -207,13 +207,13 @@ sdfsd
             try
             {
                 File.WriteAllText(fileName, assemblyInfoContent);
-                this.Sut.AssemblyInfo = fileName;
+                sut.AssemblyInfo = fileName;
 
-                var actual = this.Sut.Execute();
+                var actual = sut.Execute();
 
                 Assert.True(actual);
-                Assert.Equal(escapedExpected, this.Sut.XmlEscapedReleaseNotes);
-                Assert.Equal(expected, this.Sut.ReleaseNotes);
+                Assert.Equal(escapedExpected, sut.XmlEscapedReleaseNotes);
+                Assert.Equal(expected, sut.ReleaseNotes);
             }
             finally
             {

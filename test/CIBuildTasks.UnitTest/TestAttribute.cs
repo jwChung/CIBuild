@@ -87,8 +87,7 @@
             {
                 return new CompositeCustomization(
                     base.GetCustomization(context),
-                    new TestClassCustomization(context),
-                    new SutSpecimenCustomization(context));
+                    new TestClassCustomization(context));
             }
         }
 
@@ -106,36 +105,6 @@
                 var customization = this.context.TestObject as ICustomization;
                 if (customization != null)
                     fixture.Customize(customization);
-            }
-        }
-
-        private class SutSpecimenCustomization : ICustomization
-        {
-            private readonly ITestMethodContext context;
-
-            public SutSpecimenCustomization(ITestMethodContext context)
-            {
-                this.context = context;
-            }
-
-            public void Customize(IFixture fixture)
-            {
-                var testObject = this.context.ActualObject as TestBaseClass;
-                if (testObject != null)
-                    TrySetSutSpecimen(fixture, testObject);
-            }
-
-            private static void TrySetSutSpecimen(IFixture fixture, TestBaseClass testObject)
-            {
-                var sutType = testObject.SutType;
-                var sutSpecimenType = typeof(TestBaseClass<>).MakeGenericType(sutType);
-                if (sutSpecimenType.IsInstanceOfType(testObject))
-                {
-                    sutSpecimenType.GetProperty("Sut").SetValue(
-                        testObject,
-                        new SpecimenContext(fixture).Resolve(sutType),
-                        null);
-                }
             }
         }
     }
