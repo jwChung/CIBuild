@@ -10,13 +10,11 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyVersion("0.4.0")]
-[assembly: AssemblyInformationalVersion("0.4.0")]
+[assembly: AssemblyVersion("0.4.1")]
+[assembly: AssemblyInformationalVersion("0.4.1")]
 
 /*
- * Version 0.4.0
+ * Version 0.4.1
  * 
- * - [Major] Renamed the build property 'SolutionDir' to 'RootDir'.
- * 
- * - [Patch] Fixed RootDir as absolute path.
+ * - [Patch] Fixed not being able to create a tag.
  */
