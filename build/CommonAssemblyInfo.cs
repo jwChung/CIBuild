@@ -10,11 +10,12 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyVersion("0.4.1")]
-[assembly: AssemblyInformationalVersion("0.4.1")]
+[assembly: AssemblyVersion("0.4.2")]
+[assembly: AssemblyInformationalVersion("0.4.2")]
 
 /*
- * Version 0.4.1
+ * Version 0.4.2
  * 
- * - [Patch] Fixed not being able to create a tag.
+ * - [Patch] Fixed that error message generated from github wasn't shown in
+ *   build process
  */
