@@ -151,7 +151,7 @@
                         name = this.tagInformation.AuthorName,
                         email = this.tagInformation.AuthorEmail,
                         date = DateTime.UtcNow.ToString(
-                            "yyyy-MM-ddTHH:mm:sszz", CultureInfo.CurrentCulture)
+                            "yyyy-MM-ddTHH:mm:sszzz", CultureInfo.CurrentCulture)
                     }
                 };
 
