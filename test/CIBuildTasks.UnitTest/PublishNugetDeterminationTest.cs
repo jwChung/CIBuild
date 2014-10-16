@@ -38,14 +38,13 @@
             Assert.Equal(canPublish, sut.CanPush);
         }
 
-        [Test]
         public void CanPushIsOutput()
         {
             new Properties<PublishNugetDetermination>().Select(x => x.CanPush)
                 .AssertGet<OutputAttribute>();
         }
 
-        [Test(RunOnCI = true)]
+        [Test(RunOn.CI)]
         public IEnumerable<ITestCase> ExecuteDeterminesCorrectCanPush()
         {
             var testData = new[]

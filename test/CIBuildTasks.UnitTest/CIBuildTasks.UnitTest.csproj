@@ -98,6 +98,7 @@
     <Compile Include="PropertyInfoExtensions.cs" />
     <Compile Include="PublishNugetDeterminationTest.cs" />
     <Compile Include="ReleaseNoteExtractorTest.cs" />
+    <Compile Include="RunOn.cs" />
     <Compile Include="SemanticVersioningTest.cs" />
     <Compile Include="TestAttribute.cs" />
     <Compile Include="TestBaseClass.cs" />

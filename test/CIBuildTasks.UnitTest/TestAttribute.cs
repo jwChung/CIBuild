@@ -11,29 +11,40 @@
     public class TestAttribute : TestBaseAttribute
     {
         private readonly CIBuildFixtureFactory factory = new CIBuildFixtureFactory();
-        private readonly bool runOnCI = false;
+        private readonly RunOn runOn;
 
-        public TestAttribute() : base(new CompositeTestCommandFactory(
+        public TestAttribute() : this(RunOn.Any)
+        {
+        }
+
+        public TestAttribute(RunOn runOn) : base(new CompositeTestCommandFactory(
             new TestCaseCommandFactory(),
             new DataAttributeCommandFactory(),
             new ParameterizedCommandFactory(),
             new ForceFixtureCommandFactory()))
         {
+            this.runOn = runOn;
         }
 
-        public bool RunOnCI
+        public RunOn RunOn
+        {
+            get { return this.runOn; }
+        }
+
+        public override string Skip
         {
             get
             {
-                return this.runOnCI;
+#if !CI
+                if (base.Skip == null && this.runOn == RunOn.CI)
+                    return "Run this test only on CI server.";
+#endif
+                return base.Skip;
             }
 
             set
             {
-#if !CI
-                if (value)
-                    this.Skip = "Run this test only on CI server.";
-#endif
+                base.Skip = value;
             }
         }
 
