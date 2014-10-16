@@ -328,7 +328,7 @@
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentException(string.Format(
                         CultureInfo.CurrentCulture,
-                        "The '{0}'value cannot be null or empty.",
+                        "The '{0}' value cannot be null or empty.",
                         name));
             }
         }

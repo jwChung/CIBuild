@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reflection;
     using Experiment.Xunit;
     using Microsoft.Build.Framework;
@@ -91,10 +92,6 @@
                 new { Name = "Owner", Value = string.Empty },
                 new { Name = "Repository", Value = (string)null },
                 new { Name = "Repository", Value = string.Empty },
-                new { Name = "Reference", Value = (string)null },
-                new { Name = "Reference", Value = string.Empty },
-                new { Name = "Name", Value = (string)null },
-                new { Name = "Name", Value = string.Empty },
                 new { Name = "ReleaseNotes", Value = (string)null },
                 new { Name = "ReleaseNotes", Value = string.Empty },
                 new { Name = "AuthorName", Value = (string)null },
@@ -103,24 +100,30 @@
                 new { Name = "AuthorEmail", Value = string.Empty }
             };
 
-            return TestCases.WithArgs(testData).WithAuto<ITaskItem>().Create(
-                (data, tagInfo) =>
+            return TestCases.WithArgs(testData).WithAuto<string, ITaskItem>().Create(
+                (data, value, tagInfo) =>
                 {
                     var sut = new GitHubTagger();
-                    tagInfo.Of(x => x.GetMetadata("AccessToken") == "AccessToken"
-                        && x.GetMetadata("Owner") == "Owner"
-                        && x.GetMetadata("Repository") == "Repository"
-                        && x.GetMetadata("Reference") == "Reference"
-                        && x.GetMetadata("Name") == "Name"
-                        && x.GetMetadata("ReleaseNotes") == "ReleaseNotes"
-                        && x.GetMetadata("AuthorName") == "AuthorName"
-                        && x.GetMetadata("AuthorEmail") == "AuthorEmail"
+                    tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
+                        && x.ItemSpec == value
                         && x.GetMetadata(data.Name) == data.Value);
                     sut.TagInfo = tagInfo;
                     Assert.Equal(data.Value, tagInfo.GetMetadata(data.Name));
 
-                    Assert.Throws<ArgumentException>(() => sut.Execute());
-                });
+                    var e = Assert.Throws<ArgumentException>(() => sut.Execute());
+                    Assert.Contains(data.Name, e.Message);
+                }).Concat(
+                    TestCases.WithArgs(new[] { null, string.Empty }).WithAuto<string, ITaskItem>().Create(
+                    (data, value, tagInfo) =>
+                    {
+                        var sut = new GitHubTagger();
+                        tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
+                            && x.ItemSpec == data);
+                        sut.TagInfo = tagInfo;
+
+                        var e = Assert.Throws<ArgumentException>(() => sut.Execute());
+                        Assert.Contains("Name", e.Message);
+                    }));
         }
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
