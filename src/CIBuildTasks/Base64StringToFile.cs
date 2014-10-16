@@ -59,7 +59,7 @@
         /// <returns>
         /// true if the task successfully executed; otherwise, false.
         /// </returns>
-        public override bool Execute()
+        public sealed override bool Execute()
         {
             this.WriteAllBytes(this.outputFile, Convert.FromBase64String(this.input));
             return true;

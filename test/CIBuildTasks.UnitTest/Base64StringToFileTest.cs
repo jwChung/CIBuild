@@ -11,22 +11,8 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class Base64StringToFileTest : TestBaseClass, ICustomization
+    public class Base64StringToFileTest : TestBaseClass
     {
-        public void Customize(IFixture fixture)
-        {
-            fixture.Register(() =>
-            {
-                var sut = Mocked.Of<Base64StringToFile>();
-                sut.ToMock().Protected().Setup(
-                    "WriteAllBytes",
-                    ItExpr.IsAny<string>(),
-                    ItExpr.IsAny<byte[]>());
-
-                return sut;
-            });
-        }
-
         [Test]
         public void SutIsTask(Base64StringToFile sut)
         {

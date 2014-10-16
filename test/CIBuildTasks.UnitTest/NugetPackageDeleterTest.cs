@@ -10,29 +10,8 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class NugetPackageDeleterTest : TestBaseClass, ICustomization
+    public class NugetPackageDeleterTest : TestBaseClass
     {
-        public void Customize(IFixture fixture)
-        {
-            fixture.Register(() =>
-            {
-                var sut = Mocked.Of<NugetPackageDeleter>();
-
-                sut.ToMock().Protected().Setup(
-                    "DeletePackage",
-                    ItExpr.IsAny<string>(),
-                    ItExpr.IsAny<string>(),
-                    ItExpr.IsAny<string>());
-
-                sut.ToMock().Protected().Setup(
-                    "LogMessageFromText",
-                    ItExpr.IsAny<string>(),
-                    ItExpr.IsAny<MessageImportance>());
-
-                return sut;
-            });
-        }
-
         [Test]
         public void SutIsTask(NugetPackageDeleter sut)
         {
@@ -92,6 +71,7 @@
         public void ExecuteCorrectlyDeleteNugetPackage(
             NugetPackageDeleter sut, string id, string pwd, string package)
         {
+            sut.ToMock().CallBase = false;
             sut.IdOrEmail = id;
             sut.Password = pwd;
             sut.Identifier = package;
@@ -105,6 +85,7 @@
         [Test]
         public void ExecuteLogCorrectMessage(NugetPackageDeleter sut, string package)
         {
+            sut.ToMock().CallBase = false;
             sut.Identifier = package;
 
             sut.Execute();

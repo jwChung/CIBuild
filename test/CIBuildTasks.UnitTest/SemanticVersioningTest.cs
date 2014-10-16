@@ -12,22 +12,8 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class SemanticVersioningTest : TestBaseClass, ICustomization
+    public class SemanticVersioningTest : TestBaseClass
     {
-        public void Customize(IFixture fixture)
-        {
-            fixture.Register(() =>
-            {
-                var sut = Mocked.Of<SemanticVersioning>();
-                sut.ToMock().Protected().Setup(
-                    "LogError",
-                    ItExpr.IsAny<string>(),
-                    ItExpr.IsAny<object[]>());
-
-                return sut;
-            });
-        }
-
         [Test]
         public void SutIsTask(SemanticVersioning sut)
         {

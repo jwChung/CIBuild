@@ -87,25 +87,7 @@
             {
                 return new CompositeCustomization(
                     base.GetCustomization(context),
-                    new TestClassCustomization(context),
                     new MockedSutCustomization());
-            }
-        }
-
-        private class TestClassCustomization : ICustomization
-        {
-            private readonly ITestMethodContext context;
-
-            public TestClassCustomization(ITestMethodContext context)
-            {
-                this.context = context;
-            }
-
-            public void Customize(IFixture fixture)
-            {
-                var customization = this.context.TestObject as ICustomization;
-                if (customization != null)
-                    fixture.Customize(customization);
             }
         }
 
@@ -114,6 +96,9 @@
             public void Customize(IFixture fixture)
             {
                 fixture.Register(() => Mocked.Of<GitHubTagger>());
+                fixture.Register(() => Mocked.Of<SemanticVersioning>());
+                fixture.Register(() => Mocked.Of<NugetPackageDeleter>());
+                fixture.Register(() => Mocked.Of<Base64StringToFile>());
             }
         }
     }
