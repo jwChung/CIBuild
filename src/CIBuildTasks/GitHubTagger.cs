@@ -41,7 +41,7 @@
         /// <returns>
         /// true if the task successfully executed; otherwise, false.
         /// </returns>
-        public override bool Execute()
+        public sealed override bool Execute()
         {
             this.CreateTag(this.tagInfo);
 

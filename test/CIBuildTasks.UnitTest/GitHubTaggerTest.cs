@@ -13,27 +13,8 @@
     using Ploeh.AutoFixture;
     using Xunit;
 
-    public class GitHubTaggerTest : TestBaseClass, ICustomization
+    public class GitHubTaggerTest : TestBaseClass
     {
-        public void Customize(IFixture fixture)
-        {
-            fixture.Register(() =>
-            {
-                var sut = Mocked.Of<GitHubTagger>();
-
-                sut.ToMock().Protected().Setup(
-                    "CreateTag",
-                    ItExpr.IsAny<ITaskItem>());
-
-                sut.ToMock().Protected().Setup(
-                    "LogMessageFromText",
-                    ItExpr.IsAny<string>(),
-                    ItExpr.IsAny<MessageImportance>());
-
-                return sut;
-            });
-        }
-
         [Test]
         public void SutIsTask(GitHubTagger sut)
         {
@@ -55,8 +36,11 @@
         }
 
         [Test]
-        public void ExecuteCorrectlyCreatesTag(GitHubTagger sut, ITaskItem tagInfo)
+        public void ExecuteCorrectlyCreatesTag(
+            GitHubTagger sut,
+            ITaskItem tagInfo)
         {
+            sut.ToMock().CallBase = false;
             sut.TagInfo = tagInfo;
 
             var actual = sut.Execute();
@@ -71,6 +55,7 @@
         [Test]
         public void ExecuteLogsCorrectMessage(GitHubTagger sut, ITaskItem tagInfo, string tagName)
         {
+            sut.ToMock().CallBase = false;
             sut.TagInfo = tagInfo.Of(x => x.ItemSpec == tagName);
 
             sut.Execute();
@@ -101,10 +86,9 @@
                 new { Name = "AuthorEmail", Value = string.Empty }
             };
 
-            return TestCases.WithArgs(testData).WithAuto<string, ITaskItem>().Create(
-                (data, value, tagInfo) =>
+            return TestCases.WithArgs(testData).WithAuto<string, ITaskItem, GitHubTagger>().Create(
+                (data, value, tagInfo, sut) =>
                 {
-                    var sut = new GitHubTagger();
                     tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
                         && x.ItemSpec == value
                         && x.GetMetadata(data.Name) == data.Value);
@@ -114,10 +98,9 @@
                     var e = Assert.Throws<ArgumentException>(() => sut.Execute());
                     Assert.Contains(data.Name, e.Message);
                 }).Concat(TestCases.WithArgs(new[] { null, string.Empty })
-                    .WithAuto<string, ITaskItem>().Create(
-                        (data, value, tagInfo) =>
+                    .WithAuto<string, ITaskItem, GitHubTagger>().Create(
+                        (data, value, tagInfo, sut) =>
                         {
-                            var sut = new GitHubTagger();
                             tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
                                 && x.ItemSpec == data);
                             sut.TagInfo = tagInfo;

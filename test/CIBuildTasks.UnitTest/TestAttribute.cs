@@ -87,7 +87,8 @@
             {
                 return new CompositeCustomization(
                     base.GetCustomization(context),
-                    new TestClassCustomization(context));
+                    new TestClassCustomization(context),
+                    new MockedSutCustomization());
             }
         }
 
@@ -105,6 +106,14 @@
                 var customization = this.context.TestObject as ICustomization;
                 if (customization != null)
                     fixture.Customize(customization);
+            }
+        }
+
+        private class MockedSutCustomization : ICustomization
+        {
+            public void Customize(IFixture fixture)
+            {
+                fixture.Register(() => Mocked.Of<GitHubTagger>());
             }
         }
     }
