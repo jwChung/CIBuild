@@ -2,7 +2,9 @@
 {
     using System;
     using System.Globalization;
+    using System.IO;
     using System.Net;
+    using System.Text;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
     using Newtonsoft.Json;
@@ -43,14 +45,25 @@
         /// </returns>
         public sealed override bool Execute()
         {
-            this.CreateTag(this.tagInfo);
+            try
+            {
+                this.CreateTag(this.tagInfo);
 
-            this.LogMessageFromText(
+                this.LogMessageFromText(
                 string.Format(
                     CultureInfo.CurrentCulture,
                     "The '{0}' tag was created.",
                     this.tagInfo.ItemSpec),
                 MessageImportance.High);
+            }
+            catch (WebException exception)
+            {
+                var message = GetExceptionMessage(exception);
+
+                this.LogMessageFromText(
+                    message,
+                    MessageImportance.High);
+            }
 
             return true;
         }
@@ -63,7 +76,7 @@
         /// </param>
         protected virtual void CreateTag(ITaskItem tagInformation)
         {
-            using (var tagger  = new Tagger(ConverToTagInformation(tagInformation)))
+            using (var tagger = new Tagger(ConverToTagInformation(tagInformation)))
             {
                 tagger.CreateTag();
             }
@@ -82,6 +95,15 @@
             string lineOfText, MessageImportance messageImportance)
         {
             Log.LogMessageFromText(lineOfText, messageImportance);
+        }
+
+        private static string GetExceptionMessage(WebException exception)
+        {
+            return exception.Message
+                + Environment.NewLine
+                + new StreamReader(
+                    exception.Response.GetResponseStream(),
+                    Encoding.UTF8).ReadToEnd();
         }
 
         private static TagInformation ConverToTagInformation(ITaskItem tagInformation)

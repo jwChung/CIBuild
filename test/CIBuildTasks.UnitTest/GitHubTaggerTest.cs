@@ -2,15 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Net;
     using System.Reflection;
+    using System.Text;
     using Experiment.Xunit;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
     using Moq;
     using Moq.Protected;
     using Ploeh.Albedo;
-    using Ploeh.AutoFixture;
+    using Ploeh.AutoFixture.Xunit;
     using Xunit;
 
     public class GitHubTaggerTest : TestBaseClass
@@ -53,7 +56,10 @@
         }
 
         [Test]
-        public void ExecuteLogsCorrectMessage(GitHubTagger sut, ITaskItem tagInfo, string tagName)
+        public void ExecuteLogsCorrectMessage(
+            GitHubTagger sut,
+            ITaskItem tagInfo,
+            string tagName)
         {
             sut.ToMock().CallBase = false;
             sut.TagInfo = tagInfo.Of(x => x.ItemSpec == tagName);
@@ -111,16 +117,11 @@
         }
 
         [Test(Skip = "Specify the github AccessToken, explicitly run this test and verify whether the tag is actually created on the github website.")]
-        public void ExecuteCorrectlyCreatesActualTag(ITaskItem tagInfo)
+        public void ExecuteCorrectlyCreatesActualTag(
+             GitHubTagger sut,
+            ITaskItem tagInfo)
         {
             // Fixture setup
-            var sut = Mocked.Of<GitHubTagger>();
-            
-            sut.ToMock().Protected().Setup(
-                "LogMessageFromText",
-                ItExpr.IsAny<string>(),
-                ItExpr.IsAny<MessageImportance>());
-
             tagInfo.Of(
                 i => i.GetMetadata("AccessToken") == "**************"
                     && i.GetMetadata("Owner") == "jwChung"
@@ -131,8 +132,37 @@
                     && i.ItemSpec == Guid.NewGuid().ToString("N"));
             sut.TagInfo = tagInfo;
 
-            // Exercise system and verify outcome
-            Assert.DoesNotThrow(() => sut.Execute());
+            // Exercise system
+            sut.Execute();
+
+            // Verify outcome
+            sut.ToMock().Protected().Verify(
+                "LogMessageFromText",
+                Times.Never(),
+                ItExpr.IsAny<string>(),
+                ItExpr.IsAny<MessageImportance>());
+        }
+
+        [Test]
+        public void ExecuteLogsCorrectMessageWhenCreateTagIsFailed(
+            GitHubTagger sut,
+            [Frozen] WebResponse response,
+            [Greedy] WebException exception,
+            string message)
+        {
+            response.Of(r => r.GetResponseStream()
+                == new MemoryStream(Encoding.UTF8.GetBytes(message)));
+            sut.ToMock().Protected().Setup("CreateTag", ItExpr.IsAny<ITaskItem>())
+                .Throws(exception);
+            var expectedMessage = exception.Message + Environment.NewLine + message;
+
+            sut.Execute();
+
+            sut.ToMock().Protected().Verify(
+                "LogMessageFromText",
+                Times.Once(),
+                expectedMessage,
+                MessageImportance.High);
         }
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
