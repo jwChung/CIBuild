@@ -49,18 +49,9 @@
             var customization = new CompositeCustomization(
                 new AutoMoqCustomization(),
                 new OmitAutoPropertiesCustomization(),
-                new TestParametersCustomization(context.ActualMethod.GetParameters()),
-                new MockedSutCustomization());
-            var fixture = new Fixture().Customize(customization);
-            return new TestFixture(fixture);
-        }
+                new TestParametersCustomization(context.ActualMethod.GetParameters()));
 
-        private class MockedSutCustomization : ICustomization
-        {
-            public void Customize(IFixture fixture)
-            {
-                fixture.Register(() => Mocked.Of<SemanticVersioning>());
-            }
+            return new TestFixture(new Fixture().Customize(customization));
         }
     }
 }

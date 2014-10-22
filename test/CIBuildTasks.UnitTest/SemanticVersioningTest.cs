@@ -1,5 +1,6 @@
 ﻿namespace Jwc.CIBuildTasks
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
@@ -97,12 +98,6 @@
                         var actual = sut.Execute();
 
                         Assert.True(actual);
-                        Assert.Equal(data.SemanticVersion, sut.SemanticVersion);
-                        sut.ToMock().Protected().Verify(
-                           "LogError",
-                           Times.Never(),
-                           ItExpr.IsAny<string>(),
-                           ItExpr.IsAny<object[]>());
                     }
                     finally
                     {
@@ -113,7 +108,7 @@
         }
 
         [Test]
-        public void ExecuteThrowsIfSemanticVersionIsNotDefined(
+        public void ExecuteThrowsWhenSemanticVersionIsNotDefined(
             SemanticVersioning sut,
             string fileName,
             string content)
@@ -123,14 +118,8 @@
                 File.WriteAllText(fileName, content);
                 sut.AssemblyInfo = fileName;
 
-                var actual = sut.Execute();
-
-                Assert.True(actual);
-                sut.ToMock().Protected().Verify(
-                    "LogError",
-                    Times.Once(),
-                    "The AssemblyInfo '{0}' does not have valid semantic version.",
-                    new object[] { fileName });
+                var e = Assert.Throws<InvalidOperationException>(() => sut.Execute());
+                Assert.Contains(fileName, e.Message);
             }
             finally
             {
@@ -138,7 +127,7 @@
                     File.Delete(fileName);
             }
         }
-
+        
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
         {
             yield return new Properties<SemanticVersioning>().Select(x => x.AssemblyInfo);

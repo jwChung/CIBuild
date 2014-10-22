@@ -1,6 +1,7 @@
 ﻿namespace Jwc.CIBuildTasks
 {
     using System;
+    using System.Globalization;
     using System.IO;
     using System.Text;
     using System.Text.RegularExpressions;
@@ -77,29 +78,14 @@
 
             if (!match.Success)
             {
-                this.LogError(
+                throw new InvalidOperationException(string.Format(
+                    CultureInfo.CurrentCulture,
                     "The AssemblyInfo '{0}' does not have valid semantic version.",
-                    this.assemblyInfo);
-
-                return true;
+                    this.assemblyInfo));
             }
             
             this.semanticVersion = match.Result("${semver}");
             return true;
-        }
-
-        /// <summary>
-        /// Logs an error message.
-        /// </summary>
-        /// <param name="message">
-        /// The message format.
-        /// </param>
-        /// <param name="messageArgs">
-        /// The arguments of the message format.
-        /// </param>
-        protected virtual void LogError(string message, params object[] messageArgs)
-        {
-            Log.LogError(message, messageArgs);
         }
     }
 }
