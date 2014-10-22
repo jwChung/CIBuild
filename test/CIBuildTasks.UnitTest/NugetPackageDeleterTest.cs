@@ -85,7 +85,7 @@
         }
 
         [Test]
-        public void ExecuteLogCorrectMessage(NugetPackageDeleter sut, string package)
+        public void ExecuteLogsCorrectMessage(NugetPackageDeleter sut, string package)
         {
             sut.ToMock().CallBase = false;
             sut.Identifier = package;
