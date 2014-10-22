@@ -14,7 +14,7 @@
             if (message == null)
                 throw new ArgumentNullException("message");
 
-            throw new NotImplementedException();
+            task.Log.LogMessageFromText(message, messageImportance);
         }
     }
 }
