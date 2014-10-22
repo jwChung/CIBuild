@@ -20,6 +20,12 @@
         private string nugetId;
         private string nugetVersion;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
+        /// </summary>
+        /// <param name="nugetPackageDeletion">
+        /// The implementation for deleting a nuget package.
+        /// </param>
         public NugetPackageDeleter(INugetPackageDeletion nugetPackageDeletion)
         {
             if (nugetPackageDeletion == null)
@@ -28,6 +34,9 @@
             this.nugetPackageDeletion = nugetPackageDeletion;
         }
 
+        /// <summary>
+        /// Gets or sets the user identifier.
+        /// </summary>
         [Required]
         public string UserId
         {
@@ -45,6 +54,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the user password.
+        /// </summary>
         [Required]
         public string UserPassword
         {
@@ -62,6 +74,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the nuget identifier.
+        /// </summary>
         [Required]
         public string NugetId
         {
@@ -79,6 +94,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the nuget version.
+        /// </summary>
         [Required]
         public string NugetVersion
         {
@@ -96,6 +114,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets the implementation for deleting a nuget package.
+        /// </summary>
         public INugetPackageDeletion NugetPackageDeletion
         {
             get { return this.nugetPackageDeletion; }
