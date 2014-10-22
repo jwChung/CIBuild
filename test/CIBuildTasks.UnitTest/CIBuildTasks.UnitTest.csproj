@@ -6,7 +6,7 @@
     <ProjectGuid>{FF2B24D7-0188-4B4A-B18C-561285C8710B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jwc.CIBuildTasks</RootNamespace>
+    <RootNamespace>Jwc.CIBuild</RootNamespace>
     <AssemblyName>Jwc.CIBuildTasks.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -101,19 +101,19 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyTest.cs" />
-    <Compile Include="Base64StringToFileTest.cs" />
+    <Compile Include="Tasks\Base64StringToFileTest.cs" />
     <Compile Include="CreateTagCommandTest.cs" />
     <Compile Include="FileWriterTest.cs" />
-    <Compile Include="GitHubTaggerTest.cs" />
+    <Compile Include="Tasks\GitHubTaggerTest.cs" />
     <Compile Include="Mocked.cs" />
-    <Compile Include="NugetPackageDeleterTest.cs" />
+    <Compile Include="Tasks\NugetPackageDeleterTest.cs" />
     <Compile Include="DeletePackageCommandTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyInfoExtensions.cs" />
-    <Compile Include="PublishNugetDeterminationTest.cs" />
-    <Compile Include="ReleaseNoteExtractorTest.cs" />
+    <Compile Include="Tasks\PublishNugetDeterminationTest.cs" />
+    <Compile Include="Tasks\ReleaseNoteExtractorTest.cs" />
     <Compile Include="RunOn.cs" />
-    <Compile Include="SemanticVersioningTest.cs" />
+    <Compile Include="Tasks\SemanticVersioningTest.cs" />
     <Compile Include="TaskLoggerTest.cs" />
     <Compile Include="TestAttribute.cs" />
     <Compile Include="TestBaseClass.cs" />
@@ -133,6 +133,7 @@
       <Link>Properties\CodeAnalysisDictionary.xml</Link>
     </CodeAnalysisDictionary>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

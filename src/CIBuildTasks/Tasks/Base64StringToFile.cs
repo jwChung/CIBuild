@@ -1,7 +1,6 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild.Tasks
 {
     using System;
-    using System.IO;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 

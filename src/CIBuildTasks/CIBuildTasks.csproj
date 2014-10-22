@@ -7,7 +7,7 @@
     <ProjectGuid>{DCFEF322-2C7F-42F2-965C-D10C2E44B341}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jwc.CIBuildTasks</RootNamespace>
+    <RootNamespace>Jwc.CIBuild</RootNamespace>
     <AssemblyName>Jwc.CIBuildTasks</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -57,10 +57,10 @@
     <Compile Include="..\..\build\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Base64StringToFile.cs" />
+    <Compile Include="Tasks\Base64StringToFile.cs" />
     <Compile Include="CreateTagCommand.cs" />
     <Compile Include="FileWriter.cs" />
-    <Compile Include="GitHubTagger.cs" />
+    <Compile Include="Tasks\GitHubTagger.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ICreateTagCommand.cs" />
     <Compile Include="IDeletePackageCommand.cs" />
@@ -69,11 +69,11 @@
     <Compile Include="ITagInfo.cs" />
     <Compile Include="ITaskLogger.cs" />
     <Compile Include="DeletePackageCommand.cs" />
-    <Compile Include="NugetPackageDeleter.cs" />
+    <Compile Include="Tasks\NugetPackageDeleter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublishNugetDetermination.cs" />
-    <Compile Include="ReleaseNoteExtractor.cs" />
-    <Compile Include="SemanticVersioning.cs" />
+    <Compile Include="Tasks\PublishNugetDetermination.cs" />
+    <Compile Include="Tasks\ReleaseNoteExtractor.cs" />
+    <Compile Include="Tasks\SemanticVersioning.cs" />
     <Compile Include="TaskLogger.cs" />
     <Compile Include="WebClientWithCookies.cs">
       <SubType>Component</SubType>

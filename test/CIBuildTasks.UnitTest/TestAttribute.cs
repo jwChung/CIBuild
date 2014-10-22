@@ -1,13 +1,10 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild
 {
-    using System.Collections.Generic;
     using Experiment;
     using Experiment.AutoFixture;
     using Experiment.Xunit;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.AutoMoq;
-    using Ploeh.AutoFixture.Kernel;
-    using Xunit.Sdk;
 
     public class TestAttribute : TestBaseAttribute
     {

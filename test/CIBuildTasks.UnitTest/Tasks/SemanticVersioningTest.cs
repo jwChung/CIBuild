@@ -1,4 +1,4 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild.Tasks
 {
     using System;
     using System.Collections.Generic;
@@ -7,10 +7,7 @@
     using Experiment.Xunit;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
-    using Moq;
-    using Moq.Protected;
     using Ploeh.Albedo;
-    using Ploeh.AutoFixture;
     using Xunit;
 
     public class SemanticVersioningTest : TestBaseClass

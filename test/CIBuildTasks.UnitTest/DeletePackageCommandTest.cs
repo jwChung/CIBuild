@@ -1,4 +1,4 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild
 {
     using System;
     using System.Collections.Generic;

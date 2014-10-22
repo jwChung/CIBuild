@@ -1,11 +1,10 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using HtmlAgilityPack;
-    using Microsoft.Build.Framework;
 
     /// <summary>
     /// Represents command implementation for deleting a nuget package.

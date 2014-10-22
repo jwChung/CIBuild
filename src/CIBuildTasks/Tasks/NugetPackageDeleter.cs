@@ -1,11 +1,7 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild.Tasks
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using HtmlAgilityPack;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
@@ -151,7 +147,7 @@
         /// <returns>
         /// true if the task successfully executed; otherwise, false.
         /// </returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "Jwc.CIBuildTasks.ITaskLogger.Log(Microsoft.Build.Utilities.Task,System.String,Microsoft.Build.Framework.MessageImportance)", Justification = "The literal can be passed as localized parameters.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "Jwc.CIBuild.ITaskLogger.Log(Microsoft.Build.Utilities.Task,System.String,Microsoft.Build.Framework.MessageImportance)", Justification = "The literal can be passed as localized parameters.")]
         public sealed override bool Execute()
         {
             this.deleteCommand.Execute(this);

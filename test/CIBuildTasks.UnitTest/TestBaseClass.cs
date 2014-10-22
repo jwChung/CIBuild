@@ -1,4 +1,4 @@
-namespace Jwc.CIBuildTasks
+namespace Jwc.CIBuild
 {
     using System;
     using System.Collections.Generic;
@@ -7,6 +7,7 @@ namespace Jwc.CIBuildTasks
     using Experiment;
     using Experiment.Idioms;
     using Experiment.Xunit;
+    using Tasks;
 
     public abstract class TestBaseClass
     {

@@ -17,14 +17,13 @@
     <CIBuildTasksPath>@(CIBuildTasksPath)</CIBuildTasksPath>
     <XunitRunnerPath>@(XunitRunnerPath)</XunitRunnerPath>
   </PropertyGroup>
-  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.Base64StringToFile" />
   <UsingTask AssemblyFile="$(XunitRunnerPath)" TaskName="Xunit.Runner.MSBuild.xunit" />
-  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.SemanticVersioning" />
-  <UsingTask AssemblyFile="$(CIBuildTasksPath)"
-             TaskName="Jwc.CIBuildTasks.PublishNugetDetermination" />
-  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.ReleaseNoteExtractor" />
-  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.NugetPackageDeleter" />
-  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuildTasks.GitHubTagger" />
+  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuild.Tasks.Base64StringToFile" />
+  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuild.Tasks.SemanticVersioning" />
+  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuild.Tasks.PublishNugetDetermination" />
+  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuild.Tasks.ReleaseNoteExtractor" />
+  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuild.Tasks.NugetPackageDeleter" />
+  <UsingTask AssemblyFile="$(CIBuildTasksPath)" TaskName="Jwc.CIBuild.Tasks.GitHubTagger" />
   
   <!-- Targets -->
   <Target Name="CI">

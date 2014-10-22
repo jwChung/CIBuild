@@ -1,4 +1,4 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild
 {
     /// <summary>
     /// Represents tag information.

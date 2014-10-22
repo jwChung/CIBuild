@@ -1,8 +1,6 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild
 {
     using System;
-    using System.Collections.Generic;
-    using Jwc.Experiment.Xunit;
     using Xunit;
 
     public class CreateTagCommandTest : TestBaseClass

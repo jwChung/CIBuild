@@ -1,6 +1,5 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild
 {
-    using System;
     using System.Reflection;
     using Experiment.Idioms;
 

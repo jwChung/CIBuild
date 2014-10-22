@@ -1,14 +1,11 @@
-﻿namespace Jwc.CIBuildTasks
+﻿namespace Jwc.CIBuild.Tasks
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
-    using Moq;
-    using Moq.Protected;
     using Ploeh.Albedo;
-    using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit;
     using Xunit;
 
