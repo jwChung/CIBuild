@@ -207,6 +207,11 @@
             Assert.Equal(exception, e.InnerException);
         }
 
+        protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
+        {
+            return GetProperties();
+        }
+
         private static IEnumerable<PropertyInfo> GetProperties()
         {
             yield return new Properties<GitHubTagger>().Select(x => x.AccessToken);
@@ -217,11 +222,6 @@
             yield return new Properties<GitHubTagger>().Select(x => x.ReleaseNotes);
             yield return new Properties<GitHubTagger>().Select(x => x.AuthorName);
             yield return new Properties<GitHubTagger>().Select(x => x.AuthorEmail);
-        }
-
-        protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
-        {
-            return GetProperties();
         }
     }
 }
