@@ -15,9 +15,6 @@
     public class NugetPackageDeleter : Task, INugetPackageDeletionInfo
     {
         private readonly INugetPackageDeletion nugetPackageDeletion;
-        private string idOrEmail;
-        private string password;
-        private string identifier;
         private string userId;
         private string userPassword;
         private string nugetId;
@@ -99,66 +96,6 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets user id(or email).
-        /// </summary>
-        [Required]
-        public string IdOrEmail
-        {
-            get
-            {
-                return this.idOrEmail;
-            }
-
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("value");
-
-                this.idOrEmail = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
-        [Required]
-        public string Password
-        {
-            get
-            {
-                return this.password;
-            }
-
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("value");
-
-                this.password = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the nuget package identifier.
-        /// </summary>
-        [Required]
-        public string Identifier
-        {
-            get
-            {
-                return this.identifier;
-            }
-
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException("value");
-
-                this.identifier = value;
-            }
-        }
-
         public INugetPackageDeletion NugetPackageDeletion
         {
             get { return this.nugetPackageDeletion; }
@@ -199,10 +136,6 @@
         /// </param>
         protected virtual void DeletePackage(string id, string pwd, string package)
         {
-            this.idOrEmail = id;
-            this.password = pwd;
-            this.identifier = package;
-
             using (var client = new WebClientWithCookies())
             {
                 this.PostSignIn(client);
@@ -243,8 +176,8 @@
                 "__RequestVerificationToken=" + node.Attributes["Value"].Value,
                 "ReturnUrl=/",
                 "LinkingAccount=False",
-                "SignIn.UserNameOrEmail=" + this.idOrEmail,
-                "SignIn.Password=" + this.password
+                "SignIn.UserNameOrEmail=" + this.userId,
+                "SignIn.Password=" + this.userPassword
             };
 
             client.UploadString(
@@ -276,8 +209,9 @@
         {
             var packageUrl = string.Format(
                 CultureInfo.CurrentCulture,
-                "https://www.nuget.org/packages/{0}/Delete",
-                Regex.Replace(this.identifier, @"\s+", "/"));
+                "https://www.nuget.org/packages/{0}/{1}/Delete",
+                this.nugetId,
+                this.nugetVersion);
             return packageUrl;
         }
     }
