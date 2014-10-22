@@ -15,7 +15,7 @@
         private string accessToken;
         private string owner;
         private string repository;
-        private string refOrSha;
+        private string refOrSha = "refs/heads/master";
         private string tagName;
         private string releaseNotes;
         private string authorName;
@@ -51,6 +51,10 @@
                 if (value == null)
                     throw new ArgumentNullException("value");
 
+                if (value.Length == 0)
+                    throw new ArgumentException(
+                        "The AccessToken property should not be empty string.");
+
                 this.accessToken = value;
             }
         }
@@ -67,6 +71,10 @@
             {
                 if (value == null)
                     throw new ArgumentNullException("value");
+
+                if (value.Length == 0)
+                    throw new ArgumentException(
+                        "The Owner property should not be empty string.");
 
                 this.owner = value;
             }
@@ -85,6 +93,10 @@
                 if (value == null)
                     throw new ArgumentNullException("value");
 
+                if (value.Length == 0)
+                    throw new ArgumentException(
+                        "The Repository property should not be empty string.");
+
                 this.repository = value;
             }
         }
@@ -101,6 +113,9 @@
             {
                 if (value == null)
                     throw new ArgumentNullException("value");
+
+                if (value.Length == 0)
+                    return;
 
                 this.refOrSha = value;
             }
@@ -119,6 +134,10 @@
                 if (value == null)
                     throw new ArgumentNullException("value");
 
+                if (value.Length == 0)
+                    throw new ArgumentException(
+                        "The TagName property should not be empty string.");
+
                 this.tagName = value;
             }
         }
@@ -135,6 +154,10 @@
             {
                 if (value == null)
                     throw new ArgumentNullException("value");
+
+                if (value.Length == 0)
+                    throw new ArgumentException(
+                        "The ReleaseNotes property should not be empty string.");
 
                 this.releaseNotes = value;
             }
@@ -153,6 +176,10 @@
                 if (value == null)
                     throw new ArgumentNullException("value");
 
+                if (value.Length == 0)
+                    throw new ArgumentException(
+                        "The AuthorName property should not be empty string.");
+
                 this.authorName = value;
             }
         }
@@ -169,6 +196,10 @@
             {
                 if (value == null)
                     throw new ArgumentNullException("value");
+
+                if (value.Length == 0)
+                    throw new ArgumentException(
+                        "The AuthorEmail property should not be empty string.");
 
                 this.authorEmail = value;
             }

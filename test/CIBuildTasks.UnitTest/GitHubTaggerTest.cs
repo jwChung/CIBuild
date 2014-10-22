@@ -43,6 +43,15 @@
         }
 
         [Test]
+        public IEnumerable<ITestCase> RefOrShaIsCorrect(GitHubTagger sut)
+        {
+            yield return TestCase.Create(() => Assert.Equal("refs/heads/master", sut.RefOrSha));
+
+            sut.RefOrSha = string.Empty;
+            yield return TestCase.Create(() => Assert.Equal("refs/heads/master", sut.RefOrSha));
+        }
+
+        [Test]
         public IEnumerable<ITestCase> PropertiesAreReadWritable()
         {
             var testData = new[]
@@ -92,8 +101,6 @@
             return TestCases.WithArgs(testData).WithAuto<GitHubTagger, string>().Create(
                 (data, sut, value) =>
                 {
-                    Assert.Null(data.Get(sut));
-                    
                     data.Set(sut, value);
 
                     Assert.Equal(value, data.Get(sut));
@@ -112,6 +119,48 @@
             {
                 property.AssertGet<RequiredAttribute>();
             });
+        }
+
+        [Test]
+        public IEnumerable<ITestCase> PropertiesThrowsWhenInitializedWithEmptyString()
+        {
+            var testData = new[]
+            {
+                new
+                {
+                    Set = new Action<GitHubTagger, string>((x, y) => x.AccessToken = y)
+                },
+                new
+                {
+                    Set = new Action<GitHubTagger, string>((x, y) => x.Owner = y)
+                },
+                new
+                {
+                    Set = new Action<GitHubTagger, string>((x, y) => x.Repository = y)
+                },
+                new
+                {
+                    Set = new Action<GitHubTagger, string>((x, y) => x.TagName = y)
+                },
+                new
+                {
+                    Set = new Action<GitHubTagger, string>((x, y) => x.ReleaseNotes = y)
+                },
+                new
+                {
+                    Set = new Action<GitHubTagger, string>((x, y) => x.AuthorName = y)
+                },
+                new
+                {
+                    Set = new Action<GitHubTagger, string>((x, y) => x.AuthorEmail = y)
+                },
+            };
+
+            return TestCases.WithArgs(testData).WithAuto<GitHubTagger>().Create(
+                (data, sut) =>
+                {
+                    Assert.Throws<ArgumentException>(() => data.Set(sut, string.Empty));
+                });
         }
 
         [Test]
