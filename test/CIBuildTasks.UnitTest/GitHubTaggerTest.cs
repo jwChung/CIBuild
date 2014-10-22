@@ -113,7 +113,7 @@
         }
 
         [Test]
-        public IEnumerable<ITestCase> PropertriesAreRequired()
+        public IEnumerable<ITestCase> PropertiesAreRequired()
         {
             return TestCases.WithArgs(GetProperties()).Create(property =>
             {

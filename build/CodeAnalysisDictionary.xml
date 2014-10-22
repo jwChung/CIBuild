@@ -9,6 +9,7 @@
       <Word>sut</Word>
       <Word>git</Word>
       <Word>pwd</Word>
+      <Word>sha</Word>
     </Recognized>
     <Unrecognized>
       <Word></Word>
