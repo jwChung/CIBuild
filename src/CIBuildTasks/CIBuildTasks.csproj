@@ -62,6 +62,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDeletePackageCommand.cs" />
     <Compile Include="INugetPackageInfo.cs" />
+    <Compile Include="ITagInfo.cs" />
     <Compile Include="ITaskLogger.cs" />
     <Compile Include="DeletePackageCommand.cs" />
     <Compile Include="NugetPackageDeleter.cs" />
