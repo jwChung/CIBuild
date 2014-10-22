@@ -28,20 +28,6 @@
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
-        /// </summary>
-        /// <param name="nugetPackageDeletion">
-        /// The implementation for deleting a nuget package.
-        /// </param>
-        public NugetPackageDeleter(INugetPackageDeletion nugetPackageDeletion)
-        {
-            if (nugetPackageDeletion == null)
-                throw new ArgumentNullException("nugetPackageDeletion");
-
-            this.nugetPackageDeletion = nugetPackageDeletion;
-        }
-
         public NugetPackageDeleter(INugetPackageDeletion nugetPackageDeletion, ITaskLogger logger)
         {
             if (nugetPackageDeletion == null)
