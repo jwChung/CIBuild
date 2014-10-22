@@ -135,8 +135,8 @@
                 .AssertGet<RequiredAttribute>();
         }
 
-        [Test]
-        public void ExecuteCorrectlyDeleteNugetPackage(
+        [Test(Skip = "Conflicted")]
+        public void ExecuteCorrectlyDeleteNugetPackage2(
             NugetPackageDeleter sut, string id, string pwd, string package)
         {
             sut.ToMock().CallBase = false;
@@ -150,8 +150,8 @@
             sut.ToMock().Protected().Verify("DeletePackage", Times.Once(), id, pwd, package);
         }
 
-        [Test]
-        public void ExecuteLogsCorrectMessage(NugetPackageDeleter sut, string package)
+        [Test(Skip = "Conflicted")]
+        public void ExecuteLogsCorrectMessage2(NugetPackageDeleter sut, string package)
         {
             sut.ToMock().CallBase = false;
             sut.Identifier = package;
@@ -162,6 +162,30 @@
                 "LogMessageFromText",
                 Times.Once(),
                 ItExpr.Is<string>(x => x.Contains(package)),
+                MessageImportance.High);
+        }
+
+        [Test]
+        public void ExecuteCorrectlyDeleteNugetPackage(NugetPackageDeleter sut)
+        {
+            var actual = sut.Execute();
+
+            Assert.True(actual);
+            sut.NugetPackageDeletion.ToMock().Verify(x => x.Delete(sut), Times.Once());
+        }
+
+        [Test]
+        public void ExecuteLogsCorrectMessage(NugetPackageDeleter sut, string nugetId, string nugetVersion)
+        {
+            sut.NugetId = nugetId;
+            sut.NugetVersion = nugetVersion;
+
+            sut.Execute();
+
+            sut.ToMock().Protected().Verify(
+                "LogMessageFromText",
+                Times.Once(),
+                ItExpr.Is<string>(x => x.Contains(nugetId) && x.Contains(nugetVersion)),
                 MessageImportance.High);
         }
 

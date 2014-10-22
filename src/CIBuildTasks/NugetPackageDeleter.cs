@@ -172,13 +172,14 @@
         /// </returns>
         public sealed override bool Execute()
         {
-            this.DeletePackage(this.idOrEmail, this.password, this.identifier);
+            this.nugetPackageDeletion.Delete(this);
 
             this.LogMessageFromText(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    "The '{0}' package was deleted.",
-                    this.identifier),
+                    "The '{0} {1}' package was deleted.",
+                    this.nugetId,
+                    this.nugetVersion),
                 MessageImportance.High);
 
             return true;
