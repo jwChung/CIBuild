@@ -9,6 +9,7 @@
     using Moq.Protected;
     using Ploeh.Albedo;
     using Ploeh.AutoFixture;
+    using Ploeh.AutoFixture.Xunit;
     using Xunit;
 
     public class Base64StringToFileTest : TestBaseClass
@@ -17,6 +18,12 @@
         public void SutIsTask(Base64StringToFile sut)
         {
             Assert.IsAssignableFrom<Task>(sut);
+        }
+
+        [Test]
+        public void FileWriterIsCorrect(Base64StringToFile sut)
+        {
+            Assert.IsAssignableFrom<FileWriter>(sut.FileWriter);
         }
 
         [Test]
@@ -51,7 +58,7 @@
 
         [Test]
         public void ExecuteCreatesCorrectTextFile(
-            Base64StringToFile sut,
+            [Greedy] Base64StringToFile sut,
             byte[] value,
             string outputFile)
         {
@@ -61,7 +68,7 @@
             var actual = sut.Execute();
 
             Assert.True(actual);
-            sut.ToMock().Protected().Verify("WriteAllBytes", Times.Once(), outputFile, value);
+            sut.FileWriter.ToMock().Verify(x => x.Write(outputFile, value));
         }
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()

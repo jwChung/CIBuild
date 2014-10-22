@@ -60,7 +60,6 @@
             public void Customize(IFixture fixture)
             {
                 fixture.Register(() => Mocked.Of<SemanticVersioning>());
-                fixture.Register(() => Mocked.Of<Base64StringToFile>());
             }
         }
     }
