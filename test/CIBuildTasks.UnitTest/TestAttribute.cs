@@ -61,7 +61,7 @@
             {
                 fixture.Register(() => Mocked.Of<GitHubTagger>());
                 fixture.Register(() => Mocked.Of<SemanticVersioning>());
-                fixture.Register(() => Mocked.Of<NugetPackageDeleter>());
+                fixture.Register(() => Mocked.Of<NugetPackageDeleter>(Mocked.Of<INugetPackageDeletion>()));
                 fixture.Register(() => Mocked.Of<Base64StringToFile>());
             }
         }

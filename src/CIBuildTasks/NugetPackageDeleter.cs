@@ -14,6 +14,7 @@
     /// </summary>
     public class NugetPackageDeleter : Task, INugetPackageDeletionInfo
     {
+        private readonly INugetPackageDeletion nugetPackageDeletion;
         private string idOrEmail;
         private string password;
         private string identifier;
@@ -21,6 +22,14 @@
         private string userPassword;
         private string nugetId;
         private string nugetVersion;
+
+        public NugetPackageDeleter(INugetPackageDeletion nugetPackageDeletion)
+        {
+            if (nugetPackageDeletion == null)
+                throw new ArgumentNullException("nugetPackageDeletion");
+
+            this.nugetPackageDeletion = nugetPackageDeletion;
+        }
 
         [Required]
         public string UserId
@@ -148,6 +157,11 @@
 
                 this.identifier = value;
             }
+        }
+
+        public INugetPackageDeletion NugetPackageDeletion
+        {
+            get { return this.nugetPackageDeletion; }
         }
 
         /// <summary>
