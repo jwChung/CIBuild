@@ -2,12 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Net;
     using System.Reflection;
+    using System.Text;
     using Experiment.Xunit;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
+    using Moq;
+    using Moq.Protected;
     using Ploeh.Albedo;
+    using Ploeh.AutoFixture.Xunit;
     using Xunit;
 
     public class GitHubTaggerTest : TestBaseClass
@@ -106,6 +112,50 @@
             {
                 property.AssertGet<RequiredAttribute>();
             });
+        }
+
+        [Test]
+        public void ExecuteCorrectlyCreatesTag(
+            [Greedy] GitHubTagger sut)
+        {
+            var actual = sut.Execute();
+            Assert.True(actual);
+            sut.CreateCommand.ToMock().Verify(x => x.Execute(sut));
+        }
+
+        [Test]
+        public void ExecuteLogsCorrectMessage(
+            [Greedy] GitHubTagger sut,
+            string tagName)
+        {
+            sut.TagName = tagName;
+
+            sut.Execute();
+
+            sut.Logger.ToMock().Verify(x => x.Log(
+                sut,
+                It.Is<string>(p => p.Contains(tagName)),
+                MessageImportance.High));
+        }
+
+        [Test]
+        public void ExecuteLogsCorrectMessageWhenCreatingTagFails(
+            [Greedy] GitHubTagger sut,
+            [Frozen] WebResponse response,
+            [Greedy] WebException exception,
+            string message)
+        {
+            // Fixture setup
+            response.Of(r => r.GetResponseStream()
+                == new MemoryStream(Encoding.UTF8.GetBytes(message)));
+            sut.CreateCommand.ToMock().Setup(x => x.Execute(It.IsAny<ITagInfo>()))
+                .Throws(exception);
+            var expectedMessage = exception.Message + Environment.NewLine + message;
+
+            // Exercise system and verify outcome
+            var e = Assert.Throws<InvalidOperationException>(() => sut.Execute());
+            Assert.Equal(expectedMessage, e.Message);
+            Assert.Equal(exception, e.InnerException);
         }
 
         private static IEnumerable<PropertyInfo> GetProperties()

@@ -1,6 +1,10 @@
 ﻿namespace Jwc.CIBuildTasks
 {
     using System;
+    using System.Globalization;
+    using System.IO;
+    using System.Net;
+    using System.Text;
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
@@ -17,7 +21,8 @@
         private string authorName;
         private string authorEmail;
 
-        public GitHubTagger() : this(new CreateTagCommand(), new TaskLogger())
+        public GitHubTagger()
+            : this(new CreateTagCommand(), new TaskLogger())
         {
         }
 
@@ -181,7 +186,34 @@
 
         public override bool Execute()
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.createCommand.Execute(this);
+            }
+            catch (WebException exception)
+            {
+                throw new InvalidOperationException(
+                    GetExceptionMessage(exception),
+                    exception);
+            }
+
+            var message = string.Format(
+                CultureInfo.CurrentCulture,
+                "The '{0}' tag was created.",
+                this.tagName);
+
+            this.Logger.Log(this, message, MessageImportance.High);
+
+            return true;
+        }
+
+        private static string GetExceptionMessage(WebException exception)
+        {
+            return exception.Message
+                + Environment.NewLine
+                + new StreamReader(
+                    exception.Response.GetResponseStream(),
+                    Encoding.UTF8).ReadToEnd();
         }
     }
 }
