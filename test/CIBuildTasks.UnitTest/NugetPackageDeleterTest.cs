@@ -7,7 +7,6 @@
     using Moq;
     using Moq.Protected;
     using Ploeh.Albedo;
-    using Ploeh.AutoFixture;
     using Xunit;
 
     public class NugetPackageDeleterTest : TestBaseClass
@@ -29,7 +28,8 @@
         [Test]
         public void IdOrEmailIsRequired()
         {
-            new Properties<NugetPackageDeleter>().Select(x => x.IdOrEmail).AssertGet<RequiredAttribute>();
+            new Properties<NugetPackageDeleter>().Select(x => x.IdOrEmail)
+                .AssertGet<RequiredAttribute>();
         }
 
         [Test]
@@ -46,7 +46,8 @@
         [Test]
         public void PasswordIsRequired()
         {
-            new Properties<NugetPackageDeleter>().Select(x => x.Password).AssertGet<RequiredAttribute>();
+            new Properties<NugetPackageDeleter>().Select(x => x.Password)
+                .AssertGet<RequiredAttribute>();
         }
 
         [Test]
@@ -64,7 +65,8 @@
         [Test]
         public void IdentifierIsRequired()
         {
-            new Properties<NugetPackageDeleter>().Select(x => x.Identifier).AssertGet<RequiredAttribute>();
+            new Properties<NugetPackageDeleter>().Select(x => x.Identifier)
+                .AssertGet<RequiredAttribute>();
         }
 
         [Test]
