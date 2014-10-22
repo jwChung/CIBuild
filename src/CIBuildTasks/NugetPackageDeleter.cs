@@ -28,6 +28,15 @@
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
+        /// </summary>
+        /// <param name="nugetPackageDeletion">
+        /// The implementation for deleting a nuget package.
+        /// </param>
+        /// <param name="logger">
+        /// The task logger.
+        /// </param>
         public NugetPackageDeleter(INugetPackageDeletion nugetPackageDeletion, ITaskLogger logger)
         {
             if (nugetPackageDeletion == null)
@@ -128,6 +137,9 @@
             get { return this.nugetPackageDeletion; }
         }
 
+        /// <summary>
+        /// Gets the task logger.
+        /// </summary>
         public ITaskLogger Logger
         {
             get { return this.logger; }
@@ -143,14 +155,13 @@
         {
             this.nugetPackageDeletion.Delete(this);
 
-            this.logger.Log(
-                this,
-                string.Format(
-                    CultureInfo.CurrentCulture,
-                    "The '{0} {1}' package was deleted.",
-                    this.nugetId,
-                    this.nugetVersion),
-                MessageImportance.High);
+            var message = string.Format(
+                CultureInfo.CurrentCulture,
+                "The '{0} {1}' package was deleted.",
+                this.nugetId,
+                this.nugetVersion);
+
+            this.logger.Log(this, message, MessageImportance.High);
 
             return true;
         }
