@@ -7,7 +7,6 @@ namespace Jwc.CIBuildTasks
     using Experiment;
     using Experiment.Idioms;
     using Experiment.Xunit;
-    using Ploeh.AutoFixture;
 
     public abstract class TestBaseClass
     {
@@ -19,7 +18,7 @@ namespace Jwc.CIBuildTasks
             var sutName = testTypeName.Substring(0, testTypeName.Length - 4);
             this.sutType = typeof(Base64StringToFile).Assembly.GetType(sutName);
 
-            if (this.SutType == null)
+            if (this.sutType == null)
                 throw new InvalidOperationException(string.Format(
                     "SUT of the test class '{0}' was not found.",
                     testTypeName));
@@ -30,15 +29,10 @@ namespace Jwc.CIBuildTasks
             this.sutType = sutType;
         }
 
-        public Type SutType
-        {
-            get { return this.sutType; }
-        }
-
         [Test]
         public IEnumerable<ITestCase> SutHasAppropriateGuards()
         {
-            var members = this.SutType.GetIdiomaticMembers().Except(
+            var members = this.sutType.GetIdiomaticMembers().Except(
                 this.ExceptToVerifyGuardClause());
 
             return TestCases.WithArgs(members).WithAuto<GuardClauseAssertion>()
@@ -48,7 +42,7 @@ namespace Jwc.CIBuildTasks
         [Test]
         public IEnumerable<ITestCase> SutCorrectlyInitializesMembers()
         {
-            var members = this.SutType.GetIdiomaticMembers().Except(
+            var members = this.sutType.GetIdiomaticMembers().Except(
                 this.ExceptToVerifyInitialization());
 
             return TestCases.WithArgs(members).WithAuto<MemberInitializationAssertion>()
