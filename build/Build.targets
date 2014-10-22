@@ -142,8 +142,10 @@
     <Exec Command="$(NugetPath) push %(NugetSymbolPackages.Identity)" ContinueOnError="true" />
     <Delete Files="@(NugetSymbolPackages)" />
     <Exec Command="$(NugetPath) push %(NugetPackages.Identity)" />
-    <NugetPackageDeleter IdOrEmail="$(NugetId)" Password="$(NugetPassword)"
-                         Identifier="%(NuspecFiles.Filename) $(SemanticVersion)"
+    <NugetPackageDeleter UserId="$(NugetId)"
+                         UserPassword="$(NugetPassword)"
+                         NugetId="%(NuspecFiles.Filename)"
+                         NugetVersion ="$(SemanticVersion)"
                          Condition="$(SemanticVersion.Contains('-'))"/>
   </Target>
 
