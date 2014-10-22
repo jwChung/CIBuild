@@ -25,6 +25,18 @@
         }
 
         [Test]
+        public void CreateTagCommandIsCorrect(GitHubTagger sut)
+        {
+            Assert.IsAssignableFrom<CreateTagCommand>(sut.CreateCommand);
+        }
+
+        [Test]
+        public void LoggerIsCorrect(GitHubTagger sut)
+        {
+            Assert.IsAssignableFrom<TaskLogger>(sut.Logger);
+        }
+
+        [Test]
         public IEnumerable<ITestCase> PropertiesAreReadWritable()
         {
             var testData = new[]
