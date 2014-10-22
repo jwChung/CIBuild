@@ -16,16 +16,16 @@
     using Ploeh.AutoFixture.Xunit;
     using Xunit;
 
-    public class GitHubTaggerTest : TestBaseClass
+    public class GitHubTagger2Test : TestBaseClass
     {
         [Test]
-        public void SutIsTask(GitHubTagger sut)
+        public void SutIsTask(GitHubTagger2 sut)
         {
             Assert.IsAssignableFrom<Task>(sut);
         }
 
         [Test]
-        public void TagInfoIsReadWritable(GitHubTagger sut, ITaskItem tagInfo)
+        public void TagInfoIsReadWritable(GitHubTagger2 sut, ITaskItem tagInfo)
         {
             Assert.Null(sut.TagInfo);
             sut.TagInfo = tagInfo;
@@ -35,12 +35,12 @@
         [Test]
         public void TagInfoIsRequired()
         {
-            new Properties<GitHubTagger>().Select(x => x.TagInfo).AssertGet<RequiredAttribute>();
+            new Properties<GitHubTagger2>().Select(x => x.TagInfo).AssertGet<RequiredAttribute>();
         }
 
         [Test]
         public void ExecuteCorrectlyCreatesTag(
-            GitHubTagger sut,
+            GitHubTagger2 sut,
             ITaskItem tagInfo)
         {
             sut.ToMock().CallBase = false;
@@ -57,7 +57,7 @@
 
         [Test]
         public void ExecuteLogsCorrectMessage(
-            GitHubTagger sut,
+            GitHubTagger2 sut,
             ITaskItem tagInfo,
             string tagName)
         {
@@ -92,7 +92,7 @@
                 new { Name = "AuthorEmail", Value = string.Empty }
             };
 
-            return TestCases.WithArgs(testData).WithAuto<string, ITaskItem, GitHubTagger>().Create(
+            return TestCases.WithArgs(testData).WithAuto<string, ITaskItem, GitHubTagger2>().Create(
                 (data, value, tagInfo, sut) =>
                 {
                     tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
@@ -104,7 +104,7 @@
                     var e = Assert.Throws<ArgumentException>(() => sut.Execute());
                     Assert.Contains(data.Name, e.Message);
                 }).Concat(TestCases.WithArgs(new[] { null, string.Empty })
-                    .WithAuto<string, ITaskItem, GitHubTagger>().Create(
+                    .WithAuto<string, ITaskItem, GitHubTagger2>().Create(
                         (data, value, tagInfo, sut) =>
                         {
                             tagInfo.Of(x => x.GetMetadata(It.IsAny<string>()) == value
@@ -118,7 +118,7 @@
 
         [Test(Skip = "Specify the github AccessToken, explicitly run this test and verify whether the tag is actually created on the github website.")]
         public void ExecuteCorrectlyCreatesActualTag(
-             GitHubTagger sut,
+             GitHubTagger2 sut,
             ITaskItem tagInfo)
         {
             // Fixture setup
@@ -145,7 +145,7 @@
 
         [Test]
         public void ExecuteLogsCorrectMessageWhenCreatingTagFails(
-            GitHubTagger sut,
+            GitHubTagger2 sut,
             [Frozen] WebResponse response,
             [Greedy] WebException exception,
             string message)
@@ -167,7 +167,7 @@
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()
         {
-            yield return new Properties<GitHubTagger>().Select(x => x.TagInfo);
+            yield return new Properties<GitHubTagger2>().Select(x => x.TagInfo);
         }
     }
 }

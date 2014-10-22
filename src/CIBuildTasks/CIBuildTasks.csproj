@@ -58,7 +58,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Base64StringToFile.cs" />
-    <Compile Include="GitHubTagger.cs" />
+    <Compile Include="GitHubTagger2.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDeletePackageCommand.cs" />
     <Compile Include="INugetPackageInfo.cs" />

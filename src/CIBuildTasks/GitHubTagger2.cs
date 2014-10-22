@@ -13,7 +13,7 @@
     /// <summary>
     /// Represents a MSBuild task to create a tag on a repository of GitHub.
     /// </summary>
-    public class GitHubTagger : Task
+    public class GitHubTagger2 : Task
     {
         private ITaskItem tagInfo;
 

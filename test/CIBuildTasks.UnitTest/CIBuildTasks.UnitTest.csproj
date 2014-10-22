@@ -102,7 +102,7 @@
     </Compile>
     <Compile Include="AssemblyTest.cs" />
     <Compile Include="Base64StringToFileTest.cs" />
-    <Compile Include="GitHubTaggerTest.cs" />
+    <Compile Include="GitHubTagger2Test.cs" />
     <Compile Include="Mocked.cs" />
     <Compile Include="NugetPackageDeleterTest.cs" />
     <Compile Include="DeletePackageCommandTest.cs" />
