@@ -69,6 +69,7 @@
     <Compile Include="PublishNugetDetermination.cs" />
     <Compile Include="ReleaseNoteExtractor.cs" />
     <Compile Include="SemanticVersioning.cs" />
+    <Compile Include="TaskLogger.cs" />
     <Compile Include="WebClientWithCookies.cs">
       <SubType>Component</SubType>
     </Compile>

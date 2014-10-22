@@ -112,6 +112,7 @@
     <Compile Include="ReleaseNoteExtractorTest.cs" />
     <Compile Include="RunOn.cs" />
     <Compile Include="SemanticVersioningTest.cs" />
+    <Compile Include="TaskLoggerTest.cs" />
     <Compile Include="TestAttribute.cs" />
     <Compile Include="TestBaseClass.cs" />
   </ItemGroup>
