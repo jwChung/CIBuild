@@ -144,7 +144,7 @@
         }
 
         [Test]
-        public void ExecuteLogsCorrectMessageWhenCreateTagIsFailed(
+        public void ExecuteLogsCorrectMessageWhenCreatingTagFails(
             GitHubTagger sut,
             [Frozen] WebResponse response,
             [Greedy] WebException exception,
