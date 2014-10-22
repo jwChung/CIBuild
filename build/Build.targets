@@ -84,7 +84,7 @@
   </Target>
 
   <Target Name="GetSemanticVersion">
-    <SemanticVersioning AssemblyInfo="%(CommonAssemblyInfo.FullPath)">
+    <SemanticVersioning AssemblyInfo="%(SolutionInfo.FullPath)">
       <Output TaskParameter="SemanticVersion" PropertyName="SemanticVersion" />
     </SemanticVersioning>
   </Target>
@@ -111,7 +111,7 @@
   </Target>
 
   <Target Name="GetReleaseNotes">
-    <ReleaseNoteExtractor AssemblyInfo="%(CommonAssemblyInfo.FullPath)">
+    <ReleaseNoteExtractor AssemblyInfo="%(SolutionInfo.FullPath)">
       <Output TaskParameter="ReleaseNotes" PropertyName="ReleaseNotes" />
       <Output TaskParameter="XmlEscapedReleaseNotes" PropertyName="XmlEscapedReleaseNotes" />
     </ReleaseNoteExtractor>
