@@ -76,7 +76,7 @@
         /// </param>
         protected virtual void CreateTag(ITaskItem tagInformation)
         {
-            using (var tagger = new Tagger(ConverToTagInformation(tagInformation)))
+            using (var tagger = new Tagger(ConvertToTagInformation(tagInformation)))
             {
                 tagger.CreateTag();
             }
@@ -106,7 +106,7 @@
                     Encoding.UTF8).ReadToEnd();
         }
 
-        private static TagInformation ConverToTagInformation(ITaskItem tagInformation)
+        private static TagInformation ConvertToTagInformation(ITaskItem tagInformation)
         {
             return new TagInformation
             {
