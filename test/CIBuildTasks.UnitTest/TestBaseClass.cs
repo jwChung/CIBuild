@@ -42,8 +42,13 @@ namespace Jwc.CIBuildTasks
         [Test]
         public IEnumerable<ITestCase> SutCorrectlyInitializesMembers()
         {
-            var members = this.sutType.GetIdiomaticMembers().Except(
-                this.ExceptToVerifyInitialization());
+            var memberKinds = MemberKinds.InstanceConstructor
+                | MemberKinds.InstanceGetProperty
+                | MemberKinds.InstanceField;
+
+            var members = this.sutType
+                .GetIdiomaticMembers(memberKinds)
+                .Except(this.ExceptToVerifyInitialization());
 
             return TestCases.WithArgs(members).WithAuto<MemberInitializationAssertion>()
                 .Create((m, a) => a.Verify(m));

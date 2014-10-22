@@ -8,9 +8,9 @@
         /// <summary>
         /// Deletes the specified nuget package.
         /// </summary>
-        /// <param name="nugetPackageDeletionInfo">
+        /// <param name="nugetInfo">
         /// The nuget package information to be deleted.
         /// </param>
-        void Delete(INugetPackageDeletionInfo nugetPackageDeletionInfo);
+        void Delete(INugetPackageDeletionInfo nugetInfo);
     }
 }
