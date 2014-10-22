@@ -153,7 +153,7 @@
         /// </returns>
         public sealed override bool Execute()
         {
-            this.deleteCommand.Delete(this);
+            this.deleteCommand.Execute(this);
 
             var message = string.Format(
                 CultureInfo.CurrentCulture,

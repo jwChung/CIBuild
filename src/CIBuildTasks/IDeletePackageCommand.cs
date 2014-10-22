@@ -11,6 +11,6 @@
         /// <param name="deleteCommandArgs">
         /// The information to delete a nuget package .
         /// </param>
-        void Delete(IDeletePackageCommandArgs deleteCommandArgs);
+        void Execute(IDeletePackageCommandArgs deleteCommandArgs);
     }
 }

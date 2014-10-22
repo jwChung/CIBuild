@@ -102,7 +102,7 @@
             var actual = sut.Execute();
 
             Assert.True(actual);
-            sut.DeleteCommand.ToMock().Verify(x => x.Delete(sut), Times.Once());
+            sut.DeleteCommand.ToMock().Verify(x => x.Execute(sut), Times.Once());
         }
 
         [Test]

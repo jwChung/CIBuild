@@ -21,7 +21,7 @@
         {
             SetupVallidNugetPackageDeletionInfo(args);
 
-            Assert.DoesNotThrow(() => sut.Delete(args));
+            Assert.DoesNotThrow(() => sut.Execute(args));
         }
 
         [Test(Skip = "Specify the user id and password for nuget site, explicitly run this test.")]
@@ -32,7 +32,7 @@
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
                     nugetInfo.Of(x => x.UserId == "userid");
-                    Assert.Throws<InvalidOperationException>(() => sut.Delete(nugetInfo));
+                    Assert.Throws<InvalidOperationException>(() => sut.Execute(nugetInfo));
                 });
 
             yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
@@ -40,7 +40,7 @@
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
                     nugetInfo.Of(x => x.UserPassword == "userPassword");
-                    Assert.Throws<InvalidOperationException>(() => sut.Delete(nugetInfo));
+                    Assert.Throws<InvalidOperationException>(() => sut.Execute(nugetInfo));
                 });
 
             yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
@@ -48,7 +48,7 @@
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
                     nugetInfo.Of(x => x.NugetId == "nugetId");
-                    Assert.Throws<InvalidOperationException>(() => sut.Delete(nugetInfo));
+                    Assert.Throws<InvalidOperationException>(() => sut.Execute(nugetInfo));
                 });
 
             yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
@@ -56,7 +56,7 @@
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
                     nugetInfo.Of(x => x.NugetVersion == "nugetVersion");
-                    Assert.Throws<WebException>(() => sut.Delete(nugetInfo));
+                    Assert.Throws<WebException>(() => sut.Execute(nugetInfo));
                 });
         }
 

@@ -18,7 +18,7 @@
         /// <param name="deleteCommandArgs">
         /// The nuget package information to be deleted.
         /// </param>
-        public void Delete(IDeletePackageCommandArgs deleteCommandArgs)
+        public void Execute(IDeletePackageCommandArgs deleteCommandArgs)
         {
             if (deleteCommandArgs == null)
                 throw new ArgumentNullException("deleteCommandArgs");
