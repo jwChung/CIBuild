@@ -6,8 +6,17 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
+    /// <summary>
+    /// Represents command implementation for creating a tag.
+    /// </summary>
     public class CreateTagCommand : ICreateTagCommand
     {
+        /// <summary>
+        /// Executes the command.
+        /// </summary>
+        /// <param name="tagInfo">
+        /// The tag information.
+        /// </param>
         public void Execute(ITagInfo tagInfo)
         {
             if (tagInfo == null)

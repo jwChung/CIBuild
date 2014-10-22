@@ -8,6 +8,9 @@
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
+    /// <summary>
+    /// Represents a task to create a tag on GitHub.
+    /// </summary>
     public class GitHubTagger : Task, ITagInfo
     {
         private readonly ICreateTagCommand createCommand;
@@ -21,11 +24,23 @@
         private string authorName;
         private string authorEmail;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GitHubTagger"/> class.
+        /// </summary>
         public GitHubTagger()
             : this(new CreateTagCommand(), new TaskLogger())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GitHubTagger"/> class.
+        /// </summary>
+        /// <param name="createCommand">
+        /// The command for creating a tag.
+        /// </param>
+        /// <param name="logger">
+        /// The task logger.
+        /// </param>
         public GitHubTagger(ICreateTagCommand createCommand, ITaskLogger logger)
         {
             if (createCommand == null)
@@ -38,6 +53,9 @@
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Gets or sets the access token.
+        /// </summary>
         [Required]
         public string AccessToken
         {
@@ -59,6 +77,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the owner.
+        /// </summary>
         [Required]
         public string Owner
         {
@@ -80,6 +101,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the repository.
+        /// </summary>
         [Required]
         public string Repository
         {
@@ -101,6 +125,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the reference name or SHA.
+        /// </summary>
         [Required]
         public string RefOrSha
         {
@@ -121,6 +148,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the name of the tag.
+        /// </summary>
         [Required]
         public string TagName
         {
@@ -142,6 +172,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the release notes.
+        /// </summary>
         [Required]
         public string ReleaseNotes
         {
@@ -163,6 +196,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the name of the author.
+        /// </summary>
         [Required]
         public string AuthorName
         {
@@ -184,6 +220,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the author email.
+        /// </summary>
         [Required]
         public string AuthorEmail
         {
@@ -205,16 +244,28 @@
             }
         }
 
+        /// <summary>
+        /// Gets the command for creating a tag.
+        /// </summary>
         public ICreateTagCommand CreateCommand
         {
             get { return this.createCommand; }
         }
 
+        /// <summary>
+        /// Gets the task logger.
+        /// </summary>
         public ITaskLogger Logger
         {
             get { return this.logger; }
         }
 
+        /// <summary>
+        /// When overridden in a derived class, executes the task.
+        /// </summary>
+        /// <returns>
+        /// true if the task successfully executed; otherwise, false.
+        /// </returns>
         public override bool Execute()
         {
             try
