@@ -20,7 +20,6 @@
         [Test]
         public void AssemblyInfoIsReadWritable(ReleaseNoteExtractor sut, string assemblyInfo)
         {
-            Assert.Null(sut.AssemblyInfo);
             sut.AssemblyInfo = assemblyInfo;
             Assert.Equal(assemblyInfo, sut.AssemblyInfo);
         }
@@ -35,7 +34,6 @@
         [Test]
         public void ReleaseNotesIsReadWritable(ReleaseNoteExtractor sut, string releaseNotes)
         {
-            Assert.Null(sut.ReleaseNotes);
             sut.ReleaseNotes = releaseNotes;
             Assert.Equal(releaseNotes, sut.ReleaseNotes);
         }
@@ -50,7 +48,6 @@
         [Test]
         public void XmlEscapedReleaseNotesIsReadWritable(ReleaseNoteExtractor sut, string xmlEscapedReleaseNotes)
         {
-            Assert.Null(sut.XmlEscapedReleaseNotes);
             sut.XmlEscapedReleaseNotes = xmlEscapedReleaseNotes;
             Assert.Equal(xmlEscapedReleaseNotes, sut.XmlEscapedReleaseNotes);
         }
@@ -175,13 +172,12 @@ sdfsd
                     ReleaseNotes = string.Empty
                 }
             };
-            return TestCases.WithArgs(testData).WithAuto<string, ReleaseNoteExtractor>().Create(
-                (data, fileName, sut) =>
+            return TestCases.WithArgs(testData).WithAuto<ReleaseNoteExtractor>().Create(
+                (data, sut) =>
                 {
                     try
                     {
-                        File.WriteAllText(fileName, data.AssemblyInfoContent);
-                        sut.AssemblyInfo = fileName;
+                        File.WriteAllText(sut.AssemblyInfo, data.AssemblyInfoContent);
 
                         var actual = sut.Execute();
 
@@ -192,22 +188,21 @@ sdfsd
                     }
                     finally
                     {
-                        if (File.Exists(fileName))
-                            File.Delete(fileName);
+                        if (File.Exists(sut.AssemblyInfo))
+                            File.Delete(sut.AssemblyInfo);
                     }
                 });
         }
 
         [Test]
-        public void ExecuteExtractsCorrectXmlEscapedReleaseNotes(ReleaseNoteExtractor sut, string fileName)
+        public void ExecuteExtractsCorrectXmlEscapedReleaseNotes(ReleaseNoteExtractor sut)
         {
             var assemblyInfoContent = @"/*expected Func<string> expected */";
             var escapedExpected = "expected Func&lt;string&gt; expected";
             var expected = "expected Func<string> expected";
             try
             {
-                File.WriteAllText(fileName, assemblyInfoContent);
-                sut.AssemblyInfo = fileName;
+                File.WriteAllText(sut.AssemblyInfo, assemblyInfoContent);
 
                 var actual = sut.Execute();
 
@@ -217,8 +212,8 @@ sdfsd
             }
             finally
             {
-                if (File.Exists(fileName))
-                    File.Delete(fileName);
+                if (File.Exists(sut.AssemblyInfo))
+                    File.Delete(sut.AssemblyInfo);
             }
         }
 

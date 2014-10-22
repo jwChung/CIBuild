@@ -26,7 +26,6 @@
         [Test]
         public void InputIsReadWritable(Base64StringToFile sut, string input)
         {
-            Assert.Null(sut.Input);
             sut.Input = input;
             Assert.Equal(input, sut.Input);
         }
@@ -41,7 +40,6 @@
         [Test]
         public void OutputFileIsReadWritable(Base64StringToFile sut, string outputFile)
         {
-            Assert.Null(sut.OutputFile);
             sut.OutputFile = outputFile;
             Assert.Equal(outputFile, sut.OutputFile);
         }
@@ -56,16 +54,14 @@
         [Test]
         public void ExecuteCreatesCorrectTextFile(
             [Greedy] Base64StringToFile sut,
-            byte[] value,
-            string outputFile)
+            byte[] value)
         {
             sut.Input = Convert.ToBase64String(value);
-            sut.OutputFile = outputFile;
 
             var actual = sut.Execute();
 
             Assert.True(actual);
-            sut.FileWriter.ToMock().Verify(x => x.Write(outputFile, value));
+            sut.FileWriter.ToMock().Verify(x => x.Write(sut.OutputFile, value));
         }
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()

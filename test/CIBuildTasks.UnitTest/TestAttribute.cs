@@ -45,7 +45,6 @@
         {
             var customization = new CompositeCustomization(
                 new AutoMoqCustomization(),
-                new OmitAutoPropertiesCustomization(),
                 new TestParametersCustomization(context.ActualMethod.GetParameters()));
 
             return new TestFixture(new Fixture().Customize(customization));

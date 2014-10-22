@@ -19,7 +19,6 @@
         [Test]
         public void IdentifierIsReadWritable(PublishNugetDetermination sut, string identifier)
         {
-            Assert.Null(sut.Identifier);
             sut.Identifier = identifier;
             Assert.Equal(identifier, sut.Identifier);
         }

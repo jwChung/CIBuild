@@ -14,6 +14,7 @@
     using Ploeh.Albedo;
     using Ploeh.AutoFixture.Xunit;
     using Xunit;
+    using GreedyAttribute = Jwc.CIBuild.GreedyAttribute;
 
     public class GitHubTaggerTest : TestBaseClass
     {
@@ -42,10 +43,11 @@
         }
 
         [Test]
-        public IEnumerable<ITestCase> RefOrShaIsCorrect(GitHubTagger sut)
+        public IEnumerable<ITestCase> RefOrShaIsCorrect(
+            [NoAutoProperties] GitHubTagger sut)
         {
             yield return TestCase.Create(() => Assert.Equal("refs/heads/master", sut.RefOrSha));
-
+            
             sut.RefOrSha = string.Empty;
             yield return TestCase.Create(() => Assert.Equal("refs/heads/master", sut.RefOrSha));
         }
@@ -173,16 +175,13 @@
 
         [Test]
         public void ExecuteLogsCorrectMessage(
-            [Greedy] GitHubTagger sut,
-            string tagName)
+            [Greedy] GitHubTagger sut)
         {
-            sut.TagName = tagName;
-
             sut.Execute();
 
             sut.Logger.ToMock().Verify(x => x.Log(
                 sut,
-                It.Is<string>(p => p.Contains(tagName)),
+                It.Is<string>(p => p.Contains(sut.TagName)),
                 MessageImportance.High));
         }
 

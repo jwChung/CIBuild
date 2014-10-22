@@ -21,7 +21,6 @@
         [Test]
         public void AssemblyInfoIsReadWritable(SemanticVersioning sut, string assemblyInfo)
         {
-            Assert.Null(sut.AssemblyInfo);
             sut.AssemblyInfo = assemblyInfo;
             Assert.Equal(assemblyInfo, sut.AssemblyInfo);
         }
@@ -36,7 +35,6 @@
         [Test]
         public void SemanticVersionIsReadWritable(SemanticVersioning sut, string semanticVersion)
         {
-            Assert.Null(sut.SemanticVersion);
             sut.SemanticVersion = semanticVersion;
             Assert.Equal(semanticVersion, sut.SemanticVersion);
         }
@@ -84,44 +82,38 @@
                 ////    SemanticVersion = "0.0.1-pre06"
                 ////}
             };
-            return TestCases.WithArgs(testData).WithAuto<SemanticVersioning, string>().Create(
-                (data, sut, fileName) =>
+            return TestCases.WithArgs(testData).WithAuto<SemanticVersioning>().Create(
+                (data, sut) =>
                 {
                     try
                     {
-                        File.WriteAllText(fileName, data.assemblyInfoContent);
-                        sut.AssemblyInfo = fileName;
-
+                        File.WriteAllText(sut.AssemblyInfo, data.assemblyInfoContent);
                         var actual = sut.Execute();
-
                         Assert.True(actual);
                     }
                     finally
                     {
-                        if (File.Exists(fileName))
-                            File.Delete(fileName);
+                        if (File.Exists(sut.AssemblyInfo))
+                            File.Delete(sut.AssemblyInfo);
                     }
                 });
         }
 
         [Test]
         public void ExecuteThrowsWhenSemanticVersionIsNotDefined(
-            SemanticVersioning sut,
-            string fileName,
-            string content)
+            SemanticVersioning sut, string content)
         {
             try
             {
-                File.WriteAllText(fileName, content);
-                sut.AssemblyInfo = fileName;
+                File.WriteAllText(sut.AssemblyInfo, content);
 
                 var e = Assert.Throws<InvalidOperationException>(() => sut.Execute());
-                Assert.Contains(fileName, e.Message);
+                Assert.Contains(sut.AssemblyInfo, e.Message);
             }
             finally
             {
-                if (File.Exists(fileName))
-                    File.Delete(fileName);
+                if (File.Exists(sut.AssemblyInfo))
+                    File.Delete(sut.AssemblyInfo);
             }
         }
         

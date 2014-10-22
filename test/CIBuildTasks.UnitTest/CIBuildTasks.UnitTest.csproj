@@ -101,6 +101,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyTest.cs" />
+    <Compile Include="GreedyAttribute.cs" />
     <Compile Include="Tasks\Base64StringToFileTest.cs" />
     <Compile Include="CreateTagCommandTest.cs" />
     <Compile Include="FileWriterTest.cs" />

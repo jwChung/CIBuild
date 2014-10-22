@@ -8,6 +8,7 @@
     using Ploeh.Albedo;
     using Ploeh.AutoFixture.Xunit;
     using Xunit;
+    using GreedyAttribute = Jwc.CIBuild.GreedyAttribute;
 
     public class NugetPackageDeleterTest : TestBaseClass
     {
@@ -38,7 +39,6 @@
         [Test]
         public void UserIdIsReadWritable(NugetPackageDeleter sut, string userId)
         {
-            Assert.Null(sut.UserId);
             sut.UserId = userId;
             Assert.Equal(userId, sut.UserId);
         }
@@ -53,7 +53,6 @@
         [Test]
         public void UserPasswordIsReadWritable(NugetPackageDeleter sut, string userPassword)
         {
-            Assert.Null(sut.UserPassword);
             sut.UserPassword = userPassword;
             Assert.Equal(userPassword, sut.UserPassword);
         }
@@ -68,7 +67,6 @@
         [Test]
         public void NugetIdIsReadWritable(NugetPackageDeleter sut, string nugetId)
         {
-            Assert.Null(sut.NugetId);
             sut.NugetId = nugetId;
             Assert.Equal(nugetId, sut.NugetId);
         }
@@ -83,7 +81,6 @@
         [Test]
         public void NugetVersionIsReadWritable(NugetPackageDeleter sut, string nugetVersion)
         {
-            Assert.Null(sut.NugetVersion);
             sut.NugetVersion = nugetVersion;
             Assert.Equal(nugetVersion, sut.NugetVersion);
         }
@@ -106,16 +103,13 @@
 
         [Test]
         public void ExecuteLogsCorrectMessage(
-            [Greedy] NugetPackageDeleter sut, string nugetId, string nugetVersion)
+            [Greedy] NugetPackageDeleter sut)
         {
-            sut.NugetId = nugetId;
-            sut.NugetVersion = nugetVersion;
-
             sut.Execute();
 
             sut.Logger.ToMock().Verify(x => x.Log(
                 sut,
-                It.Is<string>(p => p.Contains(nugetId) && p.Contains(nugetVersion)),
+                It.Is<string>(p => p.Contains(sut.NugetId) && p.Contains(sut.NugetVersion)),
                 MessageImportance.High));
         }
 
