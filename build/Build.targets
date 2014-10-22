@@ -150,19 +150,14 @@
   </Target>
 
   <Target Name="MakeTagOnGitHub" Condition="!$(SemanticVersion.Contains('-'))">
-    <Message Text="v$(SemanticVersion)" />
-    <ItemGroup>
-      <TagInfo Include="v$(SemanticVersion)">
-        <AccessToken>$(GitHubAccessToken)</AccessToken>
-        <Owner>$(GitHubId)</Owner>
-        <Repository>$(GitHubRepository)</Repository>
-        <RefOrSha>$(RefOrShaForTag)</RefOrSha>
-        <ReleaseNotes>$(ReleaseNotes)</ReleaseNotes>
-        <AuthorName>$(AuthorName)</AuthorName>
-        <AuthorEmail>$(AuthorEmail)</AuthorEmail>
-      </TagInfo>
-    </ItemGroup>
-    <GitHubTagger TagInfo="@(TagInfo)" />
+    <GitHubTagger TagName="v$(SemanticVersion)"
+                  AccessToken="$(GitHubAccessToken)"
+                  Owner="$(GitHubId)"
+                  Repository="$(GitHubRepository)"
+                  RefOrSha ="$(RefOrShaForTag)"
+                  ReleaseNotes ="$(ReleaseNotes)"
+                  AuthorName ="$(AuthorName)"
+                  AuthorEmail ="$(AuthorEmail)" />
   </Target>
 
   <!-- Cleanup -->
