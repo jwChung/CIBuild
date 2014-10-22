@@ -15,7 +15,7 @@
         [Test]
         public void SutIsNugetPackageDeletionInfo(NugetPackageDeleter sut)
         {
-            Assert.IsAssignableFrom<IDeletePackageCommandArgs>(sut);
+            Assert.IsAssignableFrom<INugetPackageInfo>(sut);
         }
 
         [Test]

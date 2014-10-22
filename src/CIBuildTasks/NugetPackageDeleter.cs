@@ -12,7 +12,7 @@
     /// <summary>
     /// Represents a MSBuild task to delete a specified nuget package on the server.
     /// </summary>
-    public class NugetPackageDeleter : Task, IDeletePackageCommandArgs
+    public class NugetPackageDeleter : Task, INugetPackageInfo
     {
         private readonly IDeletePackageCommand deleteCommand;
         private readonly ITaskLogger logger;

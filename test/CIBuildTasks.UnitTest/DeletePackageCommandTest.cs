@@ -17,7 +17,7 @@
         [Test(Skip = "Specify the user id and password for nuget site, explicitly run this test and verify whether the nuget package is actually deleted on the nuget website.")]
         public void DeleteCorrectlyDeletesNugetPackage(
             DeletePackageCommand sut,
-            IDeletePackageCommandArgs args)
+            INugetPackageInfo args)
         {
             SetupVallidNugetPackageDeletionInfo(args);
 
@@ -27,7 +27,7 @@
         [Test(Skip = "Specify the user id and password for nuget site, explicitly run this test.")]
         public IEnumerable<ITestCase> DeleteThrowsWhenNugetPackageDeletionInfoIsInvalid()
         {
-            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
+            yield return TestCase.WithAuto<DeletePackageCommand, INugetPackageInfo>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -35,7 +35,7 @@
                     Assert.Throws<InvalidOperationException>(() => sut.Execute(nugetInfo));
                 });
 
-            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
+            yield return TestCase.WithAuto<DeletePackageCommand, INugetPackageInfo>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -43,7 +43,7 @@
                     Assert.Throws<InvalidOperationException>(() => sut.Execute(nugetInfo));
                 });
 
-            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
+            yield return TestCase.WithAuto<DeletePackageCommand, INugetPackageInfo>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -51,7 +51,7 @@
                     Assert.Throws<InvalidOperationException>(() => sut.Execute(nugetInfo));
                 });
 
-            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
+            yield return TestCase.WithAuto<DeletePackageCommand, INugetPackageInfo>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -60,7 +60,7 @@
                 });
         }
 
-        private static void SetupVallidNugetPackageDeletionInfo(IDeletePackageCommandArgs args)
+        private static void SetupVallidNugetPackageDeletionInfo(INugetPackageInfo args)
         {
             args.Of(x =>
                 x.UserId == "*****"

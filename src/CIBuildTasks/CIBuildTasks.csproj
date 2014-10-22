@@ -61,7 +61,7 @@
     <Compile Include="GitHubTagger.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDeletePackageCommand.cs" />
-    <Compile Include="IDeletePackageCommandArgs.cs" />
+    <Compile Include="INugetPackageInfo.cs" />
     <Compile Include="ITaskLogger.cs" />
     <Compile Include="DeletePackageCommand.cs" />
     <Compile Include="NugetPackageDeleter.cs" />

@@ -15,24 +15,24 @@
         /// <summary>
         /// Deletes the specified nuget package.
         /// </summary>
-        /// <param name="deleteCommandArgs">
+        /// <param name="nugetPackageInfo">
         /// The nuget package information to be deleted.
         /// </param>
-        public void Execute(IDeletePackageCommandArgs deleteCommandArgs)
+        public void Execute(INugetPackageInfo nugetPackageInfo)
         {
-            if (deleteCommandArgs == null)
-                throw new ArgumentNullException("deleteCommandArgs");
+            if (nugetPackageInfo == null)
+                throw new ArgumentNullException("nugetPackageInfo");
 
-            new InnerDeletePackageCommand(deleteCommandArgs).Delete();
+            new InnerDeletePackageCommand(nugetPackageInfo).Delete();
         }
 
         private class InnerDeletePackageCommand
         {
-            private readonly IDeletePackageCommandArgs deletePackageCommandArgs;
+            private readonly INugetPackageInfo nugetPackageInfo;
 
-            public InnerDeletePackageCommand(IDeletePackageCommandArgs deletePackageCommandArgs)
+            public InnerDeletePackageCommand(INugetPackageInfo nugetPackageInfo)
             {
-                this.deletePackageCommandArgs = deletePackageCommandArgs;
+                this.nugetPackageInfo = nugetPackageInfo;
             }
 
             public void Delete()
@@ -62,8 +62,8 @@
                     "__RequestVerificationToken=" + node.Attributes["Value"].Value,
                     "ReturnUrl=/",
                     "LinkingAccount=False",
-                    "SignIn.UserNameOrEmail=" + this.deletePackageCommandArgs.UserId,
-                    "SignIn.Password=" + this.deletePackageCommandArgs.UserPassword
+                    "SignIn.UserNameOrEmail=" + this.nugetPackageInfo.UserId,
+                    "SignIn.Password=" + this.nugetPackageInfo.UserPassword
                 };
 
                 var result = client.UploadString(
@@ -96,8 +96,8 @@
                 var packageUrl = string.Format(
                     CultureInfo.CurrentCulture,
                     "https://www.nuget.org/packages/{0}/{1}/Delete",
-                    this.deletePackageCommandArgs.NugetId,
-                    this.deletePackageCommandArgs.NugetVersion);
+                    this.nugetPackageInfo.NugetId,
+                    this.nugetPackageInfo.NugetVersion);
                 return packageUrl;
             }
         }

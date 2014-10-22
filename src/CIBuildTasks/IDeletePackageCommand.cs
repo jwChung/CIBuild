@@ -8,9 +8,9 @@
         /// <summary>
         /// Deletes the specified nuget package.
         /// </summary>
-        /// <param name="deleteCommandArgs">
+        /// <param name="nugetPackageInfo">
         /// The information to delete a nuget package .
         /// </param>
-        void Execute(IDeletePackageCommandArgs deleteCommandArgs);
+        void Execute(INugetPackageInfo nugetPackageInfo);
     }
 }
