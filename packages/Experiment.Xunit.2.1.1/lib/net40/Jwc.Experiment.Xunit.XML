@@ -9222,7 +9222,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``3(``0,``1,``2)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``3">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9235,15 +9235,6 @@
             <typeparam name="T3">
             A type of the third argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -9280,7 +9271,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``4(``0,``1,``2,``3)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``4">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9296,18 +9287,6 @@
             <typeparam name="T4">
             A type of the fourth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -9350,7 +9329,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``5(``0,``1,``2,``3,``4)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``5">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9369,21 +9348,6 @@
             <typeparam name="T5">
             A type of the fifth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -9432,7 +9396,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``6(``0,``1,``2,``3,``4,``5)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``6">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9454,24 +9418,6 @@
             <typeparam name="T6">
             A type of the sixth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -9526,7 +9472,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``7(``0,``1,``2,``3,``4,``5,``6)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``7">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9551,27 +9497,6 @@
             <typeparam name="T7">
             A type of the seventh argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -9632,7 +9557,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``8(``0,``1,``2,``3,``4,``5,``6,``7)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``8">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9660,30 +9585,6 @@
             <typeparam name="T8">
             A type of the eighth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -9750,7 +9651,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``9(``0,``1,``2,``3,``4,``5,``6,``7,``8)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``9">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9781,33 +9682,6 @@
             <typeparam name="T9">
             A type of the ninth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -9880,7 +9754,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``10(``0,``1,``2,``3,``4,``5,``6,``7,``8,``9)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``10">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -9914,36 +9788,6 @@
             <typeparam name="T10">
             A type of the tenth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
-            <param name="arg10">
-            The tenth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -10022,7 +9866,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``11(``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``11">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -10059,39 +9903,6 @@
             <typeparam name="T11">
             A type of the eleventh argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
-            <param name="arg10">
-            The tenth argument.
-            </param>
-            <param name="arg11">
-            The eleventh argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -10176,7 +9987,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``12(``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``12">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -10216,42 +10027,6 @@
             <typeparam name="T12">
             A type of the twelfth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
-            <param name="arg10">
-            The tenth argument.
-            </param>
-            <param name="arg11">
-            The eleventh argument.
-            </param>
-            <param name="arg12">
-            The twelfth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -10342,7 +10117,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``13(``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``13">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -10385,45 +10160,6 @@
             <typeparam name="T13">
             A type of the thirteenth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
-            <param name="arg10">
-            The tenth argument.
-            </param>
-            <param name="arg11">
-            The eleventh argument.
-            </param>
-            <param name="arg12">
-            The twelfth argument.
-            </param>
-            <param name="arg13">
-            The thirteenth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -10520,7 +10256,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``14(``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``14">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -10566,48 +10302,6 @@
             <typeparam name="T14">
             A type of the fourteenth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
-            <param name="arg10">
-            The tenth argument.
-            </param>
-            <param name="arg11">
-            The eleventh argument.
-            </param>
-            <param name="arg12">
-            The twelfth argument.
-            </param>
-            <param name="arg13">
-            The thirteenth argument.
-            </param>
-            <param name="arg14">
-            The fourteenth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -10710,7 +10404,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``15(``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``15">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -10759,51 +10453,6 @@
             <typeparam name="T15">
             A type of the fifteenth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
-            <param name="arg10">
-            The tenth argument.
-            </param>
-            <param name="arg11">
-            The eleventh argument.
-            </param>
-            <param name="arg12">
-            The twelfth argument.
-            </param>
-            <param name="arg13">
-            The thirteenth argument.
-            </param>
-            <param name="arg14">
-            The fourteenth argument.
-            </param>
-            <param name="arg15">
-            The fifteenth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>
@@ -10912,7 +10561,7 @@
             The new test case with arguments.
             </returns>
         </member>
-        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``16(``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15)">
+        <member name="M:Jwc.Experiment.Xunit.TestCase.WithAuto``16">
             <summary>
             Returns a test case with arguments.
             </summary>
@@ -10964,54 +10613,6 @@
             <typeparam name="T16">
             A type of the sixteenth argument.
             </typeparam>
-            <param name="arg1">
-            The first argument.
-            </param>
-            <param name="arg2">
-            The second argument.
-            </param>
-            <param name="arg3">
-            The third argument.
-            </param>
-            <param name="arg4">
-            The fourth argument.
-            </param>
-            <param name="arg5">
-            The fifth argument.
-            </param>
-            <param name="arg6">
-            The sixth argument.
-            </param>
-            <param name="arg7">
-            The seventh argument.
-            </param>
-            <param name="arg8">
-            The eighth argument.
-            </param>
-            <param name="arg9">
-            The ninth argument.
-            </param>
-            <param name="arg10">
-            The tenth argument.
-            </param>
-            <param name="arg11">
-            The eleventh argument.
-            </param>
-            <param name="arg12">
-            The twelfth argument.
-            </param>
-            <param name="arg13">
-            The thirteenth argument.
-            </param>
-            <param name="arg14">
-            The fourteenth argument.
-            </param>
-            <param name="arg15">
-            The fifteenth argument.
-            </param>
-            <param name="arg16">
-            The sixteenth argument.
-            </param>
             <returns>
             The new test case with arguments.
             </returns>

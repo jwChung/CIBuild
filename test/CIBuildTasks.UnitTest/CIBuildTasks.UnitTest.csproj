@@ -41,21 +41,21 @@
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Jwc.Experiment, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
+    <Reference Include="Jwc.Experiment, Version=2.1.1.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Experiment.Idioms.2.1.0\lib\net40\Jwc.Experiment.dll</HintPath>
+      <HintPath>..\..\packages\Experiment.Xunit.2.1.1\lib\net40\Jwc.Experiment.dll</HintPath>
     </Reference>
-    <Reference Include="Jwc.Experiment.AutoFixture, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
+    <Reference Include="Jwc.Experiment.AutoFixture, Version=2.1.1.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Experiment.AutoFixture.2.1.0\lib\net40\Jwc.Experiment.AutoFixture.dll</HintPath>
+      <HintPath>..\..\packages\Experiment.AutoFixture.2.1.1\lib\net40\Jwc.Experiment.AutoFixture.dll</HintPath>
     </Reference>
-    <Reference Include="Jwc.Experiment.Idioms, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
+    <Reference Include="Jwc.Experiment.Idioms, Version=2.1.1.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Experiment.Idioms.2.1.0\lib\net40\Jwc.Experiment.Idioms.dll</HintPath>
+      <HintPath>..\..\packages\Experiment.Idioms.2.1.1\lib\net40\Jwc.Experiment.Idioms.dll</HintPath>
     </Reference>
-    <Reference Include="Jwc.Experiment.Xunit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
+    <Reference Include="Jwc.Experiment.Xunit, Version=2.1.1.0, Culture=neutral, PublicKeyToken=db4e4bc25029966c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Experiment.Xunit.2.1.0\lib\net40\Jwc.Experiment.Xunit.dll</HintPath>
+      <HintPath>..\..\packages\Experiment.Xunit.2.1.1\lib\net40\Jwc.Experiment.Xunit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
