@@ -7,6 +7,7 @@
     using Moq;
     using Moq.Protected;
     using Ploeh.Albedo;
+    using Ploeh.AutoFixture.Xunit;
     using Xunit;
 
     public class NugetPackageDeleterTest : TestBaseClass
@@ -21,6 +22,12 @@
         public void SutIsTask(NugetPackageDeleter sut)
         {
             Assert.IsAssignableFrom<Task>(sut);
+        }
+
+        [Test]
+        public void NugetPackageDeletionIsCorrect(NugetPackageDeleter sut)
+        {
+            Assert.IsAssignableFrom<NugetPackageDeletion>(sut.NugetPackageDeletion);
         }
 
         [Test]
@@ -84,8 +91,14 @@
         }
 
         [Test]
-        public void ExecuteCorrectlyDeletesNugetPackage(NugetPackageDeleter sut)
+        public void ExecuteCorrectlyDeletesNugetPackage()
         {
+            var sut = Mocked.Of<NugetPackageDeleter>(Mocked.Of<INugetPackageDeletion>());
+            sut.ToMock().Protected().Setup(
+                "LogMessageFromText",
+                ItExpr.IsAny<string>(),
+                MessageImportance.High);
+
             var actual = sut.Execute();
 
             Assert.True(actual);
@@ -93,9 +106,10 @@
         }
 
         [Test]
-        public void ExecuteLogsCorrectMessage(
-            NugetPackageDeleter sut, string nugetId, string nugetVersion)
+        public void ExecuteLogsCorrectMessage(string nugetId, string nugetVersion)
         {
+            var sut = Mocked.Of<NugetPackageDeleter>(Mocked.Of<INugetPackageDeletion>());
+
             sut.NugetId = nugetId;
             sut.NugetVersion = nugetVersion;
 

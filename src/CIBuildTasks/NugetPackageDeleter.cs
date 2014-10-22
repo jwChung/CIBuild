@@ -23,6 +23,13 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
         /// </summary>
+        public NugetPackageDeleter() : this(new NugetPackageDeletion())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
+        /// </summary>
         /// <param name="nugetPackageDeletion">
         /// The implementation for deleting a nuget package.
         /// </param>
