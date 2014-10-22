@@ -63,6 +63,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ICreateTagCommand.cs" />
     <Compile Include="IDeletePackageCommand.cs" />
+    <Compile Include="IFileWriter.cs" />
     <Compile Include="INugetPackageInfo.cs" />
     <Compile Include="ITagInfo.cs" />
     <Compile Include="ITaskLogger.cs" />
