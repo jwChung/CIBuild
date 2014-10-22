@@ -12,11 +12,83 @@
     /// <summary>
     /// Represents a MSBuild task to delete a specified nuget package on the server.
     /// </summary>
-    public class NugetPackageDeleter : Task
+    public class NugetPackageDeleter : Task, INugetPackageDeletionInfo
     {
         private string idOrEmail;
         private string password;
         private string identifier;
+        private string userId;
+        private string userPassword;
+        private string nugetId;
+        private string nugetVersion;
+
+        [Required]
+        public string UserId
+        {
+            get
+            {
+                return this.userId;
+            }
+
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+
+                this.userId = value;
+            }
+        }
+
+        [Required]
+        public string UserPassword
+        {
+            get
+            {
+                return this.userPassword;
+            }
+
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+
+                this.userPassword = value;
+            }
+        }
+
+        [Required]
+        public string NugetId
+        {
+            get
+            {
+                return this.nugetId;
+            }
+
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+
+                this.nugetId = value;
+            }
+        }
+
+        [Required]
+        public string NugetVersion
+        {
+            get
+            {
+                return this.nugetVersion;
+            }
+
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+
+                this.nugetVersion = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets user id(or email).
