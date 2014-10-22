@@ -57,7 +57,7 @@
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create(this.GetUrl());
-                using (var response = request.GetResponse())
+                using (request.GetResponse())
                 {
                 }
 
