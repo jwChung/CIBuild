@@ -10,12 +10,11 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyVersion("0.4.2")]
-[assembly: AssemblyInformationalVersion("0.4.2")]
+[assembly: AssemblyVersion("0.4.3")]
+[assembly: AssemblyInformationalVersion("0.4.3")]
 
 /*
- * Version 0.4.2
+ * Version 0.4.3
  * 
- * - [Patch] Fixed that error message generated from github wasn't shown in
- *   build process
+ * - [Patch] Renamed CommonAssemblyInfo to SolutionInfo. (BREAKING-CHANGE)
  */
