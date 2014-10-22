@@ -60,11 +60,11 @@
     <Compile Include="Base64StringToFile.cs" />
     <Compile Include="GitHubTagger.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="INugetPackageDeletion.cs" />
-    <Compile Include="INugetPackageDeletionInfo.cs" />
+    <Compile Include="IDeletePackageCommand.cs" />
+    <Compile Include="IDeletePackageCommandArgs.cs" />
     <Compile Include="ITaskLogger.cs" />
+    <Compile Include="DeletePackageCommand.cs" />
     <Compile Include="NugetPackageDeleter.cs" />
-    <Compile Include="NugetPackageDeletion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublishNugetDetermination.cs" />
     <Compile Include="ReleaseNoteExtractor.cs" />

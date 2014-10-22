@@ -12,9 +12,9 @@
     /// <summary>
     /// Represents a MSBuild task to delete a specified nuget package on the server.
     /// </summary>
-    public class NugetPackageDeleter : Task, INugetPackageDeletionInfo
+    public class NugetPackageDeleter : Task, IDeletePackageCommandArgs
     {
-        private readonly INugetPackageDeletion nugetPackageDeletion;
+        private readonly IDeletePackageCommand deleteCommand;
         private readonly ITaskLogger logger;
         private string userId;
         private string userPassword;
@@ -24,28 +24,28 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
         /// </summary>
-        public NugetPackageDeleter() : this(new NugetPackageDeletion(), new TaskLogger())
+        public NugetPackageDeleter() : this(new DeletePackageCommand(), new TaskLogger())
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
         /// </summary>
-        /// <param name="nugetPackageDeletion">
-        /// The implementation for deleting a nuget package.
+        /// <param name="deleteCommand">
+        /// The command for deleting a nuget package.
         /// </param>
         /// <param name="logger">
         /// The task logger.
         /// </param>
-        public NugetPackageDeleter(INugetPackageDeletion nugetPackageDeletion, ITaskLogger logger)
+        public NugetPackageDeleter(IDeletePackageCommand deleteCommand, ITaskLogger logger)
         {
-            if (nugetPackageDeletion == null)
-                throw new ArgumentNullException("nugetPackageDeletion");
+            if (deleteCommand == null)
+                throw new ArgumentNullException("deleteCommand");
 
             if (logger == null)
                 throw new ArgumentNullException("logger");
 
-            this.nugetPackageDeletion = nugetPackageDeletion;
+            this.deleteCommand = deleteCommand;
             this.logger = logger;
         }
 
@@ -130,11 +130,11 @@
         }
 
         /// <summary>
-        /// Gets the implementation for deleting a nuget package.
+        /// Gets the command for deleting a nuget package.
         /// </summary>
-        public INugetPackageDeletion NugetPackageDeletion
+        public IDeletePackageCommand DeleteCommand
         {
-            get { return this.nugetPackageDeletion; }
+            get { return this.deleteCommand; }
         }
 
         /// <summary>
@@ -153,7 +153,7 @@
         /// </returns>
         public sealed override bool Execute()
         {
-            this.nugetPackageDeletion.Delete(this);
+            this.deleteCommand.Delete(this);
 
             var message = string.Format(
                 CultureInfo.CurrentCulture,

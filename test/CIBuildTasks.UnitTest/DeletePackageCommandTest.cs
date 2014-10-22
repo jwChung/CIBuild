@@ -6,28 +6,28 @@
     using Experiment.Xunit;
     using Xunit;
 
-    public class NugetPackageDeletionTest : TestBaseClass
+    public class DeletePackageCommandTest : TestBaseClass
     {
         [Test]
-        public void SutIsNugetPackageDeletion(NugetPackageDeletion sut)
+        public void SutIsNugetPackageDeletion(DeletePackageCommand sut)
         {
-            Assert.IsAssignableFrom<INugetPackageDeletion>(sut);
+            Assert.IsAssignableFrom<IDeletePackageCommand>(sut);
         }
 
         [Test(Skip = "Specify the user id and password for nuget site, explicitly run this test and verify whether the nuget package is actually deleted on the nuget website.")]
         public void DeleteCorrectlyDeletesNugetPackage(
-            NugetPackageDeletion sut,
-            INugetPackageDeletionInfo nugetInfo)
+            DeletePackageCommand sut,
+            IDeletePackageCommandArgs args)
         {
-            SetupVallidNugetPackageDeletionInfo(nugetInfo);
+            SetupVallidNugetPackageDeletionInfo(args);
 
-            Assert.DoesNotThrow(() => sut.Delete(nugetInfo));
+            Assert.DoesNotThrow(() => sut.Delete(args));
         }
 
         [Test(Skip = "Specify the user id and password for nuget site, explicitly run this test.")]
         public IEnumerable<ITestCase> DeleteThrowsWhenNugetPackageDeletionInfoIsInvalid()
         {
-            yield return TestCase.WithAuto<NugetPackageDeletion, INugetPackageDeletionInfo>()
+            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -35,7 +35,7 @@
                     Assert.Throws<InvalidOperationException>(() => sut.Delete(nugetInfo));
                 });
 
-            yield return TestCase.WithAuto<NugetPackageDeletion, INugetPackageDeletionInfo>()
+            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -43,7 +43,7 @@
                     Assert.Throws<InvalidOperationException>(() => sut.Delete(nugetInfo));
                 });
 
-            yield return TestCase.WithAuto<NugetPackageDeletion, INugetPackageDeletionInfo>()
+            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -51,7 +51,7 @@
                     Assert.Throws<InvalidOperationException>(() => sut.Delete(nugetInfo));
                 });
 
-            yield return TestCase.WithAuto<NugetPackageDeletion, INugetPackageDeletionInfo>()
+            yield return TestCase.WithAuto<DeletePackageCommand, IDeletePackageCommandArgs>()
                 .Create((sut, nugetInfo) =>
                 {
                     SetupVallidNugetPackageDeletionInfo(nugetInfo);
@@ -60,9 +60,9 @@
                 });
         }
 
-        private static void SetupVallidNugetPackageDeletionInfo(INugetPackageDeletionInfo nugetInfo)
+        private static void SetupVallidNugetPackageDeletionInfo(IDeletePackageCommandArgs args)
         {
-            nugetInfo.Of(x =>
+            args.Of(x =>
                 x.UserId == "*****"
                 && x.UserPassword == "*****"
                 && x.NugetId == "CIBuild.Scripts"

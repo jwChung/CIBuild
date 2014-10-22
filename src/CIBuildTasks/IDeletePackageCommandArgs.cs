@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents information to delete a nuget package.
     /// </summary>
-    public interface INugetPackageDeletionInfo
+    public interface IDeletePackageCommandArgs
     {
         /// <summary>
         /// Gets the user identifier.

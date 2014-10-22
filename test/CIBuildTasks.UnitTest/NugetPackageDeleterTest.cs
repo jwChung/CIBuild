@@ -15,7 +15,7 @@
         [Test]
         public void SutIsNugetPackageDeletionInfo(NugetPackageDeleter sut)
         {
-            Assert.IsAssignableFrom<INugetPackageDeletionInfo>(sut);
+            Assert.IsAssignableFrom<IDeletePackageCommandArgs>(sut);
         }
 
         [Test]
@@ -27,7 +27,7 @@
         [Test]
         public void NugetPackageDeletionIsCorrect(NugetPackageDeleter sut)
         {
-            Assert.IsAssignableFrom<NugetPackageDeletion>(sut.NugetPackageDeletion);
+            Assert.IsAssignableFrom<DeletePackageCommand>(sut.DeleteCommand);
         }
 
         [Test]
@@ -102,7 +102,7 @@
             var actual = sut.Execute();
 
             Assert.True(actual);
-            sut.NugetPackageDeletion.ToMock().Verify(x => x.Delete(sut), Times.Once());
+            sut.DeleteCommand.ToMock().Verify(x => x.Delete(sut), Times.Once());
         }
 
         [Test]

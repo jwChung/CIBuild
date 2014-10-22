@@ -8,31 +8,31 @@
     using Microsoft.Build.Framework;
 
     /// <summary>
-    /// Represents actual implementation for deleting a nuget package.
+    /// Represents command implementation for deleting a nuget package.
     /// </summary>
-    public class NugetPackageDeletion : INugetPackageDeletion
+    public class DeletePackageCommand : IDeletePackageCommand
     {
         /// <summary>
         /// Deletes the specified nuget package.
         /// </summary>
-        /// <param name="nugetInfo">
+        /// <param name="deleteCommandArgs">
         /// The nuget package information to be deleted.
         /// </param>
-        public void Delete(INugetPackageDeletionInfo nugetInfo)
+        public void Delete(IDeletePackageCommandArgs deleteCommandArgs)
         {
-            if (nugetInfo == null)
-                throw new ArgumentNullException("nugetInfo");
+            if (deleteCommandArgs == null)
+                throw new ArgumentNullException("deleteCommandArgs");
 
-            new NugetPackageDeletionImpl(nugetInfo).Delete();
+            new InnerDeletePackageCommand(deleteCommandArgs).Delete();
         }
 
-        private class NugetPackageDeletionImpl
+        private class InnerDeletePackageCommand
         {
-            private readonly INugetPackageDeletionInfo nugetInfo;
+            private readonly IDeletePackageCommandArgs deletePackageCommandArgs;
 
-            public NugetPackageDeletionImpl(INugetPackageDeletionInfo nugetInfo)
+            public InnerDeletePackageCommand(IDeletePackageCommandArgs deletePackageCommandArgs)
             {
-                this.nugetInfo = nugetInfo;
+                this.deletePackageCommandArgs = deletePackageCommandArgs;
             }
 
             public void Delete()
@@ -62,8 +62,8 @@
                     "__RequestVerificationToken=" + node.Attributes["Value"].Value,
                     "ReturnUrl=/",
                     "LinkingAccount=False",
-                    "SignIn.UserNameOrEmail=" + this.nugetInfo.UserId,
-                    "SignIn.Password=" + this.nugetInfo.UserPassword
+                    "SignIn.UserNameOrEmail=" + this.deletePackageCommandArgs.UserId,
+                    "SignIn.Password=" + this.deletePackageCommandArgs.UserPassword
                 };
 
                 var result = client.UploadString(
@@ -96,8 +96,8 @@
                 var packageUrl = string.Format(
                     CultureInfo.CurrentCulture,
                     "https://www.nuget.org/packages/{0}/{1}/Delete",
-                    this.nugetInfo.NugetId,
-                    this.nugetInfo.NugetVersion);
+                    this.deletePackageCommandArgs.NugetId,
+                    this.deletePackageCommandArgs.NugetVersion);
                 return packageUrl;
             }
         }
