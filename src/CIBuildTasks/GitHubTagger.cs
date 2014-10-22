@@ -6,6 +6,8 @@
 
     public class GitHubTagger : Task, ITagInfo
     {
+        private readonly ICreateTagCommand createCommand;
+        private readonly ITaskLogger taskLogger;
         private string accessToken;
         private string owner;
         private string repository;
@@ -14,6 +16,22 @@
         private string releaseNotes;
         private string authorName;
         private string authorEmail;
+
+        public GitHubTagger()
+        {
+        }
+
+        public GitHubTagger(ICreateTagCommand createCommand, ITaskLogger taskLogger)
+        {
+            if (createCommand == null)
+                throw new ArgumentNullException("createCommand");
+
+            if (taskLogger == null)
+                throw new ArgumentNullException("taskLogger");
+
+            this.createCommand = createCommand;
+            this.taskLogger = taskLogger;
+        }
 
         [Required]
         public string AccessToken
@@ -149,6 +167,16 @@
 
                 this.authorEmail = value;
             }
+        }
+
+        public ICreateTagCommand CreateCommand
+        {
+            get { return this.createCommand; }
+        }
+
+        public ITaskLogger TaskLogger
+        {
+            get { return this.taskLogger; }
         }
 
         public override bool Execute()
