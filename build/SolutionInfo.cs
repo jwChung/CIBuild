@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersion("0.4.3")]
 
 /*
- * Version 0.4.3
+ * Version 0.4.4
  * 
- * - [Patch] Renamed CommonAssemblyInfo to SolutionInfo. (BREAKING-CHANGE)
+ * - [Patch] Redesigned NugetPackageDeleter to be more testable.
  */
