@@ -61,6 +61,7 @@
     <Compile Include="GitHubTagger.cs" />
     <Compile Include="GitHubTagger2.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ICreateTagCommand.cs" />
     <Compile Include="IDeletePackageCommand.cs" />
     <Compile Include="INugetPackageInfo.cs" />
     <Compile Include="ITagInfo.cs" />
