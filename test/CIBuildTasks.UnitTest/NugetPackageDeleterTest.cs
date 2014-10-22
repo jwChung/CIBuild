@@ -31,6 +31,12 @@
         }
 
         [Test]
+        public void LoggerIsCorrect(NugetPackageDeleter sut)
+        {
+            Assert.IsAssignableFrom<TaskLogger>(sut.Logger);
+        }
+
+        [Test]
         public void UserIdIsReadWritable(NugetPackageDeleter sut, string userId)
         {
             Assert.Null(sut.UserId);
@@ -91,14 +97,8 @@
         }
 
         [Test]
-        public void ExecuteCorrectlyDeletesNugetPackage()
+        public void ExecuteCorrectlyDeletesNugetPackage([Greedy] NugetPackageDeleter sut)
         {
-            var sut = Mocked.Of<NugetPackageDeleter>(Mocked.Of<INugetPackageDeletion>());
-            sut.ToMock().Protected().Setup(
-                "LogMessageFromText",
-                ItExpr.IsAny<string>(),
-                MessageImportance.High);
-
             var actual = sut.Execute();
 
             Assert.True(actual);
@@ -106,20 +106,18 @@
         }
 
         [Test]
-        public void ExecuteLogsCorrectMessage(string nugetId, string nugetVersion)
+        public void ExecuteLogsCorrectMessage(
+            [Greedy] NugetPackageDeleter sut, string nugetId, string nugetVersion)
         {
-            var sut = Mocked.Of<NugetPackageDeleter>(Mocked.Of<INugetPackageDeletion>());
-
             sut.NugetId = nugetId;
             sut.NugetVersion = nugetVersion;
 
             sut.Execute();
 
-            sut.ToMock().Protected().Verify(
-                "LogMessageFromText",
-                Times.Once(),
-                ItExpr.Is<string>(x => x.Contains(nugetId) && x.Contains(nugetVersion)),
-                MessageImportance.High);
+            sut.Logger.ToMock().Verify(x => x.Log(
+                sut,
+                It.Is<string>(p => p.Contains(nugetId) && p.Contains(nugetVersion)),
+                MessageImportance.High));
         }
 
         protected override IEnumerable<MemberInfo> ExceptToVerifyInitialization()

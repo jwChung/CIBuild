@@ -15,6 +15,7 @@
     public class NugetPackageDeleter : Task, INugetPackageDeletionInfo
     {
         private readonly INugetPackageDeletion nugetPackageDeletion;
+        private readonly ITaskLogger logger;
         private string userId;
         private string userPassword;
         private string nugetId;
@@ -23,7 +24,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NugetPackageDeleter"/> class.
         /// </summary>
-        public NugetPackageDeleter() : this(new NugetPackageDeletion())
+        public NugetPackageDeleter() : this(new NugetPackageDeletion(), new TaskLogger())
         {
         }
 
@@ -39,6 +40,18 @@
                 throw new ArgumentNullException("nugetPackageDeletion");
 
             this.nugetPackageDeletion = nugetPackageDeletion;
+        }
+
+        public NugetPackageDeleter(INugetPackageDeletion nugetPackageDeletion, ITaskLogger logger)
+        {
+            if (nugetPackageDeletion == null)
+                throw new ArgumentNullException("nugetPackageDeletion");
+
+            if (logger == null)
+                throw new ArgumentNullException("logger");
+
+            this.nugetPackageDeletion = nugetPackageDeletion;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -129,6 +142,11 @@
             get { return this.nugetPackageDeletion; }
         }
 
+        public ITaskLogger Logger
+        {
+            get { return this.logger; }
+        }
+
         /// <summary>
         /// When overridden in a derived class, executes the task.
         /// </summary>
@@ -139,7 +157,8 @@
         {
             this.nugetPackageDeletion.Delete(this);
 
-            this.LogMessageFromText(
+            this.logger.Log(
+                this,
                 string.Format(
                     CultureInfo.CurrentCulture,
                     "The '{0} {1}' package was deleted.",
