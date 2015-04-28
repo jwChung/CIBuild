@@ -10,11 +10,11 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyVersion("0.4.4")]
-[assembly: AssemblyInformationalVersion("0.4.4")]
+[assembly: AssemblyVersion("0.4.5")]
+[assembly: AssemblyInformationalVersion("0.4.5")]
 
 /*
- * Version 0.4.4
+ * Version 0.4.5
  * 
- * - [Patch] Redesigned NugetPackageDeleter to be more testable.
+ * - Fixed error thrown when path in ilmerge-merge script includes a blank.
  */
