@@ -18,7 +18,7 @@
     <file src="..\build\Build.targets" target="tools" />
     <file src="..\build\Build.cmd" target="tools" />
     <file src="..\build\Build.sh" target="tools" />
-    <file src="..\src\CIBuildTasks\bin\Release\ILMergeOutput\Jwc.CIBuildTasks.dll" target="toolstools" />
+    <file src="..\src\CIBuildTasks\bin\Release\ILMergeOutput\Jwc.CIBuildTasks.dll" target="tools" />
     <file src="..\src\CIBuildTasks\bin\Release\Jwc.CIBuildTasks.xml" target="tools" />
   </files>
 </package>
