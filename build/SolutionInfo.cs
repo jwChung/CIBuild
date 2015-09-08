@@ -11,10 +11,12 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyVersion("0.4.6")]
-[assembly: AssemblyInformationalVersion("0.4.6-pre01")]
+[assembly: AssemblyInformationalVersion("0.4.6")]
 
 /*
- * Version 0.4.6-pre01
+ * Version 0.4.6
  * 
- * - Removed nuget framwork profiles to install the packages on any framework.
+ * - Ignores specific environment(framework, profile) when installed.
+ *
+ * - Replaced the old msbuild path with the new one.
  */
