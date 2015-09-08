@@ -64,8 +64,13 @@
         private static MethodCallExpression GetMethodCallExpression<T>(T mocked) where T : class
         {
             return Expression.Call(
-                new Func<T, IQueryable<T>>(m => new[] { m }.AsQueryable()).Method,
+                new Func<T, IQueryable<T>>(Mocked.AsQueryable).Method,
                 Expression.Constant(mocked));
+        }
+
+        private static IQueryable<T> AsQueryable<T>(T mocked) where T : class
+        {
+            return new[] { mocked }.AsQueryable();
         }
     }
 }
