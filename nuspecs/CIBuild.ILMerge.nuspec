@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\build\CIBuild.ILMerge.targets" target="build\net20" />
+    <file src="..\build\CIBuild.ILMerge.targets" target="build" />
   </files>
 </package>
